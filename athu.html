@@ -112,9 +112,10 @@ body::after {
   display: flex; align-items: center; justify-content: center;
   position: relative;
 }
-.nav-logo-mark::after {
-  content: ''; width: 9px; height: 9px; border-radius: 50%;
-  background: var(--amber); box-shadow: 0 0 10px rgba(232,168,32,0.6);
+.nav-logo-mark {
+  width: px88;
+  height: auto;
+  object-fit: contain;
 }
 .nav-logo-name {
   font-family: var(--ff-disp); font-size: 1.15rem; font-weight: 800;
@@ -829,7 +830,7 @@ body::after {
 <!-- ═══ NAV ═══ -->
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">
-    <div class="nav-logo-mark"></div>
+    <img src="athu-nobg.png" alt="Athu Logo" class="nav-logo-mark">
     <span class="nav-logo-name">Athu<span>.</span></span>
   </a>
 
