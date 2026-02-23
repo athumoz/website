@@ -53,7 +53,6 @@ img { display: block; max-width: 100%; }
 ::-webkit-scrollbar-track { background: var(--ink); }
 ::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 10px; }
 
-/* Subtle grain */
 body::after {
   content: '';
   position: fixed; inset: 0; z-index: 9999; pointer-events: none;
@@ -104,7 +103,6 @@ body::after {
 }
 .nav.scrolled { box-shadow: 0 1px 0 rgba(255,255,255,0.05), 0 4px 24px rgba(0,0,0,0.4); }
 
-/* Logo */
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo-mark {
   width: 32px; height: 32px; border-radius: 7px;
@@ -112,18 +110,10 @@ body::after {
   display: flex; align-items: center; justify-content: center;
   position: relative;
 }
-.nav-logo-img {
-  height: 128px;
-  width: auto;
-  display: block;
-}
-.nav-logo-name {
-  font-family: var(--ff-disp); font-size: 1.15rem; font-weight: 800;
-  color: var(--text); letter-spacing: 0.04em;
-}
+.nav-logo-img { height: 128px; width: auto; display: block; }
+.nav-logo-name { font-family: var(--ff-disp); font-size: 1.15rem; font-weight: 800; color: var(--text); letter-spacing: 0.04em; }
 .nav-logo-name span { color: var(--amber); }
 
-/* Desktop links */
 .nav-links { display: flex; gap: 28px; list-style: none; }
 .nav-links a {
   font-size: 0.8rem; font-weight: 500; text-transform: uppercase;
@@ -132,7 +122,6 @@ body::after {
 }
 .nav-links a:hover { color: var(--text); }
 
-/* Language switcher */
 .lang-switcher { display: flex; gap: 4px; align-items: center; }
 .lang-btn {
   font-family: var(--ff-disp); font-size: 0.7rem; font-weight: 700;
@@ -147,7 +136,6 @@ body::after {
 
 .nav-right { display: flex; align-items: center; gap: 12px; }
 
-/* Live pill */
 .live-pill {
   display: flex; align-items: center; gap: 5px;
   font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
@@ -160,14 +148,12 @@ body::after {
 }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(1.3)} }
 
-/* Hamburger */
 .ham {
   display: none; flex-direction: column; gap: 5px;
   background: none; border: none; cursor: pointer; padding: 4px;
 }
 .ham span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.25s; }
 
-/* Mobile drawer */
 .mobile-drawer {
   display: none; position: fixed; top: 62px; left: 0; right: 0; z-index: 599;
   background: var(--ink-soft); border-bottom: 1px solid var(--line);
@@ -251,7 +237,6 @@ body::after {
 }
 .meta-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--teal); }
 
-/* Hero terminal */
 .hero-terminal { position: relative; z-index: 1; }
 .terminal {
   background: var(--panel); border: 1px solid var(--line);
@@ -331,13 +316,10 @@ body::after {
   padding: 0 44px;
   overflow-x: auto; -webkit-overflow-scrolling: touch;
 }
-.lang-bar-inner {
-  display: flex; gap: 0; min-width: max-content;
-}
+.lang-bar-inner { display: flex; gap: 0; min-width: max-content; }
 .lang-item {
   padding: 18px 28px; border-right: 1px solid var(--line);
-  flex-shrink: 0; cursor: pointer; transition: background 0.18s;
-  text-align: center;
+  flex-shrink: 0; cursor: pointer; transition: background 0.18s; text-align: center;
 }
 .lang-item:hover { background: rgba(255,255,255,0.03); }
 .lang-item:first-child { padding-left: 0; }
@@ -378,25 +360,15 @@ body::after {
 }
 
 /* ═══════════════════════════════════════
-   ★ PRODUCT SECTION — GNOWIT STYLE
-   Sticky side-nav + scrollable content panels
+   PRODUCT SECTION
 ═══════════════════════════════════════ */
 .products-section { padding: 0; background: var(--ink-soft); border-top: 1px solid var(--line); }
 
-/* Top intro band */
-.products-intro {
-  padding: 72px 44px 56px; border-bottom: 1px solid var(--line);
-  text-align: center;
-}
+.products-intro { padding: 72px 44px 56px; border-bottom: 1px solid var(--line); text-align: center; }
 .products-intro .lead { margin: 0 auto; }
 
-/* Layout: sticky sidebar + panels */
-.products-layout {
-  display: grid; grid-template-columns: 260px 1fr;
-  min-height: 600px;
-}
+.products-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 600px; }
 
-/* Sticky sidebar */
 .products-nav {
   border-right: 1px solid var(--line);
   position: sticky; top: 62px;
@@ -406,14 +378,10 @@ body::after {
   align-self: start;
 }
 
-/* on mobile: convert to horizontal tabs */
 .products-tabs-mobile {
-  display: none;
-  overflow-x: auto; -webkit-overflow-scrolling: touch;
-  padding: 0 16px;
-  border-bottom: 1px solid var(--line);
-  background: var(--panel);
-  gap: 0;
+  display: none; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  padding: 0 16px; border-bottom: 1px solid var(--line);
+  background: var(--panel); gap: 0;
 }
 
 .prod-nav-label {
@@ -428,9 +396,7 @@ body::after {
   transition: all 0.18s; position: relative;
 }
 .prod-nav-link:hover { background: rgba(255,255,255,0.03); }
-.prod-nav-link.active {
-  border-left-color: var(--amber); background: var(--amber-lo);
-}
+.prod-nav-link.active { border-left-color: var(--amber); background: var(--amber-lo); }
 .prod-nav-link.active .pnl-name { color: var(--amber); }
 .prod-nav-link.active .pnl-num { color: var(--amber); }
 
@@ -438,25 +404,20 @@ body::after {
 .pnl-name { font-size: 0.82rem; font-weight: 700; color: var(--text-mid); line-height: 1.3; transition: color 0.18s; }
 .pnl-sub  { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
 
-/* Mobile tab button */
 .prod-tab-btn {
   flex-shrink: 0; padding: 16px 18px;
   font-family: var(--ff-disp); font-size: 0.78rem; font-weight: 700;
   color: var(--text-muted); background: none; border: none; cursor: pointer;
-  border-bottom: 2px solid transparent; transition: all 0.18s;
-  white-space: nowrap;
+  border-bottom: 2px solid transparent; transition: all 0.18s; white-space: nowrap;
 }
 .prod-tab-btn:hover { color: var(--text); }
 .prod-tab-btn.active { color: var(--amber); border-bottom-color: var(--amber); }
 
-/* Panels area */
 .products-panels { padding: 0; }
 
 .prod-panel {
-  padding: 56px 52px;
-  border-bottom: 1px solid var(--line);
-  display: none; /* shown by JS / default first */
-  animation: fadeIn 0.3s ease;
+  padding: 56px 52px; border-bottom: 1px solid var(--line);
+  display: none; animation: fadeIn 0.3s ease;
 }
 .prod-panel.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
@@ -478,14 +439,10 @@ body::after {
   color: var(--text-mid); font-weight: 300; max-width: 640px;
 }
 
-/* Feature grid inside panel */
-.panel-features {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 36px 0;
-}
+.panel-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 36px 0; }
 .feat-card {
   background: var(--ink); border: 1px solid var(--line);
-  border-radius: 10px; padding: 22px 20px;
-  transition: border-color 0.2s, background 0.2s;
+  border-radius: 10px; padding: 22px 20px; transition: border-color 0.2s, background 0.2s;
 }
 .feat-card:hover { border-color: var(--amber-bdr); background: rgba(232,168,32,0.03); }
 .feat-icon { margin-bottom: 12px; }
@@ -493,7 +450,6 @@ body::after {
 .feat-title { font-size: 0.875rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
 .feat-desc { font-family: var(--ff-serif); font-size: 0.8rem; line-height: 1.65; color: var(--text-muted); font-weight: 300; }
 
-/* Data preview strip inside panel */
 .panel-data-strip {
   background: var(--ink); border: 1px solid var(--line); border-radius: 10px;
   overflow: hidden; margin-top: 8px;
@@ -507,26 +463,21 @@ body::after {
 .data-strip-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
 .data-row {
   display: flex; gap: 12px; align-items: center; padding: 8px 10px;
-  border-radius: 6px; background: rgba(255,255,255,0.02);
-  border: 1px solid var(--line-s);
+  border-radius: 6px; background: rgba(255,255,255,0.02); border: 1px solid var(--line-s);
 }
 .dr-num { font-family: var(--ff-mono); font-size: 0.6rem; color: var(--text-dim); width: 20px; flex-shrink: 0; }
 .dr-text { font-family: var(--ff-serif); font-size: 0.78rem; color: var(--text-mid); flex: 1; font-weight: 300; font-style: italic; }
 .dr-badge { font-family: var(--ff-mono); font-size: 0.58rem; font-weight: 700; border-radius: 3px; padding: 2px 7px; flex-shrink: 0; }
 
 /* ═══════════════════════════════════════
-   CAPABILITIES (6-grid)
+   CAPABILITIES
 ═══════════════════════════════════════ */
 .cap-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1px; background: var(--line);
-  border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
-  margin-top: 52px;
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-top: 52px;
 }
-.cap-card {
-  background: var(--ink-soft); padding: 30px 26px;
-  transition: background 0.2s;
-}
+.cap-card { background: var(--ink-soft); padding: 30px 26px; transition: background 0.2s; }
 .cap-card:hover { background: var(--panel); }
 .cap-ic {
   width: 40px; height: 40px; border-radius: 9px;
@@ -547,10 +498,7 @@ body::after {
 }
 .is-card { background: var(--ink-soft); padding: 26px 22px; transition: background 0.2s; }
 .is-card:hover { background: var(--panel); }
-.is-num {
-  font-family: var(--ff-disp); font-size: 1.9rem; font-weight: 800;
-  color: var(--amber); display: block; margin-bottom: 5px; letter-spacing: -0.02em;
-}
+.is-num { font-family: var(--ff-disp); font-size: 1.9rem; font-weight: 800; color: var(--amber); display: block; margin-bottom: 5px; letter-spacing: -0.02em; }
 .is-lbl { font-size: 0.76rem; color: var(--text-muted); line-height: 1.5; }
 
 .audience-list { display: flex; flex-direction: column; gap: 12px; margin-top: 36px; }
@@ -587,10 +535,7 @@ body::after {
   color: var(--text-mid); display: flex; gap: 8px; align-items: flex-start;
 }
 .phase-item::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--text-dim); flex-shrink: 0; margin-top: 6px; }
-.phase-badge {
-  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  border-radius: 100px; padding: 3px 10px;
-}
+.phase-badge { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 100px; padding: 3px 10px; }
 .pb-now  { background: var(--amber-lo); color: var(--amber); border: 1px solid var(--amber-bdr); }
 .pb-next { background: var(--teal-lo); color: var(--teal); border: 1px solid rgba(42,191,168,0.2); }
 .pb-fut  { background: rgba(255,255,255,0.04); color: var(--text-muted); border: 1px solid var(--line); }
@@ -642,9 +587,8 @@ body::after {
 ═══════════════════════════════════════ */
 .footer { background: var(--ink-soft); border-top: 1px solid var(--line); padding: 56px 44px 32px; }
 .footer-top { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 44px; padding-bottom: 44px; border-bottom: 1px solid var(--line); margin-bottom: 28px; }
-.ft-logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-.ft-logo-mark { width: 28px; height: 28px; border-radius: 6px; border: 1.5px solid var(--amber-bdr); display: flex; align-items: center; justify-content: center; }
-.ft-logo-mark::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--amber); }
+.ft-logo-row { display: flex; align-items: center; }
+.ft-logo-img { height: 128px; width: auto; display: block; }
 .ft-logo-name { font-family: var(--ff-disp); font-size: 1rem; font-weight: 800; color: var(--text); }
 .ft-logo-name span { color: var(--amber); }
 .ft-tagline { font-family: var(--ff-serif); font-size: 0.82rem; line-height: 1.7; color: var(--text-muted); font-weight: 300; max-width: 270px; margin-bottom: 14px; }
@@ -658,75 +602,28 @@ body::after {
 .fb-links a { color: var(--text-dim); text-decoration: none; transition: color 0.15s; }
 .fb-links a:hover { color: var(--text-muted); }
 
-.ft-logo-row {
-  display: flex;
-  align-items: center;
-}
-
-.ft-logo-img {
-  height: 128px; /* adjust if needed */
-  width: auto;
-  display: block;
-}
-
 /* ═══════════════════════════════════════
    INTERACTIVE DEMO SECTION
 ═══════════════════════════════════════ */
 .demo-section { background: var(--ink-soft); border-top: 1px solid var(--line); }
-.demo-section-inner {
-  display: grid; grid-template-columns: 1fr 1.15fr;
-  gap: 64px; align-items: start;
-}
+.demo-section-inner { display: grid; grid-template-columns: 1fr 1.15fr; gap: 64px; align-items: start; }
 
-/* Left: intro + source badges + principles */
-.demo-intro {}
-.demo-source-box {
-  margin-top: 32px; padding: 18px 20px;
-  background: var(--ink); border: 1px solid var(--line); border-radius: 10px;
-}
-.demo-source-box-lbl {
-  font-size: 0.63rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--amber); margin-bottom: 12px;
-}
-.demo-principle {
-  margin-top: 14px; padding: 14px 16px;
-  background: var(--teal-lo); border: 1px solid rgba(42,191,168,0.18); border-radius: 8px;
-  font-family: var(--ff-serif); font-size: 0.8rem; line-height: 1.65;
-  color: var(--text-muted); font-weight: 300;
-}
+.demo-source-box { margin-top: 32px; padding: 18px 20px; background: var(--ink); border: 1px solid var(--line); border-radius: 10px; }
+.demo-source-box-lbl { font-size: 0.63rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+.demo-principle { margin-top: 14px; padding: 14px 16px; background: var(--teal-lo); border: 1px solid rgba(42,191,168,0.18); border-radius: 8px; font-family: var(--ff-serif); font-size: 0.8rem; line-height: 1.65; color: var(--text-muted); font-weight: 300; }
 .demo-principle strong { color: var(--teal); font-weight: 600; font-family: var(--ff-disp); }
 
-/* Right: query simulator */
-.qs {
-  background: var(--panel); border: 1px solid var(--line);
-  border-radius: 14px; overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
-}
-.qs-head {
-  padding: 13px 20px; border-bottom: 1px solid var(--line);
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(255,255,255,0.02);
-}
+.qs { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+.qs-head { padding: 13px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.02); }
 .qs-head-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
-.qs-head-badge {
-  font-size: 0.63rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--teal); background: var(--teal-lo); border: 1px solid rgba(42,191,168,0.22);
-  border-radius: 100px; padding: 3px 10px;
-}
+.qs-head-badge { font-size: 0.63rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); background: var(--teal-lo); border: 1px solid rgba(42,191,168,0.22); border-radius: 100px; padding: 3px 10px; }
 
-/* Query list */
 .qs-queries { padding: 14px; display: flex; flex-direction: column; gap: 5px; border-bottom: 1px solid var(--line); }
-.qs-q {
-  padding: 11px 13px; border-radius: 7px; cursor: pointer;
-  border: 1px solid transparent;
-  font-family: var(--ff-serif); font-size: 0.82rem; font-style: italic;
-  color: var(--text-mid); transition: all 0.18s; line-height: 1.5;
-}
+.qs-q { padding: 11px 13px; border-radius: 7px; cursor: pointer; border: 1px solid transparent; font-family: var(--ff-serif); font-size: 0.82rem; font-style: italic; color: var(--text-mid); transition: all 0.18s; line-height: 1.5; }
 .qs-q:hover { background: rgba(255,255,255,0.03); border-color: var(--line); color: var(--text); }
 .qs-q.active { background: var(--amber-lo); border-color: var(--amber-bdr); color: var(--text); }
 .qs-q-num { font-family: var(--ff-mono); font-size: 0.58rem; color: var(--text-dim); display: block; margin-bottom: 2px; font-style: normal; }
 
-/* Result area */
 .qs-result { padding: 20px; min-height: 300px; }
 
 .res-block { display: none; animation: fadeIn 0.28s ease; }
@@ -734,58 +631,134 @@ body::after {
 
 .res-chips { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 14px; }
 
-.res-answer {
-  background: var(--ink); border: 1px solid var(--line);
-  border-radius: 8px; padding: 14px 16px; margin-bottom: 14px;
-}
-.res-lbl {
-  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
-}
+.res-answer { background: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; }
+.res-lbl { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
 .res-lbl::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--amber); }
-.res-text {
-  font-family: var(--ff-serif); font-size: 0.84rem; line-height: 1.75;
-  color: var(--text); font-weight: 300;
-}
+.res-text { font-family: var(--ff-serif); font-size: 0.84rem; line-height: 1.75; color: var(--text); font-weight: 300; }
 .res-text strong { color: var(--amber); font-weight: 600; }
 
-/* Structured facts */
 .res-facts { margin-bottom: 14px; }
-.fact-r {
-  display: flex; gap: 10px; padding: 7px 0;
-  border-bottom: 1px solid var(--line-s); align-items: flex-start;
-}
+.fact-r { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line-s); align-items: flex-start; }
 .fact-r:last-child { border-bottom: none; }
-.fact-k {
-  font-family: var(--ff-mono); font-size: 0.62rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.07em;
-  color: var(--text-muted); width: 106px; flex-shrink: 0; padding-top: 1px;
-}
+.fact-k { font-family: var(--ff-mono); font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); width: 106px; flex-shrink: 0; padding-top: 1px; }
 .fact-v { font-size: 0.78rem; color: var(--text); line-height: 1.5; font-family: var(--ff-serif); font-weight: 300; }
 
-/* Sources */
 .res-sources { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 12px; }
-.rsrc {
-  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
-  color: var(--text-muted); background: rgba(255,255,255,0.04);
-  border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px;
-  display: flex; align-items: center; gap: 4px;
-}
+.rsrc { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px; display: flex; align-items: center; gap: 4px; }
 .rsrc::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
 
-/* Confidence row */
-.res-conf {
-  display: flex; align-items: center; gap: 8px; margin-top: 12px;
-  background: var(--teal-lo); border: 1px solid rgba(42,191,168,0.15); border-radius: 6px; padding: 7px 12px;
-}
+.res-conf { display: flex; align-items: center; gap: 8px; margin-top: 12px; background: var(--teal-lo); border: 1px solid rgba(42,191,168,0.15); border-radius: 6px; padding: 7px 12px; }
 .res-conf-lbl { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); flex-shrink: 0; }
 .res-conf-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.07); border-radius: 100px; overflow: hidden; }
 .res-conf-fill { height: 100%; background: linear-gradient(90deg, var(--teal), #4AF0D8); border-radius: 100px; }
 .res-conf-score { font-family: var(--ff-mono); font-size: 0.68rem; font-weight: 700; color: var(--teal); flex-shrink: 0; }
 
-/* Responsive demo */
-@media (max-width: 960px) {
-  .demo-section-inner { grid-template-columns: 1fr; }
+/* ═══════════════════════════════════════
+   GEMINI / CLAUDE LIVE QUERY BLOCK
+═══════════════════════════════════════ */
+.gemini-live-block {
+  margin-top: 40px;
+  background: var(--ink);
+  border: 1px solid var(--amber-bdr);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--amber-lo), 0 24px 60px rgba(0,0,0,0.4);
+}
+.gemini-live-head {
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--amber-lo);
+}
+.gemini-live-head-title {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--amber); display: flex; align-items: center; gap: 7px;
+}
+.gemini-live-head-title::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--amber); animation: pulse 2s infinite;
+}
+.gemini-live-head-badge {
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink); background: var(--amber); border-radius: 100px; padding: 3px 10px;
+}
+.gemini-input-row {
+  display: flex; gap: 0; border-bottom: 1px solid var(--line);
+}
+.gemini-input {
+  flex: 1; background: transparent; border: none; outline: none;
+  font-family: var(--ff-serif); font-size: 0.88rem; font-style: italic;
+  color: var(--text); padding: 16px 18px; line-height: 1.5;
+  caret-color: var(--amber);
+}
+.gemini-input::placeholder { color: var(--text-dim); font-style: italic; }
+.gemini-send-btn {
+  padding: 0 20px; background: none; border: none; border-left: 1px solid var(--line);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.18s;
+}
+.gemini-send-btn:hover { background: var(--amber-lo); }
+.gemini-send-btn svg { width: 16px; height: 16px; stroke: var(--amber); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.gemini-send-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.gemini-result-area {
+  padding: 20px; min-height: 90px;
+}
+.gemini-placeholder {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 90px; gap: 10px;
+  font-family: var(--ff-serif); font-size: 0.82rem; font-style: italic;
+  color: var(--text-dim); text-align: center; line-height: 1.6;
+}
+.gemini-placeholder svg { width: 16px; height: 16px; stroke: var(--text-dim); fill: none; stroke-width: 1.5; opacity: 0.5; flex-shrink: 0; }
+.gemini-loading {
+  display: none; flex-direction: column; gap: 10px; padding: 14px 0;
+}
+.gemini-loading-dots { display: flex; gap: 5px; align-items: center; }
+.gemini-loading-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--amber);
+  animation: gload 1.2s infinite ease-in-out;
+}
+.gemini-loading-dot:nth-child(2) { animation-delay: 0.18s; }
+.gemini-loading-dot:nth-child(3) { animation-delay: 0.36s; }
+@keyframes gload { 0%,80%,100%{opacity:.2;transform:scale(0.7)} 40%{opacity:1;transform:scale(1)} }
+.gemini-loading-lbl { font-size: 0.68rem; color: var(--text-muted); letter-spacing: 0.06em; }
+.gemini-output { display: none; animation: fadeIn 0.3s ease; }
+.gemini-chips-row { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+.gemini-model-badge {
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--ink); background: var(--amber); border-radius: 4px; padding: 2px 9px;
+  margin-left: auto; display: flex; align-items: center; gap: 4px;
+}
+.gemini-model-badge::before { content: '\2736'; font-size: 0.6rem; }
+.gemini-answer-box {
+  background: var(--ink-soft); border: 1px solid var(--line);
+  border-radius: 8px; padding: 14px 16px; margin-bottom: 12px;
+}
+.gemini-ans-lbl {
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
+}
+.gemini-ans-lbl::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--amber); }
+.gemini-ans-text { font-family: var(--ff-serif); font-size: 0.84rem; line-height: 1.75; color: var(--text); font-weight: 300; }
+.gemini-ans-text strong { color: var(--amber); font-weight: 600; }
+.gemini-facts-block { margin-bottom: 12px; }
+.gemini-fact-r { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line-s); align-items: flex-start; }
+.gemini-fact-r:last-child { border-bottom: none; }
+.gemini-fact-k { font-family: var(--ff-mono); font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); width: 106px; flex-shrink: 0; padding-top: 1px; }
+.gemini-fact-v { font-size: 0.78rem; color: var(--text); line-height: 1.5; font-family: var(--ff-serif); font-weight: 300; }
+.gemini-sources-row { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
+.gemini-conf-row {
+  display: flex; align-items: center; gap: 8px; margin-top: 10px;
+  background: var(--amber-lo); border: 1px solid var(--amber-bdr); border-radius: 6px; padding: 7px 12px;
+}
+.gemini-conf-lbl { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); flex-shrink: 0; }
+.gemini-conf-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.07); border-radius: 100px; overflow: hidden; }
+.gemini-conf-fill { height: 100%; background: linear-gradient(90deg, var(--amber), #F5C040); border-radius: 100px; transition: width 0.6s ease; }
+.gemini-conf-score { font-family: var(--ff-mono); font-size: 0.68rem; font-weight: 700; color: var(--amber); flex-shrink: 0; }
+.gemini-error {
+  display: none; background: rgba(224,82,82,0.08); border: 1px solid rgba(224,82,82,0.25);
+  border-radius: 8px; padding: 12px 14px;
+  font-family: var(--ff-serif); font-size: 0.82rem; color: var(--red); font-weight: 300;
 }
 
 /* ═══════════════════════════════════════
@@ -813,6 +786,7 @@ body::after {
   .panel-features { grid-template-columns: 1fr 1fr; }
   .cap-grid { grid-template-columns: 1fr 1fr; }
   .phases-grid { grid-template-columns: 1fr; }
+  .demo-section-inner { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 680px) {
@@ -820,7 +794,6 @@ body::after {
   .nav-links, .live-pill, .lang-switcher { display: none; }
   .ham { display: flex; }
   .mobile-drawer { display: flex; }
-
   .section { padding: 60px 20px; }
   .hero { padding: 100px 20px 56px; }
   .lang-bar { padding: 0 20px; }
@@ -838,12 +811,11 @@ body::after {
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
+<!-- NAV -->
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">
-  <img src="athu-nobg.png" alt="athu — Inteligência Cívica" class="nav-logo-img">
-   </a>
-
+    <img src="athu-nobg.png" alt="athu — Inteligência Cívica" class="nav-logo-img">
+  </a>
   <ul class="nav-links">
     <li><a href="#produto">Produto</a></li>
     <li><a href="#demonstracao">Demo</a></li>
@@ -851,7 +823,6 @@ body::after {
     <li><a href="#impacto">Impacto</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-
   <div class="nav-right">
     <div class="lang-switcher">
       <button class="lang-btn active" onclick="setLang('pt')">PT</button>
@@ -881,22 +852,14 @@ body::after {
   </div>
 </div>
 
-
-<!-- ═══ HERO ═══ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
-
   <div class="hero-text">
     <div class="hero-kicker"><span class="hero-kicker-line"></span>Inteligência Cívica</div>
-    <h1>
-      Pergunte ao<br>
-      <span class="accent">athu</span>.<br>
-      <em>Receba evidências.</em>
-    </h1>
-    <p class="hero-sub">
-      athu é uma plataforma de IA que transforma documentos públicos, legislação e media em respostas verificáveis a perguntas cívicas, em português e nas línguas locais moçambicanas.
-    </p>
+    <h1>Pergunte ao<br><span class="accent">athu</span>.<br><em>Receba evidências.</em></h1>
+    <p class="hero-sub">athu é uma plataforma de IA que transforma documentos públicos, legislação e media em respostas verificáveis a perguntas cívicas, em português e nas línguas locais moçambicanas.</p>
     <div class="hero-actions">
       <a href="#produto" class="btn btn-amber">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
@@ -910,7 +873,6 @@ body::after {
       <span class="meta-tag">Acesso imediato</span>
     </div>
   </div>
-
   <div class="hero-terminal">
     <div class="terminal">
       <div class="term-bar">
@@ -932,12 +894,12 @@ body::after {
         </div>
         <div class="term-ans">
           <div class="ans-lbl">Síntese com base em evidências</div>
-          <div class="ans-text">O Orçamento do Estado (OE) para 2026, aprovado pela Assembleia da República de Moçambique, fixa a despesa total do governo em cerca de  <strong>155 mil milhões de meticais</strong> no sector da educação. Isso equivale a 28% da despesa total OE de cerca de </strong>535.6 mil milhões de meticais</strong>.</div>
+          <div class="ans-text">O Orçamento do Estado (OE) para 2026, aprovado pela Assembleia da República de Moçambique, fixa a despesa total do governo em cerca de <strong>155 mil milhões de meticais</strong> no sector da educação. Isso equivale a 28% da despesa total OE de cerca de <strong>535.6 mil milhões de meticais</strong>.</div>
         </div>
         <div class="tl">
           <div class="tl-lbl">Linha do Tempo</div>
           <div class="tl-row"><div class="tl-dot-col"><div class="tl-dot c-bl"></div><div class="tl-seg"></div></div><div class="tl-content"><div class="tl-date">13 de Dezembro 2025</div>OE 2026 aprovado na Assembleia da República</div></div>
-          <div class="tl-row"><div class="tl-dot-col"><div class="tl-dot c-am"></div><div class="tl-seg"></div></div><div class="tl-content"><div class="tl-date">3o Dezembro 2025</div>Promulgação pelo Presidente da República</div></div>
+          <div class="tl-row"><div class="tl-dot-col"><div class="tl-dot c-am"></div><div class="tl-seg"></div></div><div class="tl-content"><div class="tl-date">30 Dezembro 2025</div>Promulgação pelo Presidente da República</div></div>
           <div class="tl-row"><div class="tl-dot-col"><div class="tl-dot c-rd"></div></div><div class="tl-content"><div class="tl-date">20 de Janeiro 2026</div>CIP reporta atrasos em transferências provinciais</div></div>
         </div>
         <div class="conf-row">
@@ -950,18 +912,14 @@ body::after {
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     ★ PRODUCT SECTION — GNOWIT STYLE
-═══════════════════════════════════════ -->
+<!-- PRODUCT SECTION -->
 <div class="products-section" id="produto">
-
   <div class="products-intro rv">
     <div class="eyebrow eyebrow-c">Módulos do Produto</div>
     <div class="h2" style="text-align:center">Quatro módulos.<br><em>Uma infraestrutura cívica.</em></div>
     <p class="lead">Do documento público à resposta compreensível, em segundos, com todas as fontes citadas e verificáveis.</p>
   </div>
 
-  <!-- Mobile horizontal tabs -->
   <div class="products-tabs-mobile" id="prod-tabs-mobile">
     <button class="prod-tab-btn active" onclick="switchProduct(0)">Pesquisa Cívica</button>
     <button class="prod-tab-btn" onclick="switchProduct(1)">Monitor Legislativo</button>
@@ -970,11 +928,8 @@ body::after {
   </div>
 
   <div class="products-layout">
-
-    <!-- Desktop sticky sidebar -->
     <nav class="products-nav" id="prod-nav">
       <div class="prod-nav-label">Módulos</div>
-
       <a class="prod-nav-link active" onclick="switchProduct(0)">
         <div><div class="pnl-num">01</div><div class="pnl-name">Pesquisa Cívica</div><div class="pnl-sub">Consulta em linguagem natural</div></div>
       </a>
@@ -989,10 +944,7 @@ body::after {
       </a>
     </nav>
 
-    <!-- Panels -->
     <div class="products-panels" id="prod-panels">
-
-      <!-- ── Panel 01: Pesquisa Cívica ── -->
       <div class="prod-panel active" id="panel-0">
         <div class="panel-header">
           <div class="panel-number">Módulo 01: Pesquisa Cívica</div>
@@ -1000,32 +952,13 @@ body::after {
           <p class="panel-desc">O motor de pesquisa semântica do athu compreende perguntas em português e nas principais línguas locais moçambicanas, recuperando informação relevante de milhares de documentos públicos indexados, em menos de 8 segundos.</p>
         </div>
         <div class="panel-features">
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-            <div class="feat-title">Pesquisa Semântica em Português</div>
-            <div class="feat-desc">Compreende o significado da pergunta, não apenas palavras-chave. Recupera contexto legislativo, orçamental e mediático em simultâneo.</div>
-          </div>
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
-            <div class="feat-title">Suporte Multilingue</div>
-            <div class="feat-desc">Aceita perguntas em Macua, Xichangana, Cisena e outras línguas moçambicanas. Responde em português ou na língua da consulta.</div>
-          </div>
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <div class="feat-title">Citação de Fontes Primárias</div>
-            <div class="feat-desc">Cada resposta inclui ligações directas aos documentos originais, Boletim da República, relatórios ministeriais, transcrições parlamentares.</div>
-          </div>
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-            <div class="feat-title">Indicador de Confiança</div>
-            <div class="feat-desc">Cada resposta inclui uma percentagem de confiança calculada com base na qualidade e convergência das fontes disponíveis.</div>
-          </div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="feat-title">Pesquisa Semântica em Português</div><div class="feat-desc">Compreende o significado da pergunta, não apenas palavras-chave. Recupera contexto legislativo, orçamental e mediático em simultâneo.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="feat-title">Suporte Multilingue</div><div class="feat-desc">Aceita perguntas em Macua, Xichangana, Cisena e outras línguas moçambicanas. Responde em português ou na língua da consulta.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="feat-title">Citação de Fontes Primárias</div><div class="feat-desc">Cada resposta inclui ligações directas aos documentos originais, Boletim da República, relatórios ministeriais, transcrições parlamentares.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="feat-title">Indicador de Confiança</div><div class="feat-desc">Cada resposta inclui uma percentagem de confiança calculada com base na qualidade e convergência das fontes disponíveis.</div></div>
         </div>
         <div class="panel-data-strip">
-          <div class="data-strip-head">
-            <div class="data-strip-title">Consultas de exemplo</div>
-            <div class="chips"><span class="chip chip-med">Pesquisa Cívica</span></div>
-          </div>
+          <div class="data-strip-head"><div class="data-strip-title">Consultas de exemplo</div><div class="chips"><span class="chip chip-med">Pesquisa Cívica</span></div></div>
           <div class="data-strip-body">
             <div class="data-row"><span class="dr-num">01</span><span class="dr-text">"Qual é o salário mínimo em Moçambique em 2024 e quando foi alterado pela última vez?"</span><span class="dr-badge chip-gov" style="background:var(--blue-lo);color:var(--blue)">MTE + Decreto</span></div>
             <div class="data-row"><span class="dr-num">02</span><span class="dr-text">"Niphe ndi mitawoni ya Nampula enayipanga makhwinyo 2023?" (Macua)</span><span class="dr-badge chip-med" style="background:var(--amber-lo);color:var(--amber)">Macua</span></div>
@@ -1034,7 +967,6 @@ body::after {
         </div>
       </div>
 
-      <!-- ── Panel 02: Monitor Legislativo ── -->
       <div class="prod-panel" id="panel-1">
         <div class="panel-header">
           <div class="panel-number">Módulo 02: Monitor Legislativo</div>
@@ -1042,32 +974,13 @@ body::after {
           <p class="panel-desc">O Monitor Legislativo do athu indexa automaticamente o Boletim da República, actas parlamentares, projectos de lei e relatórios de comissão, gerando resumos, alertas e linhas do tempo de cada documento.</p>
         </div>
         <div class="panel-features">
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
-            <div class="feat-title">Rastreio do Boletim da República</div>
-            <div class="feat-desc">Monitorização automática de todas as publicações oficiais. Alertas imediatos quando legislação relevante é publicada.</div>
-          </div>
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-            <div class="feat-title">Progressão Legislativa</div>
-            <div class="feat-desc">Visualize o estado actual de cada projecto de lei, da proposta à aprovação, com todas as emendas documentadas.</div>
-          </div>
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-            <div class="feat-title">Identificação de Intervenientes</div>
-            <div class="feat-desc">Extracção automática de deputados, ministérios e partidos envolvidos em cada processo legislativo.</div>
-          </div>
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M22 17H2a3 3 0 000 6h20a3 3 0 000-6z"/><path d="M5 17V5a2 2 0 012-2h10a2 2 0 012 2v12"/></svg></div>
-            <div class="feat-title">Alertas por Área Temática</div>
-            <div class="feat-desc">Configure alertas para temas específicos: saúde, terra, energia, educação, receba notificações quando legislação relevante avança.</div>
-          </div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><div class="feat-title">Rastreio do Boletim da República</div><div class="feat-desc">Monitorização automática de todas as publicações oficiais. Alertas imediatos quando legislação relevante é publicada.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="feat-title">Progressão Legislativa</div><div class="feat-desc">Visualize o estado actual de cada projecto de lei, da proposta à aprovação, com todas as emendas documentadas.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div class="feat-title">Identificação de Intervenientes</div><div class="feat-desc">Extracção automática de deputados, ministérios e partidos envolvidos em cada processo legislativo.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M22 17H2a3 3 0 000 6h20a3 3 0 000-6z"/><path d="M5 17V5a2 2 0 012-2h10a2 2 0 012 2v12"/></svg></div><div class="feat-title">Alertas por Área Temática</div><div class="feat-desc">Configure alertas para temas específicos: saúde, terra, energia, educação, receba notificações quando legislação relevante avança.</div></div>
         </div>
         <div class="panel-data-strip">
-          <div class="data-strip-head">
-            <div class="data-strip-title">Actividade legislativa recente</div>
-            <div class="chips"><span class="chip chip-gov">Boletim da República</span></div>
-          </div>
+          <div class="data-strip-head"><div class="data-strip-title">Actividade legislativa recente</div><div class="chips"><span class="chip chip-gov">Boletim da República</span></div></div>
           <div class="data-strip-body">
             <div class="data-row"><span class="dr-num">01</span><span class="dr-text">Projecto de revisão da Lei de Terras (Lei 19/97) — em comissão parlamentar desde Mar 2024</span><span class="dr-badge" style="background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-bdr)">Em Curso</span></div>
             <div class="data-row"><span class="dr-num">02</span><span class="dr-text">Regulamento do sector mineiro — aprovado em Conselho de Ministros, Abr 2024</span><span class="dr-badge" style="background:var(--teal-lo);color:var(--teal);border:1px solid rgba(42,191,168,.2)">Aprovado</span></div>
@@ -1076,7 +989,6 @@ body::after {
         </div>
       </div>
 
-      <!-- ── Panel 03: Rastreio Orçamental ── -->
       <div class="prod-panel" id="panel-2">
         <div class="panel-header">
           <div class="panel-number">Módulo 03: Rastreio Orçamental</div>
@@ -1084,41 +996,21 @@ body::after {
           <p class="panel-desc">O módulo orçamental do athu indexa o Orçamento do Estado, relatórios de execução trimestrais e dados de procurement público, permitindo comparar alocações com execução real por sector, ministério e província.</p>
         </div>
         <div class="panel-features">
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-            <div class="feat-title">OE vs Execução Real</div>
-            <div class="feat-desc">Confronte automaticamente o orçamento aprovado com os relatórios trimestrais de execução do MINFIN para qualquer sector ou ministério.</div>
-          </div>
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-            <div class="feat-title">Análise de Procurement</div>
-            <div class="feat-desc">Acesso estruturado a contratos públicos adjudicados, valores, adjudicatários e modalidade de concurso.</div>
-          </div>
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18"/></svg></div>
-            <div class="feat-title">Desagregação Provincial</div>
-            <div class="feat-desc">Compare execução orçamental entre províncias para identificar assimetrias na distribuição de recursos públicos.</div>
-          </div>
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
-            <div class="feat-title">Evolução Histórica</div>
-            <div class="feat-desc">Visualize tendências plurianuais de alocação e execução por sector, revelando padrões e desvios ao longo do tempo.</div>
-          </div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><div class="feat-title">OE vs Execução Real</div><div class="feat-desc">Confronte automaticamente o orçamento aprovado com os relatórios trimestrais de execução do MINFIN para qualquer sector ou ministério.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="feat-title">Análise de Procurement</div><div class="feat-desc">Acesso estruturado a contratos públicos adjudicados, valores, adjudicatários e modalidade de concurso.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18"/></svg></div><div class="feat-title">Desagregação Provincial</div><div class="feat-desc">Compare execução orçamental entre províncias para identificar assimetrias na distribuição de recursos públicos.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div><div class="feat-title">Evolução Histórica</div><div class="feat-desc">Visualize tendências plurianuais de alocação e execução por sector, revelando padrões e desvios ao longo do tempo.</div></div>
         </div>
         <div class="panel-data-strip">
-          <div class="data-strip-head">
-            <div class="data-strip-title">Execução orçamental — 2024 H1</div>
-            <div class="chips"><span class="chip chip-gov">MINFIN — OE 2024</span></div>
-          </div>
+          <div class="data-strip-head"><div class="data-strip-title">Execução orçamental — 2024 H1</div><div class="chips"><span class="chip chip-gov">MINFIN — OE 2024</span></div></div>
           <div class="data-strip-body">
             <div class="data-row"><span class="dr-num">ED</span><span class="dr-text">Educação: 95 mil milhões de meticais alocados / 61% executados no H1</span><span class="dr-badge" style="background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-bdr)">Abaixo da meta</span></div>
-            <div class="data-row"><span class="dr-num">SA</span><span class="dr-text">Saúde: 60 mil milhões de meticaisalocados / 64% executados no H1</span><span class="dr-badge" style="background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-bdr)">Abaixo da meta</span></div>
+            <div class="data-row"><span class="dr-num">SA</span><span class="dr-text">Saúde: 60 mil milhões de meticais alocados / 64% executados no H1</span><span class="dr-badge" style="background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-bdr)">Abaixo da meta</span></div>
             <div class="data-row"><span class="dr-num">IN</span><span class="dr-text">Infraestruturas: 22 mil milhões de meticais alocados / 71% executados no H1</span><span class="dr-badge" style="background:var(--teal-lo);color:var(--teal);border:1px solid rgba(42,191,168,.2)">Na meta</span></div>
           </div>
         </div>
       </div>
 
-      <!-- ── Panel 04: Promessa vs Acção ── -->
       <div class="prod-panel" id="panel-3">
         <div class="panel-header">
           <div class="panel-number">Módulo 04: Promessa vs Acção</div>
@@ -1126,32 +1018,13 @@ body::after {
           <p class="panel-desc">O módulo de análise política do athu confronta programas eleitorais, discursos de posse e compromissos públicos com acções legislativas, orçamentais e executivas reais, sem interpretação política, apenas factos e fontes.</p>
         </div>
         <div class="panel-features">
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
-            <div class="feat-title">Indexação de Programas Eleitorais</div>
-            <div class="feat-desc">Extracção estruturada de compromissos quantificáveis de manifestos e programas quinquenais do governo, organizados por sector.</div>
-          </div>
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-            <div class="feat-title">Confronto com Acção Real</div>
-            <div class="feat-desc">Cada promessa é confrontada com legislação aprovada, orçamento executado e relatórios de progresso de ministérios relevantes.</div>
-          </div>
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-            <div class="feat-title">Linha do Tempo de Evolução</div>
-            <div class="feat-desc">Visualize a progressão de cada compromisso, do anúncio à implementação, com marcadores de eventos relevantes.</div>
-          </div>
-          <div class="feat-card">
-            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <div class="feat-title">Neutralidade Garantida</div>
-            <div class="feat-desc">O athu nunca emite julgamentos políticos. Apenas apresenta factos documentados, com ligação às fontes primárias de cada afirmação.</div>
-          </div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><div class="feat-title">Indexação de Programas Eleitorais</div><div class="feat-desc">Extracção estruturada de compromissos quantificáveis de manifestos e programas quinquenais do governo, organizados por sector.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><div class="feat-title">Confronto com Acção Real</div><div class="feat-desc">Cada promessa é confrontada com legislação aprovada, orçamento executado e relatórios de progresso de ministérios relevantes.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="feat-title">Linha do Tempo de Evolução</div><div class="feat-desc">Visualize a progressão de cada compromisso, do anúncio à implementação, com marcadores de eventos relevantes.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="feat-title">Neutralidade Garantida</div><div class="feat-desc">O athu nunca emite julgamentos políticos. Apenas apresenta factos documentados, com ligação às fontes primárias de cada afirmação.</div></div>
         </div>
         <div class="panel-data-strip">
-          <div class="data-strip-head">
-            <div class="data-strip-title">Rastreio de compromissos — PQG 2020–2024</div>
-            <div class="chips"><span class="chip chip-law">Programa Quinquenal</span></div>
-          </div>
+          <div class="data-strip-head"><div class="data-strip-title">Rastreio de compromissos — PQG 2020–2024</div><div class="chips"><span class="chip chip-law">Programa Quinquenal</span></div></div>
           <div class="data-strip-body">
             <div class="data-row"><span class="dr-num">E1</span><span class="dr-text">100 escolas primárias em zonas rurais — 67 concluídas (67%), 18 em construção</span><span class="dr-badge" style="background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-bdr)">Parcial</span></div>
             <div class="data-row"><span class="dr-num">S1</span><span class="dr-text">Extensão da cobertura de saúde a 95% da população — actualmente 81%</span><span class="dr-badge" style="background:rgba(224,82,82,.1);color:var(--red);border:1px solid rgba(224,82,82,.25)">Abaixo</span></div>
@@ -1159,13 +1032,11 @@ body::after {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
-    </div><!-- /panels -->
-  </div><!-- /layout -->
-</div><!-- /products-section -->
-
-
-<!-- ═══ CAPABILITIES ═══ -->
+<!-- CAPABILITIES -->
 <section class="section section-dark" id="capacidades">
   <div class="rv">
     <div class="eyebrow eyebrow-c">Capacidades Técnicas</div>
@@ -1173,41 +1044,16 @@ body::after {
     <p class="lead" style="margin:0 auto;text-align:center">Seis camadas de processamento transformam a sua pergunta em resposta verificável.</p>
   </div>
   <div class="cap-grid">
-    <div class="cap-card rv">
-      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--amber)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-      <div class="cap-title">Compreensão Semântica</div>
-      <div class="cap-desc">Interpreta o significado da pergunta em português e línguas bantu moçambicanas, não apenas palavras-chave.</div>
-    </div>
-    <div class="cap-card rv d1">
-      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-      <div class="cap-title">Extracção Estruturada</div>
-      <div class="cap-desc">Extrai datas, valores, instituições, responsáveis e compromissos de cada documento indexado automaticamente.</div>
-    </div>
-    <div class="cap-card rv d2">
-      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--blue)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-      <div class="cap-title">Linha do Tempo Automática</div>
-      <div class="cap-desc">Gera cronologias de eventos políticos e legislativos mostrando como as decisões evoluíram ao longo do tempo.</div>
-    </div>
-    <div class="cap-card rv">
-      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-      <div class="cap-title">Síntese Multi-fonte</div>
-      <div class="cap-desc">Compara múltiplas fontes, identifica concordâncias e divergências, e detecta mudanças de posição governamental.</div>
-    </div>
-    <div class="cap-card rv d1">
-      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--teal)"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
-      <div class="cap-title">Citação Rastreável</div>
-      <div class="cap-desc">Cada afirmação liga ao documento original. Nunca gera informação sem evidência primária. Score de confiança calculado.</div>
-    </div>
-    <div class="cap-card rv d2">
-      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--blue)"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 009 9"/></svg></div>
-      <div class="cap-title">API Pública</div>
-      <div class="cap-desc">Acesso programático para organizações cívicas, jornalistas e investigadores. Documentação e autenticação gratuitas.</div>
-    </div>
+    <div class="cap-card rv"><div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--amber)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="cap-title">Compreensão Semântica</div><div class="cap-desc">Interpreta o significado da pergunta em português e línguas bantu moçambicanas, não apenas palavras-chave.</div></div>
+    <div class="cap-card rv d1"><div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="cap-title">Extracção Estruturada</div><div class="cap-desc">Extrai datas, valores, instituições, responsáveis e compromissos de cada documento indexado automaticamente.</div></div>
+    <div class="cap-card rv d2"><div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--blue)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="cap-title">Linha do Tempo Automática</div><div class="cap-desc">Gera cronologias de eventos políticos e legislativos mostrando como as decisões evoluíram ao longo do tempo.</div></div>
+    <div class="cap-card rv"><div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="cap-title">Síntese Multi-fonte</div><div class="cap-desc">Compara múltiplas fontes, identifica concordâncias e divergências, e detecta mudanças de posição governamental.</div></div>
+    <div class="cap-card rv d1"><div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--teal)"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div><div class="cap-title">Citação Rastreável</div><div class="cap-desc">Cada afirmação liga ao documento original. Nunca gera informação sem evidência primária. Score de confiança calculado.</div></div>
+    <div class="cap-card rv d2"><div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--blue)"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 009 9"/></svg></div><div class="cap-title">API Pública</div><div class="cap-desc">Acesso programático para organizações cívicas, jornalistas e investigadores. Documentação e autenticação gratuitas.</div></div>
   </div>
 </section>
 
-
-<!-- ═══ INTERACTIVE DEMO ═══ -->
+<!-- INTERACTIVE DEMO -->
 <section class="section demo-section" id="demonstracao">
   <div class="demo-section-inner">
 
@@ -1235,7 +1081,7 @@ body::after {
       </div>
     </div>
 
-    <!-- Right col: simulator -->
+    <!-- Right col: simulator + live query -->
     <div class="rv d2">
       <div class="qs">
         <div class="qs-head">
@@ -1263,132 +1109,118 @@ body::after {
         </div>
 
         <div class="qs-result">
-
-          <!-- Result 0 — Saúde OE -->
           <div class="res-block active" id="demo-0">
-            <div class="res-chips">
-              <span class="chip chip-gov">OE 2024</span>
-              <span class="chip chip-gov">OE 2023</span>
-              <span class="chip chip-med">CIP Saúde</span>
-              <span class="chip chip-cnt">+4 fontes</span>
-            </div>
-            <div class="res-answer">
-              <div class="res-lbl">Síntese com base em evidências</div>
-              <div class="res-text">O Orçamento do Estado 2024 alocou <strong>MZN 37.2 mil milhões</strong> ao Ministério da Saúde, um aumento de <strong>12.4%</strong> face aos MZN 33.1 mil milhões de 2023. As principais alterações incluem reforço de 18% para medicamentos essenciais e criação de uma linha de financiamento para centros de saúde rurais.</div>
-            </div>
+            <div class="res-chips"><span class="chip chip-gov">OE 2024</span><span class="chip chip-gov">OE 2023</span><span class="chip chip-med">CIP Saúde</span><span class="chip chip-cnt">+4 fontes</span></div>
+            <div class="res-answer"><div class="res-lbl">Síntese com base em evidências</div><div class="res-text">O Orçamento do Estado 2024 alocou <strong>MZN 37.2 mil milhões</strong> ao Ministério da Saúde, um aumento de <strong>12.4%</strong> face aos MZN 33.1 mil milhões de 2023. As principais alterações incluem reforço de 18% para medicamentos essenciais e criação de uma linha de financiamento para centros de saúde rurais.</div></div>
             <div class="res-facts">
               <div class="fact-r"><span class="fact-k">Alocação 2024</span><span class="fact-v">MZN 37.2 mil milhões (14.1% do OE total)</span></div>
               <div class="fact-r"><span class="fact-k">Variação YoY</span><span class="fact-v">+12.4% face a 2023 (MZN 33.1 mil milhões)</span></div>
               <div class="fact-r"><span class="fact-k">Execução H1</span><span class="fact-v">64% — abaixo da meta semestral de 68%</span></div>
               <div class="fact-r"><span class="fact-k">Destaque</span><span class="fact-v">+18% para medicamentos essenciais; nova linha para centros rurais</span></div>
             </div>
-            <div class="res-sources">
-              <span class="rsrc">OE 2024 — Art. 12</span>
-              <span class="rsrc">MISAU — Relatório Trimestral</span>
-              <span class="rsrc">CIP — Análise Orçamental 2024</span>
-            </div>
-            <div class="res-conf">
-              <span class="res-conf-lbl">Confiança</span>
-              <div class="res-conf-bar"><div class="res-conf-fill" style="width:82%"></div></div>
-              <span class="res-conf-score">82% — Alta</span>
-            </div>
+            <div class="res-sources"><span class="rsrc">OE 2024 — Art. 12</span><span class="rsrc">MISAU — Relatório Trimestral</span><span class="rsrc">CIP — Análise Orçamental 2024</span></div>
+            <div class="res-conf"><span class="res-conf-lbl">Confiança</span><div class="res-conf-bar"><div class="res-conf-fill" style="width:82%"></div></div><span class="res-conf-score">82% — Alta</span></div>
           </div>
 
-          <!-- Result 1 — Lei de Terras -->
           <div class="res-block" id="demo-1">
-            <div class="res-chips">
-              <span class="chip chip-law">Lei 19/97</span>
-              <span class="chip chip-gov">AR 2021–2024</span>
-              <span class="chip chip-med">Carta de MZ</span>
-            </div>
-            <div class="res-answer">
-              <div class="res-lbl">Síntese com base em evidências</div>
-              <div class="res-text">A Lei de Terras (Lei 19/97) permanece em vigor. Entre 2021 e 2024 foram apresentados <strong>3 projectos de revisão</strong> na Assembleia da República. O mais recente, de Março 2024, propõe alterações aos mecanismos de consulta comunitária e ao prazo de concessão de DUATs para investimento privado.</div>
-            </div>
+            <div class="res-chips"><span class="chip chip-law">Lei 19/97</span><span class="chip chip-gov">AR 2021–2024</span><span class="chip chip-med">Carta de MZ</span></div>
+            <div class="res-answer"><div class="res-lbl">Síntese com base em evidências</div><div class="res-text">A Lei de Terras (Lei 19/97) permanece em vigor. Entre 2021 e 2024 foram apresentados <strong>3 projectos de revisão</strong> na Assembleia da República. O mais recente, de Março 2024, propõe alterações aos mecanismos de consulta comunitária e ao prazo de concessão de DUATs para investimento privado.</div></div>
             <div class="res-facts">
               <div class="fact-r"><span class="fact-k">Lei vigente</span><span class="fact-v">Lei 19/97 — Terra propriedade do Estado</span></div>
               <div class="fact-r"><span class="fact-k">Projectos de revisão</span><span class="fact-v">3 entre 2021–2024; último em Mar 2024</span></div>
               <div class="fact-r"><span class="fact-k">Estado actual</span><span class="fact-v">Projecto de Mar 2024 em comissão parlamentar</span></div>
               <div class="fact-r"><span class="fact-k">Pontos críticos</span><span class="fact-v">Consulta comunitária, prazo DUAT, investimento privado</span></div>
             </div>
-            <div class="res-sources">
-              <span class="rsrc">Lei 19/97 — Boletim da República</span>
-              <span class="rsrc">AR — Diário de Sessões 2024</span>
-              <span class="rsrc">CTV — Debate Parlamentar Mar/24</span>
-            </div>
-            <div class="res-conf">
-              <span class="res-conf-lbl">Confiança</span>
-              <div class="res-conf-bar"><div class="res-conf-fill" style="width:76%"></div></div>
-              <span class="res-conf-score">76% — Alta</span>
-            </div>
+            <div class="res-sources"><span class="rsrc">Lei 19/97 — Boletim da República</span><span class="rsrc">AR — Diário de Sessões 2024</span><span class="rsrc">CTV — Debate Parlamentar Mar/24</span></div>
+            <div class="res-conf"><span class="res-conf-lbl">Confiança</span><div class="res-conf-bar"><div class="res-conf-fill" style="width:76%"></div></div><span class="res-conf-score">76% — Alta</span></div>
           </div>
 
-          <!-- Result 2 — Escolas PQG -->
           <div class="res-block" id="demo-2">
-            <div class="res-chips">
-              <span class="chip chip-law">PQG 2020–2024</span>
-              <span class="chip chip-gov">MINED</span>
-              <span class="chip chip-med">CIP Educação</span>
-            </div>
-            <div class="res-answer">
-              <div class="res-lbl">Síntese com base em evidências</div>
-              <div class="res-text">O Programa Quinquenal 2020–2024 comprometeu-se com a construção de <strong>100 escolas primárias</strong> em zonas rurais. Dados do MINED a Junho de 2024 indicam <strong>67 escolas concluídas (67%)</strong> e 18 em construção. O CIP identificou problemas de procurement em 9 contratos de construção.</div>
-            </div>
+            <div class="res-chips"><span class="chip chip-law">PQG 2020–2024</span><span class="chip chip-gov">MINED</span><span class="chip chip-med">CIP Educação</span></div>
+            <div class="res-answer"><div class="res-lbl">Síntese com base em evidências</div><div class="res-text">O Programa Quinquenal 2020–2024 comprometeu-se com a construção de <strong>100 escolas primárias</strong> em zonas rurais. Dados do MINED a Junho de 2024 indicam <strong>67 escolas concluídas (67%)</strong> e 18 em construção. O CIP identificou problemas de procurement em 9 contratos de construção.</div></div>
             <div class="res-facts">
               <div class="fact-r"><span class="fact-k">Meta prometida</span><span class="fact-v">100 escolas primárias rurais (2020–2024)</span></div>
               <div class="fact-r"><span class="fact-k">Executado Jun/24</span><span class="fact-v">67 concluídas + 18 em construção = 85%</span></div>
               <div class="fact-r"><span class="fact-k">Desvio</span><span class="fact-v">-15 escolas face à meta final</span></div>
               <div class="fact-r"><span class="fact-k">Alerta CIP</span><span class="fact-v">Irregularidades de procurement em 9 contratos</span></div>
             </div>
-            <div class="res-sources">
-              <span class="rsrc">PQG 2020–2024 — Pág. 48</span>
-              <span class="rsrc">MINED — Relatório Semestral Jun/24</span>
-              <span class="rsrc">CIP — Monitor Educação 2024</span>
-            </div>
-            <div class="res-conf">
-              <span class="res-conf-lbl">Confiança</span>
-              <div class="res-conf-bar"><div class="res-conf-fill" style="width:88%"></div></div>
-              <span class="res-conf-score">88% — Muito Alta</span>
-            </div>
+            <div class="res-sources"><span class="rsrc">PQG 2020–2024 — Pág. 48</span><span class="rsrc">MINED — Relatório Semestral Jun/24</span><span class="rsrc">CIP — Monitor Educação 2024</span></div>
+            <div class="res-conf"><span class="res-conf-lbl">Confiança</span><div class="res-conf-bar"><div class="res-conf-fill" style="width:88%"></div></div><span class="res-conf-score">88% — Muito Alta</span></div>
           </div>
 
-          <!-- Result 3 — Procurement Energia -->
           <div class="res-block" id="demo-3">
-            <div class="res-chips">
-              <span class="chip chip-gov">UFSA 2023</span>
-              <span class="chip chip-gov">MIREME</span>
-              <span class="chip chip-med">Carta de MZ</span>
-            </div>
-            <div class="res-answer">
-              <div class="res-lbl">Síntese com base em evidências</div>
-              <div class="res-text">Em 2023 o sector energético registou <strong>MZN 12.4 mil milhões</strong> em contratos públicos adjudicados. Os três maiores foram: expansão da rede rural EDM (MZN 4.2 mil milhões), reabilitação de Cahora Bassa (MZN 3.1 mil milhões) e fornecimento de geradores para centros de saúde (MZN 1.8 mil milhões).</div>
-            </div>
+            <div class="res-chips"><span class="chip chip-gov">UFSA 2023</span><span class="chip chip-gov">MIREME</span><span class="chip chip-med">Carta de MZ</span></div>
+            <div class="res-answer"><div class="res-lbl">Síntese com base em evidências</div><div class="res-text">Em 2023 o sector energético registou <strong>MZN 12.4 mil milhões</strong> em contratos públicos adjudicados. Os três maiores foram: expansão da rede rural EDM (MZN 4.2 mil milhões), reabilitação de Cahora Bassa (MZN 3.1 mil milhões) e fornecimento de geradores para centros de saúde (MZN 1.8 mil milhões).</div></div>
             <div class="res-facts">
               <div class="fact-r"><span class="fact-k">Total contratos</span><span class="fact-v">MZN 12.4 mil milhões — sector energético 2023</span></div>
               <div class="fact-r"><span class="fact-k">Maior contrato</span><span class="fact-v">EDM — Expansão rede rural — MZN 4.2 mil milhões</span></div>
               <div class="fact-r"><span class="fact-k">2.º maior</span><span class="fact-v">HCB — Reabilitação Cahora Bassa — MZN 3.1 mil milhões</span></div>
               <div class="fact-r"><span class="fact-k">Modalidade</span><span class="fact-v">68% via concurso público; 32% ajuste directo</span></div>
             </div>
-            <div class="res-sources">
-              <span class="rsrc">UFSA — Portal Compras Públicas</span>
-              <span class="rsrc">MIREME — Relatório Anual 2023</span>
-              <span class="rsrc">EDM — Relatório de Actividades</span>
+            <div class="res-sources"><span class="rsrc">UFSA — Portal Compras Públicas</span><span class="rsrc">MIREME — Relatório Anual 2023</span><span class="rsrc">EDM — Relatório de Actividades</span></div>
+            <div class="res-conf"><span class="res-conf-lbl">Confiança</span><div class="res-conf-bar"><div class="res-conf-fill" style="width:71%"></div></div><span class="res-conf-score">71% — Moderada</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── LIVE AI QUERY BLOCK ── -->
+      <div class="gemini-live-block rv d3">
+        <div class="gemini-live-head">
+          <span class="gemini-live-head-title">Faça a sua própria pergunta cívica</span>
+          <span class="gemini-live-head-badge">Claude AI · Ao Vivo</span>
+        </div>
+        <div class="gemini-input-row">
+          <input
+            type="text"
+            id="gemini-query-input"
+            class="gemini-input"
+            placeholder="Ex: Qual é o orçamento da saúde em 2025? Ou pergunte em Macua, Changana…"
+            maxlength="400"
+            onkeydown="if(event.key==='Enter') sendGeminiQuery()"
+          >
+          <button class="gemini-send-btn" id="gemini-send-btn" onclick="sendGeminiQuery()" title="Enviar pergunta">
+            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+        <div class="gemini-result-area" id="gemini-result-area">
+          <div class="gemini-placeholder" id="gemini-placeholder">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Escreva uma pergunta e prima Enter para obter uma resposta fundamentada
+          </div>
+          <div class="gemini-loading" id="gemini-loading">
+            <div class="gemini-loading-dots">
+              <div class="gemini-loading-dot"></div>
+              <div class="gemini-loading-dot"></div>
+              <div class="gemini-loading-dot"></div>
             </div>
-            <div class="res-conf">
-              <span class="res-conf-lbl">Confiança</span>
-              <div class="res-conf-bar"><div class="res-conf-fill" style="width:71%"></div></div>
-              <span class="res-conf-score">71% — Moderada</span>
+            <div class="gemini-loading-lbl">A analisar fontes governamentais e a sintetizar resposta…</div>
+          </div>
+          <div class="gemini-output" id="gemini-output">
+            <div class="gemini-chips-row" id="gemini-chips-row">
+              <span class="gemini-model-badge">Claude AI</span>
+            </div>
+            <div class="gemini-answer-box">
+              <div class="gemini-ans-lbl">Síntese com base em evidências</div>
+              <div class="gemini-ans-text" id="gemini-ans-text"></div>
+            </div>
+            <div class="gemini-facts-block" id="gemini-facts-block"></div>
+            <div class="gemini-sources-row" id="gemini-sources-row"></div>
+            <div class="gemini-conf-row">
+              <span class="gemini-conf-lbl">Confiança</span>
+              <div class="gemini-conf-bar"><div class="gemini-conf-fill" id="gemini-conf-fill" style="width:0%"></div></div>
+              <span class="gemini-conf-score" id="gemini-conf-score">—</span>
             </div>
           </div>
+          <div class="gemini-error" id="gemini-error"></div>
+        </div>
+      </div>
+      <!-- ── END LIVE AI QUERY BLOCK ── -->
 
-        </div><!-- /qs-result -->
-      </div><!-- /qs -->
     </div>
   </div>
 </section>
 
-
-<!-- ═══ IMPACT ═══ -->
+<!-- IMPACT -->
 <section class="section section-soft" id="impacto">
   <div class="impact-inner">
     <div class="rv">
@@ -1396,22 +1228,10 @@ body::after {
       <div class="h2">Construído para<br><em>toda a gente</em></div>
       <p class="lead">O athu serve todos os que precisam de informação governamental verificada, sem intermediários e sem barreiras técnicas.</p>
       <div class="audience-list">
-        <div class="aud-row">
-          <div class="aud-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-          <div><div class="aud-title">Jornalistas e Sociedade Civil</div><div class="aud-desc">Verificação de factos, rastreio de promessas, análise orçamental para reportagem investigativa.</div></div>
-        </div>
-        <div class="aud-row">
-          <div class="aud-ic"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 003-3h7z"/></svg></div>
-          <div><div class="aud-title">Investigadores e Académicos</div><div class="aud-desc">Acesso estruturado a dados de governação, análise longitudinal de políticas públicas.</div></div>
-        </div>
-        <div class="aud-row">
-          <div class="aud-ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-          <div><div class="aud-title">Cidadãos</div><div class="aud-desc">Acesso compreensível a leis, orçamentos e decisões — em português ou nas línguas locais.</div></div>
-        </div>
-        <div class="aud-row">
-          <div class="aud-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-          <div><div class="aud-title">Doadores e Parceiros</div><div class="aud-desc">Monitorização independente de programas financiados e verificação de execução orçamental.</div></div>
-        </div>
+        <div class="aud-row"><div class="aud-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="aud-title">Jornalistas e Sociedade Civil</div><div class="aud-desc">Verificação de factos, rastreio de promessas, análise orçamental para reportagem investigativa.</div></div></div>
+        <div class="aud-row"><div class="aud-ic"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 003-3h7z"/></svg></div><div><div class="aud-title">Investigadores e Académicos</div><div class="aud-desc">Acesso estruturado a dados de governação, análise longitudinal de políticas públicas.</div></div></div>
+        <div class="aud-row"><div class="aud-ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div><div class="aud-title">Cidadãos</div><div class="aud-desc">Acesso compreensível a leis, orçamentos e decisões — em português ou nas línguas locais.</div></div></div>
+        <div class="aud-row"><div class="aud-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><div><div class="aud-title">Doadores e Parceiros</div><div class="aud-desc">Monitorização independente de programas financiados e verificação de execução orçamental.</div></div></div>
       </div>
     </div>
     <div class="rv d2">
@@ -1428,7 +1248,7 @@ body::after {
   </div>
 </section>
 
-<!-- ═══ FAQ ═══ -->
+<!-- FAQ -->
 <section class="section section-soft" id="faq">
   <div class="rv" style="text-align:center;margin-bottom:48px">
     <div class="eyebrow eyebrow-c">FAQ</div>
@@ -1457,13 +1277,12 @@ body::after {
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Como posso tornar-me parceiro ou colaborador?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
-      <div class="faq-a"><div class="faq-a-in">Estamos abertos a parcerias com organizações de media, sociedade civil, universidades, doadores e governos. Contacte-nos em <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f888998a9b9d8a91998bb8998c908dd69b97d69582">[email&#160;protected]</a> — respondemos em 48 horas.</div></div>
+      <div class="faq-a"><div class="faq-a-in">Estamos abertos a parcerias com organizações de media, sociedade civil, universidades, doadores e governos. Contacte-nos em athu@athu.mz — respondemos em 48 horas.</div></div>
     </div>
   </div>
 </section>
 
-
-<!-- ═══ CTA ═══ -->
+<!-- CTA -->
 <div class="cta-wrap" id="cta">
   <div class="cta-grid"></div>
   <div class="cta-glow"></div>
@@ -1472,11 +1291,11 @@ body::after {
     <div class="cta-title">A democracia precisa de<br><span class="accent">cidadãos informados.</span></div>
     <p class="cta-sub">Seja jornalista, investigador, cidadão ou organização. Peça acesso antecipado ou torne-se parceiro.</p>
     <div class="cta-btns">
-      <a href="/cdn-cgi/l/email-protection#264745435555496647524e53084549084b5c" class="btn btn-amber">
+      <a href="mailto:acesso@athu.mz" class="btn btn-amber">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Pedir Acesso Antecipado
       </a>
-      <a href="/cdn-cgi/l/email-protection#324253405157405b53417253465a471c515d1c5f48" class="btn btn-ghost">Tornar-se Parceiro</a>
+      <a href="mailto:parceiros@athu.mz" class="btn btn-ghost">Tornar-se Parceiro</a>
     </div>
     <div class="cta-extras">
       <span class="cta-extra">Acesso gratuito para estudantes</span>
@@ -1487,8 +1306,7 @@ body::after {
   </div>
 </div>
 
-
-<!-- ═══ FOOTER ═══ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-top">
     <div>
@@ -1537,8 +1355,7 @@ body::after {
   </div>
 </footer>
 
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ── Scroll reveal ── */
 const rObs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.07 });
 document.querySelectorAll('.rv').forEach(el => rObs.observe(el));
@@ -1553,15 +1370,11 @@ const ht = document.querySelector('.hero-text');
 ht.style.cssText = 'opacity:0;transform:translateY(16px)';
 setTimeout(() => { ht.style.transition = 'opacity .9s ease, transform .9s ease'; ht.style.opacity = 1; ht.style.transform = 'none'; }, 100);
 
-/* ── Product switcher (Gnowit-style) ── */
+/* ── Product switcher ── */
 function switchProduct(idx) {
-  // Sidebar links
   document.querySelectorAll('.prod-nav-link').forEach((l, i) => l.classList.toggle('active', i === idx));
-  // Mobile tabs
   document.querySelectorAll('.prod-tab-btn').forEach((t, i) => t.classList.toggle('active', i === idx));
-  // Panels
   document.querySelectorAll('.prod-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
-  // Scroll into view on mobile
   if (window.innerWidth < 960) {
     document.getElementById('prod-panels').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
@@ -1577,23 +1390,20 @@ function toggleFaq(btn) {
 
 /* ── Mobile menu ── */
 function toggleMenu() {
-  const d = document.getElementById('drawer');
-  const h = document.getElementById('ham');
-  d.classList.toggle('open');
-  h.classList.toggle('open');
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('ham').classList.toggle('open');
 }
 function closeMenu() {
   document.getElementById('drawer').classList.remove('open');
   document.getElementById('ham').classList.remove('open');
 }
 
-/* ── Lang switcher (visual only) ── */
+/* ── Lang switcher ── */
 function setLang(code) {
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.lang-btn').forEach(b => {
     if (b.textContent.toLowerCase().includes(code.toLowerCase().slice(0,2))) b.classList.add('active');
   });
-  // In a real app, this would trigger i18n
 }
 
 /* ── Keyboard support for product nav ── */
@@ -1611,6 +1421,122 @@ function selectDemo(idx) {
 document.querySelectorAll('.qs-q').forEach((q, idx) => {
   q.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') selectDemo(idx); });
 });
+
+/* ════════════════════════════════════════
+   CLAUDE AI LIVE QUERY
+════════════════════════════════════════ */
+async function sendGeminiQuery() {
+  const input = document.getElementById('gemini-query-input');
+  const query = input.value.trim();
+  if (!query) return;
+
+  const btn = document.getElementById('gemini-send-btn');
+  const placeholder = document.getElementById('gemini-placeholder');
+  const loading = document.getElementById('gemini-loading');
+  const output = document.getElementById('gemini-output');
+  const errorEl = document.getElementById('gemini-error');
+
+  placeholder.style.display = 'none';
+  output.style.display = 'none';
+  errorEl.style.display = 'none';
+  loading.style.display = 'flex';
+  btn.disabled = true;
+
+  const systemPrompt = `Você é athu, um assistente de inteligência cívica especializado em governação de Moçambique.
+
+Responda APENAS em JSON válido, sem texto fora do JSON, sem blocos de código markdown. A estrutura deve ser exactamente:
+{
+  "chips": ["etiqueta1", "etiqueta2", "etiqueta3"],
+  "summary": "Síntese clara e factual com <strong>valores importantes</strong> em negrito HTML",
+  "facts": [
+    {"key": "CATEGORIA", "value": "Facto específico"},
+    {"key": "CATEGORIA", "value": "Facto específico"},
+    {"key": "CATEGORIA", "value": "Facto específico"}
+  ],
+  "sources": ["Fonte 1", "Fonte 2", "Fonte 3"],
+  "confidence": 75,
+  "confidence_label": "Alta"
+}
+
+Regras:
+- chips: 3-4 etiquetas curtas de fontes ou categorias relevantes (ex: "OE 2026", "MINED", "Boletim da República")
+- summary: 2-4 frases factuais com dados concretos quando disponíveis; use <strong> para destacar números ou termos-chave
+- facts: 3-4 pares chave-valor com factos estruturados e concisos
+- sources: 2-4 fontes primárias relevantes (documentos, ministérios, portais oficiais moçambicanos)
+- confidence: número inteiro entre 40-95
+- confidence_label: "Moderada", "Alta" ou "Muito Alta" conforme o valor
+- Se a pergunta estiver numa língua local moçambicana (Macua, Changana, Sena, etc.), responda em português mas reconheça a língua nos chips
+- Neutralidade política absoluta — apenas factos e fontes, sem opiniões`;
+
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: "user", content: query }]
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error('Erro de ligação ao serviço (' + response.status + ')');
+    }
+
+    const data = await response.json();
+    const rawText = (data.content || []).map(function(b) { return b.text || ''; }).join('').trim();
+
+    var parsed;
+    try {
+      var clean = rawText.replace(/```json|```/g, '').trim();
+      parsed = JSON.parse(clean);
+    } catch(e) {
+      throw new Error('Não foi possível interpretar a resposta. Por favor tente novamente.');
+    }
+
+    var chipColors = ['chip-gov', 'chip-law', 'chip-med', 'chip-cnt'];
+    var chipsHtml = (parsed.chips || []).map(function(c, i) {
+      return '<span class="chip ' + chipColors[i % chipColors.length] + '">' + escH(c) + '</span>';
+    }).join('');
+    document.getElementById('gemini-chips-row').innerHTML = chipsHtml + '<span class="gemini-model-badge">Claude AI</span>';
+
+    document.getElementById('gemini-ans-text').innerHTML = parsed.summary || '';
+
+    var factsEl = document.getElementById('gemini-facts-block');
+    factsEl.innerHTML = (parsed.facts || []).map(function(f) {
+      return '<div class="gemini-fact-r"><span class="gemini-fact-k">' + escH(f.key) + '</span><span class="gemini-fact-v">' + escH(f.value) + '</span></div>';
+    }).join('');
+
+    var sourcesEl = document.getElementById('gemini-sources-row');
+    sourcesEl.innerHTML = (parsed.sources || []).map(function(s) {
+      return '<span class="rsrc">' + escH(s) + '</span>';
+    }).join('');
+
+    var conf = Math.min(95, Math.max(40, parseInt(parsed.confidence) || 70));
+    document.getElementById('gemini-conf-fill').style.width = conf + '%';
+    document.getElementById('gemini-conf-score').textContent = conf + '% \u2014 ' + (parsed.confidence_label || 'Moderada');
+
+    loading.style.display = 'none';
+    output.style.display = 'block';
+
+  } catch (err) {
+    loading.style.display = 'none';
+    errorEl.style.display = 'block';
+    errorEl.textContent = err.message || 'Erro ao processar a pergunta. Verifique a sua ligação e tente novamente.';
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function escH(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
 </script>
 </body>
 </html>
