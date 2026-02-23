@@ -53,7 +53,6 @@ img { display: block; max-width: 100%; }
 ::-webkit-scrollbar-track { background: var(--ink); }
 ::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 10px; }
 
-/* Film grain overlay */
 body::after {
   content: '';
   position: fixed; inset: 0; z-index: 9999; pointer-events: none;
@@ -104,7 +103,7 @@ body::after {
 .nav.scrolled { box-shadow: 0 1px 0 rgba(255,255,255,0.05), 0 4px 24px rgba(0,0,0,0.4); }
 
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-.nav-logo-img { height: 128px; width: auto; display: block; }
+.nav-logo-img { height: 36px; width: auto; display: block; }
 .nav-logo-name { font-family: var(--ff-disp); font-size: 1.15rem; font-weight: 800; color: var(--text); letter-spacing: 0.04em; }
 .nav-logo-name span { color: var(--amber); }
 
@@ -720,7 +719,7 @@ body::after {
 .footer { background: var(--ink-soft); border-top: 1px solid var(--line); padding: 56px 44px 32px; }
 .footer-top { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 44px; padding-bottom: 44px; border-bottom: 1px solid var(--line); margin-bottom: 28px; }
 .ft-logo-row { display: flex; align-items: center; margin-bottom: 16px; }
-.ft-logo-img { height: 120px; width: auto; display: block; }
+.ft-logo-img { height: 36px; width: auto; display: block; }
 .ft-logo-name { font-family: var(--ff-disp); font-size: 1rem; font-weight: 800; color: var(--text); }
 .ft-logo-name span { color: var(--amber); }
 .ft-tagline { font-family: var(--ff-serif); font-size: 0.82rem; line-height: 1.7; color: var(--text-muted); font-weight: 300; max-width: 270px; margin-bottom: 14px; }
@@ -1129,13 +1128,10 @@ body::after {
 <!-- DEMO SECTION -->
 <section class="section demo-section" id="demonstracao">
   <div class="demo-section-inner">
-
-    <!-- Left col -->
     <div class="rv">
       <div class="eyebrow">Demo Interactiva</div>
       <div class="h2">Experimente o<br><em>athu em acção</em></div>
       <p class="lead">Escreva qualquer pergunta cívica e veja como o athu recupera evidências, constrói a resposta e cita as fontes — sem opinião, apenas factos verificáveis.</p>
-
       <div class="demo-source-box">
         <div class="demo-source-box-lbl">Fontes Indexadas</div>
         <div class="chips" style="flex-wrap:wrap">
@@ -1154,7 +1150,7 @@ body::after {
       </div>
     </div>
 
-    <!-- Right col: Live Query -->
+    <!-- Live Query Block -->
     <div class="live-block rv d3">
       <div class="live-head">
         <span class="live-head-title">Faça a sua própria pergunta cívica</span>
@@ -1187,7 +1183,7 @@ body::after {
         </div>
         <div class="live-output" id="live-output">
           <div class="live-chips-row" id="live-chips-row">
-            <span class="live-model-badge">Claude AI</span>
+            <span class="live-model-badge">Gemini AI</span>
           </div>
           <div class="live-answer-box">
             <div class="live-ans-lbl">Síntese com base em evidências</div>
@@ -1204,7 +1200,6 @@ body::after {
         <div class="live-error" id="live-error"></div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -1399,7 +1394,6 @@ function switchProduct(idx) {
   }
 }
 
-/* Keyboard support */
 document.querySelectorAll('.prod-nav-link').forEach(function(link, idx) {
   link.addEventListener('keydown', function(e) {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); switchProduct(idx); }
@@ -1452,32 +1446,31 @@ function escH(str) {
 }
 
 /* ════════════════════════════════════════
-   GEMINI AI LIVE QUERY
+   GEMINI LIVE QUERY
+   ─────────────────────────────────────
+   IMPORTANT: Replace YOUR_API_KEY_HERE with your new Gemini API key.
+   Then go to console.cloud.google.com → APIs & Services → Credentials
+   → click your key → HTTP referrers → add:
+       https://athumoz.github.io/*
+   This ensures the key only works from your GitHub Pages site.
 ════════════════════════════════════════ */
 var GEMINI_API_KEY = 'AIzaSyCRLv4DyyFKrovknk06A9p69dN_RG1BX0M';
 var GEMINI_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_API_KEY;
 
 var CHIP_CLASSES = ['chip-gov', 'chip-law', 'chip-med', 'chip-cnt'];
 
-var liveInput     = document.getElementById('live-input');
-var liveSendBtn   = document.getElementById('live-send-btn');
+var liveInput       = document.getElementById('live-input');
+var liveSendBtn     = document.getElementById('live-send-btn');
 var livePlaceholder = document.getElementById('live-placeholder');
-var liveLoading   = document.getElementById('live-loading');
-var liveOutput    = document.getElementById('live-output');
-var liveError     = document.getElementById('live-error');
-var liveChipsRow  = document.getElementById('live-chips-row');
-var liveAnsText   = document.getElementById('live-ans-text');
-var liveFacts     = document.getElementById('live-facts');
-var liveSources   = document.getElementById('live-sources');
-var liveConfFill  = document.getElementById('live-conf-fill');
-var liveConfScore = document.getElementById('live-conf-score');
-
-function showLiveState(state) {
-  livePlaceholder.style.display = state === 'placeholder' ? 'flex'  : 'none';
-  liveLoading.style.display     = state === 'loading'     ? 'flex'  : 'none';
-  liveOutput.style.display      = state === 'output'      ? 'block' : 'none';
-  liveError.style.display       = state === 'error'       ? 'block' : 'none';
-}
+var liveLoading     = document.getElementById('live-loading');
+var liveOutput      = document.getElementById('live-output');
+var liveError       = document.getElementById('live-error');
+var liveChipsRow    = document.getElementById('live-chips-row');
+var liveAnsText     = document.getElementById('live-ans-text');
+var liveFacts       = document.getElementById('live-facts');
+var liveSources     = document.getElementById('live-sources');
+var liveConfFill    = document.getElementById('live-conf-fill');
+var liveConfScore   = document.getElementById('live-conf-score');
 
 var SYSTEM_INSTRUCTION = [
   'Tu és athu, um assistente de inteligência cívica especializado em governação de Moçambique.',
@@ -1496,8 +1489,8 @@ var SYSTEM_INSTRUCTION = [
   '  "confidence_label": "Alta"',
   '}',
   'Regras:',
-  '- chips: 3-4 etiquetas curtas de fontes ou categorias relevantes (ex: "OE 2026", "MINED", "Boletim da República")',
-  '- summary: 2-4 frases factuais com dados concretos quando disponíveis; usa <strong> para destacar números ou termos-chave',
+  '- chips: 3-4 etiquetas curtas de fontes ou categorias relevantes',
+  '- summary: 2-4 frases factuais com dados concretos; usa <strong> para destacar números ou termos-chave',
   '- facts: 3-4 pares chave-valor com factos estruturados e concisos',
   '- sources: 2-4 fontes primárias relevantes (documentos, ministérios, portais oficiais moçambicanos)',
   '- confidence: número inteiro entre 40-95',
@@ -1505,6 +1498,13 @@ var SYSTEM_INSTRUCTION = [
   '- Se a pergunta estiver numa língua local moçambicana (Macua, Changana, Sena, etc.), responde em português mas reconhece a língua nos chips',
   '- Neutralidade política absoluta — apenas factos e fontes, sem opiniões'
 ].join('\n');
+
+function showLiveState(state) {
+  livePlaceholder.style.display = state === 'placeholder' ? 'flex'  : 'none';
+  liveLoading.style.display     = state === 'loading'     ? 'flex'  : 'none';
+  liveOutput.style.display      = state === 'output'      ? 'block' : 'none';
+  liveError.style.display       = state === 'error'       ? 'block' : 'none';
+}
 
 async function sendLiveQuery() {
   var query = liveInput.value.trim();
@@ -1518,22 +1518,15 @@ async function sendLiveQuery() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        system_instruction: {
-          parts: [{ text: SYSTEM_INSTRUCTION }]
-        },
-        contents: [{
-          parts: [{ text: query }]
-        }],
-        generationConfig: {
-          temperature: 0.3,
-          maxOutputTokens: 1024
-        }
+        system_instruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
+        contents: [{ parts: [{ text: query }] }],
+        generationConfig: { temperature: 0.3, maxOutputTokens: 1024 }
       })
     });
 
     if (!response.ok) {
       var errData = await response.json().catch(function() { return {}; });
-      throw new Error('Erro de ligação ao serviço (HTTP ' + response.status + '): ' + (errData.error && errData.error.message ? errData.error.message : ''));
+      throw new Error('Erro ' + response.status + ': ' + (errData.error && errData.error.message ? errData.error.message : 'Tente novamente.'));
     }
 
     var data = await response.json();
@@ -1553,7 +1546,7 @@ async function sendLiveQuery() {
         .trim();
       parsed = JSON.parse(clean);
     } catch(parseErr) {
-      throw new Error('Não foi possível interpretar a resposta JSON. Por favor tente novamente.');
+      throw new Error('Não foi possível interpretar a resposta. Tente novamente.');
     }
 
     /* Chips */
@@ -1561,7 +1554,7 @@ async function sendLiveQuery() {
       return '<span class="chip ' + CHIP_CLASSES[i % CHIP_CLASSES.length] + '">' + escH(c) + '</span>';
     }).join('') + '<span class="live-model-badge">Gemini AI</span>';
 
-    /* Summary — allow <strong> HTML from the model */
+    /* Summary */
     liveAnsText.innerHTML = parsed.summary || '';
 
     /* Facts */
@@ -1585,7 +1578,7 @@ async function sendLiveQuery() {
     showLiveState('output');
 
   } catch(err) {
-    liveError.textContent = err.message || 'Erro ao processar a pergunta. Verifique a sua ligação e tente novamente.';
+    liveError.textContent = err.message || 'Erro de ligação. Verifique a sua ligação e tente novamente.';
     showLiveState('error');
   } finally {
     liveSendBtn.disabled = false;
