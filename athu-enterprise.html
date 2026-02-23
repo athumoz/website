@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>athu — Regulatory Intelligence for Mozambique</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   RESET & DESIGN TOKENS
+═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Navy-slate professional palette */
+  --navy-950:   #060C18;
+  --navy-900:   #0A1628;
+  --navy-800:   #0F1F3A;
+  --navy-700:   #162843;
+  --navy-600:   #1E3554;
+  --navy-500:   #264060;
+
+  /* Slate mid-tones */
+  --slate-400:  #2D4A6E;
+  --slate-300:  #3D5F82;
+  --slate-200:  #4E7399;
+
+  /* Accent: Deep gold / champagne */
+  --gold:       #C9A84C;
+  --gold-light: #E0BF7A;
+  --gold-dim:   rgba(201,168,76,0.14);
+  --gold-bdr:   rgba(201,168,76,0.30);
+
+  /* Accent: Electric teal (for data / live) */
+  --teal:       #00B4D8;
+  --teal-lo:    rgba(0,180,216,0.10);
+  --teal-bdr:   rgba(0,180,216,0.25);
+
+  /* Accent: Warm red (alerts) */
+  --red:        #E05252;
+
+  /* Neutral green (success) */
+  --green:      #2DD4BF;
+  --green-lo:   rgba(45,212,191,0.10);
+
+  /* Text */
+  --text-100:   #F0F4F8;
+  --text-200:   #C8D6E8;
+  --text-300:   #8BA4BE;
+  --text-400:   #526A84;
+  --text-500:   #334D68;
+
+  /* Lines */
+  --line:       rgba(255,255,255,0.07);
+  --line-s:     rgba(255,255,255,0.04);
+
+  /* Typography */
+  --ff-sans:    'DM Sans', system-ui, sans-serif;
+  --ff-serif:   'Playfair Display', Georgia, serif;
+  --ff-mono:    'JetBrains Mono', 'SFMono-Regular', monospace;
+
+  --r:          6px;
+  --r-lg:       10px;
+  --r-xl:       14px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--ff-sans);
+  background: var(--navy-950);
+  color: var(--text-100);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fine grain overlay */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+img { display: block; max-width: 100%; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--navy-950); }
+::-webkit-scrollbar-thumb { background: var(--slate-400); border-radius: 10px; }
+
+/* ═══════════════════════════════════════
+   TYPOGRAPHY
+═══════════════════════════════════════ */
+.serif { font-family: var(--ff-serif); }
+.mono  { font-family: var(--ff-mono); }
+
+/* ═══════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--ff-sans); font-weight: 600; letter-spacing: 0.01em;
+  border: none; border-radius: var(--r); cursor: pointer;
+  text-decoration: none; transition: all 0.18s;
+  white-space: nowrap; font-size: 0.875rem;
+}
+.btn-primary {
+  background: var(--gold); color: var(--navy-950);
+  padding: 13px 28px;
+}
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(201,168,76,0.25);
+}
+.btn-secondary {
+  background: rgba(255,255,255,0.06);
+  color: var(--text-200);
+  border: 1px solid var(--line);
+  padding: 12px 26px;
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.10);
+  border-color: var(--text-500);
+  color: var(--text-100);
+}
+.btn-outline-gold {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold-bdr);
+  padding: 9px 22px; font-size: 0.82rem;
+}
+.btn-outline-gold:hover {
+  background: var(--gold-dim);
+}
+.btn-sm { padding: 8px 18px; font-size: 0.78rem; }
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 600;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  background: rgba(6,12,24,0.92);
+  backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.3s;
+}
+.nav.scrolled { box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 6px 32px rgba(0,0,0,0.5); }
+
+.nav-logo {
+  display: flex; align-items: center; gap: 11px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo-badge {
+  width: 34px; height: 34px; border-radius: 7px;
+  background: var(--gold-dim); border: 1px solid var(--gold-bdr);
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-logo-badge svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 2; }
+.nav-logo-name {
+  font-family: var(--ff-sans); font-size: 1.1rem; font-weight: 700;
+  color: var(--text-100); letter-spacing: 0.03em;
+}
+.nav-logo-name span { color: var(--gold); }
+.nav-logo-tagline {
+  font-size: 0.62rem; color: var(--text-400);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-top: -2px;
+}
+
+.nav-links { display: flex; gap: 30px; list-style: none; }
+.nav-links a {
+  font-size: 0.8rem; font-weight: 500;
+  letter-spacing: 0.02em; color: var(--text-300);
+  text-decoration: none; transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text-100); }
+
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-demo-btn {
+  background: var(--gold); color: var(--navy-950);
+  padding: 8px 18px; font-size: 0.78rem; font-weight: 600;
+  border-radius: var(--r); text-decoration: none; transition: all 0.18s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.nav-demo-btn:hover { background: var(--gold-light); }
+
+.nav-login {
+  font-size: 0.78rem; color: var(--text-300);
+  text-decoration: none; transition: color 0.15s;
+  font-weight: 500;
+}
+.nav-login:hover { color: var(--text-100); }
+
+.ham {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.ham span { display: block; width: 22px; height: 2px; background: var(--text-200); border-radius: 2px; transition: all 0.25s; }
+
+.mobile-drawer {
+  display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 599;
+  background: var(--navy-900); border-bottom: 1px solid var(--line);
+  padding: 20px 24px 28px; flex-direction: column; gap: 6px;
+  transform: translateY(-10px); opacity: 0; transition: transform 0.25s, opacity 0.25s;
+  pointer-events: none;
+}
+.mobile-drawer.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+.mobile-drawer a {
+  font-size: 0.88rem; font-weight: 500; color: var(--text-200);
+  text-decoration: none; padding: 10px 0; border-bottom: 1px solid var(--line); transition: color 0.15s;
+}
+.mobile-drawer a:hover { color: var(--text-100); }
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  padding: 128px 48px 80px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+  position: relative; overflow: hidden;
+}
+
+/* Subtle dot grid */
+.hero-grid {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 20%, transparent 70%);
+}
+
+/* Diagonal light beam */
+.hero-beam {
+  position: absolute; z-index: 0; pointer-events: none;
+  width: 1px; height: 70%;
+  background: linear-gradient(180deg, transparent, rgba(201,168,76,0.18), transparent);
+  top: 15%; left: 52%; transform: rotate(18deg);
+}
+
+.hero-glow {
+  position: absolute; z-index: 0; pointer-events: none;
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.04) 0%, transparent 60%);
+  top: 50%; left: 50%; transform: translate(-50%,-55%);
+}
+
+.hero-text { position: relative; z-index: 1; }
+
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 28px; padding: 6px 14px;
+  background: var(--gold-dim); border: 1px solid var(--gold-bdr); border-radius: 100px;
+}
+.hero-kicker-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold); animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(1.4)} }
+
+.hero h1 {
+  font-family: var(--ff-sans);
+  font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+  font-weight: 700; line-height: 1.08; letter-spacing: -0.025em;
+  color: var(--text-100); margin-bottom: 24px;
+}
+.hero h1 .accent { color: var(--gold); }
+.hero h1 em {
+  font-family: var(--ff-serif); font-style: italic;
+  font-weight: 400; color: var(--text-300);
+}
+
+.hero-sub {
+  font-family: var(--ff-sans); font-size: 1.05rem; line-height: 1.72;
+  color: var(--text-300); font-weight: 400;
+  max-width: 480px; margin-bottom: 38px;
+}
+
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+
+/* Trust bar */
+.hero-trust {
+  padding-top: 28px; border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 24px; align-items: center;
+}
+.trust-label {
+  font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-400); font-weight: 500;
+}
+.trust-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.trust-badge {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.72rem; color: var(--text-300); font-weight: 500;
+  background: rgba(255,255,255,0.03); border: 1px solid var(--line);
+  border-radius: 100px; padding: 4px 12px;
+}
+.trust-badge svg { width: 11px; height: 11px; stroke: var(--teal); fill: none; stroke-width: 2; }
+
+/* Hero terminal / dashboard */
+.hero-visual { position: relative; z-index: 1; }
+
+.dash-card {
+  background: var(--navy-800);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+}
+.dash-topbar {
+  padding: 13px 18px;
+  background: rgba(255,255,255,0.025);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.dash-dots { display: flex; gap: 6px; }
+.dash-dot { width: 10px; height: 10px; border-radius: 50%; }
+.d-r { background: #FF5F57; } .d-y { background: #FEBC2E; } .d-g { background: #28C840; }
+.dash-title-text {
+  font-family: var(--ff-mono); font-size: 0.65rem;
+  color: var(--text-400); letter-spacing: 0.06em;
+}
+.dash-live {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--teal); background: var(--teal-lo); border: 1px solid var(--teal-bdr);
+  border-radius: 100px; padding: 3px 9px;
+}
+.dash-live::before {
+  content: ''; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--teal); animation: pulse 2s infinite;
+}
+
+.dash-body { padding: 18px; }
+
+/* Alert strip at top */
+.dash-alert {
+  background: rgba(224,82,82,0.08); border: 1px solid rgba(224,82,82,0.2);
+  border-radius: var(--r); padding: 10px 14px; margin-bottom: 14px;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.dash-alert-icon { flex-shrink: 0; margin-top: 1px; }
+.dash-alert-icon svg { width: 14px; height: 14px; stroke: var(--red); fill: none; stroke-width: 2; }
+.dash-alert-text { font-size: 0.76rem; line-height: 1.5; color: var(--text-200); }
+.dash-alert-text strong { color: var(--red); font-weight: 600; }
+
+/* Stat row */
+.dash-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 14px; }
+.dstat {
+  background: var(--navy-900); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 12px 12px 10px;
+  text-align: center;
+}
+.dstat-n { font-family: var(--ff-mono); font-size: 1.1rem; font-weight: 600; color: var(--gold); display: block; }
+.dstat-l { font-size: 0.62rem; color: var(--text-400); margin-top: 2px; }
+
+/* Activity feed */
+.dash-feed-lbl {
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-400); margin-bottom: 8px;
+}
+.feed-item {
+  display: flex; gap: 10px; align-items: flex-start; padding: 8px 0;
+  border-bottom: 1px solid var(--line-s);
+}
+.feed-item:last-child { border-bottom: none; }
+.feed-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.fd-gold { background: var(--gold); }
+.fd-teal { background: var(--teal); }
+.fd-red  { background: var(--red); }
+.fd-grn  { background: var(--green); }
+.feed-text { font-size: 0.75rem; line-height: 1.55; color: var(--text-200); flex: 1; }
+.feed-text strong { color: var(--text-100); font-weight: 600; }
+.feed-time { font-family: var(--ff-mono); font-size: 0.58rem; color: var(--text-400); flex-shrink: 0; padding-top: 2px; }
+
+/* Risk score block */
+.dash-risk {
+  margin-top: 14px; background: var(--navy-900); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 12px 14px;
+  display: flex; gap: 14px; align-items: center;
+}
+.risk-label-col { flex-shrink: 0; }
+.risk-label-col span { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-400); display: block; margin-bottom: 4px; }
+.risk-badge {
+  font-family: var(--ff-mono); font-size: 0.82rem; font-weight: 600;
+  color: var(--gold); background: var(--gold-dim); border: 1px solid var(--gold-bdr);
+  border-radius: var(--r); padding: 4px 10px;
+}
+.risk-bars { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.risk-bar-row { display: flex; gap: 8px; align-items: center; }
+.risk-bar-lbl { font-size: 0.6rem; color: var(--text-400); width: 70px; flex-shrink: 0; }
+.risk-bar-track { flex: 1; height: 4px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; }
+.risk-bar-fill { height: 100%; border-radius: 100px; }
+.rb-high { background: linear-gradient(90deg, var(--red), #FF8080); }
+.rb-med  { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+.rb-low  { background: linear-gradient(90deg, var(--green), #6FEEDE); }
+.risk-pct { font-family: var(--ff-mono); font-size: 0.6rem; color: var(--text-300); width: 28px; text-align: right; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════
+   CLIENT LOGOS STRIP
+═══════════════════════════════════════ */
+.logos-strip {
+  background: var(--navy-900); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  padding: 0 48px;
+}
+.logos-inner {
+  display: flex; align-items: center; gap: 0;
+  min-height: 72px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.logos-label {
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-500); white-space: nowrap; flex-shrink: 0; padding-right: 32px;
+  border-right: 1px solid var(--line); margin-right: 32px; min-width: fit-content;
+}
+.logo-item {
+  flex-shrink: 0; padding: 0 22px;
+  border-right: 1px solid var(--line);
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-500); transition: color 0.2s;
+}
+.logo-item:last-child { border-right: none; }
+.logo-item:hover { color: var(--text-300); }
+
+/* ═══════════════════════════════════════
+   SECTION SCAFFOLD
+═══════════════════════════════════════ */
+.section { padding: 96px 48px; }
+.section-dark { background: var(--navy-950); }
+.section-mid  { background: var(--navy-900); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.66rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+}
+.eyebrow::before { content: ''; width: 20px; height: 1.5px; background: var(--gold); flex-shrink: 0; }
+.eyebrow-c { justify-content: center; }
+.eyebrow-c::before { display: none; }
+.eyebrow-c::after { content: ''; width: 20px; height: 1.5px; background: var(--gold); flex-shrink: 0; }
+
+.h2 {
+  font-family: var(--ff-sans); font-weight: 700;
+  font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+  line-height: 1.12; letter-spacing: -0.022em;
+  color: var(--text-100); margin-bottom: 18px;
+}
+.h2 em { font-family: var(--ff-serif); font-style: italic; font-weight: 400; color: var(--text-300); }
+.h2 .gold { color: var(--gold); }
+
+.lead {
+  font-size: 1rem; line-height: 1.76; color: var(--text-300); max-width: 540px;
+}
+
+/* ═══════════════════════════════════════
+   PRODUCT MODULES — SIDEBAR TAB LAYOUT
+═══════════════════════════════════════ */
+.products-section { background: var(--navy-900); border-top: 1px solid var(--line); }
+.products-intro { padding: 72px 48px 48px; border-bottom: 1px solid var(--line); text-align: center; }
+.products-intro .lead { margin: 0 auto; }
+
+.products-layout { display: grid; grid-template-columns: 240px 1fr; min-height: 600px; }
+.products-nav {
+  border-right: 1px solid var(--line); position: sticky; top: 64px;
+  height: calc(100vh - 64px); overflow-y: auto; padding: 28px 0;
+  background: var(--navy-800); align-self: start;
+}
+.products-tabs-mobile {
+  display: none; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  padding: 0 16px; border-bottom: 1px solid var(--line);
+  background: var(--navy-800); gap: 0;
+}
+.prod-nav-label {
+  font-size: 0.58rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-500); padding: 0 20px 12px; border-bottom: 1px solid var(--line); margin-bottom: 6px;
+}
+.prod-nav-link {
+  display: flex; align-items: center; gap: 12px; padding: 12px 20px;
+  text-decoration: none; cursor: pointer; border-left: 2px solid transparent;
+  transition: all 0.18s; position: relative;
+}
+.prod-nav-link:hover { background: rgba(255,255,255,0.025); }
+.prod-nav-link.active { border-left-color: var(--gold); background: var(--gold-dim); }
+.prod-nav-link.active .pnl-name { color: var(--gold); }
+.pnl-num { font-family: var(--ff-mono); font-size: 0.58rem; color: var(--text-500); transition: color 0.18s; }
+.pnl-name { font-size: 0.8rem; font-weight: 600; color: var(--text-300); line-height: 1.3; transition: color 0.18s; }
+.pnl-sub  { font-size: 0.68rem; color: var(--text-400); margin-top: 2px; }
+
+.prod-tab-btn {
+  flex-shrink: 0; padding: 16px 16px;
+  font-family: var(--ff-sans); font-size: 0.76rem; font-weight: 600;
+  color: var(--text-300); background: none; border: none; cursor: pointer;
+  border-bottom: 2px solid transparent; transition: all 0.18s; white-space: nowrap;
+}
+.prod-tab-btn:hover { color: var(--text-100); }
+.prod-tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+.products-panels { padding: 0; }
+.prod-panel { padding: 52px 52px; border-bottom: 1px solid var(--line); display: none; animation: fadeUp 0.28s ease; }
+.prod-panel.active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.panel-header { margin-bottom: 36px; }
+.panel-number {
+  font-family: var(--ff-mono); font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+}
+.panel-number::before { content: ''; width: 12px; height: 1px; background: var(--gold); }
+.panel-title {
+  font-family: var(--ff-sans); font-size: clamp(1.4rem, 2vw, 1.9rem);
+  font-weight: 700; letter-spacing: -0.018em; color: var(--text-100); margin-bottom: 12px;
+}
+.panel-desc { font-size: 0.96rem; line-height: 1.78; color: var(--text-300); max-width: 600px; }
+
+.panel-features { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 32px 0; }
+.feat-card {
+  background: var(--navy-950); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 20px 18px; transition: border-color 0.2s, background 0.2s;
+}
+.feat-card:hover { border-color: var(--gold-bdr); background: rgba(201,168,76,0.02); }
+.feat-icon { margin-bottom: 10px; }
+.feat-icon svg { width: 18px; height: 18px; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.feat-title { font-size: 0.84rem; font-weight: 600; color: var(--text-100); margin-bottom: 6px; }
+.feat-desc { font-size: 0.78rem; line-height: 1.65; color: var(--text-400); }
+
+.panel-data-strip {
+  background: var(--navy-950); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;
+}
+.data-strip-head {
+  padding: 11px 16px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,0.015);
+}
+.data-strip-title { font-family: var(--ff-mono); font-size: 0.62rem; color: var(--text-400); letter-spacing: 0.06em; text-transform: uppercase; }
+.data-strip-body { padding: 12px 16px; display: flex; flex-direction: column; gap: 7px; }
+.data-row { display: flex; gap: 12px; align-items: center; padding: 8px 10px; border-radius: var(--r); background: rgba(255,255,255,0.018); border: 1px solid var(--line-s); }
+.dr-num { font-family: var(--ff-mono); font-size: 0.58rem; color: var(--text-500); width: 22px; flex-shrink: 0; }
+.dr-text { font-size: 0.76rem; color: var(--text-300); flex: 1; line-height: 1.5; }
+.dr-badge { font-family: var(--ff-mono); font-size: 0.56rem; font-weight: 600; border-radius: var(--r); padding: 2px 7px; flex-shrink: 0; }
+
+/* Chips */
+.chips { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+.chip {
+  font-family: var(--ff-mono); font-size: 0.58rem; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  border-radius: 4px; padding: 3px 8px;
+  display: flex; align-items: center; gap: 4px;
+}
+.chip-reg  { background: rgba(201,168,76,0.12); color: var(--gold); border: 1px solid var(--gold-bdr); }
+.chip-leg  { background: var(--teal-lo); color: var(--teal); border: 1px solid var(--teal-bdr); }
+.chip-src  { background: rgba(255,255,255,0.04); color: var(--text-400); border: 1px solid var(--line); }
+
+/* ═══════════════════════════════════════
+   PRICING SECTION
+═══════════════════════════════════════ */
+.pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 52px; }
+.price-card {
+  background: var(--navy-800); border: 1px solid var(--line);
+  border-radius: var(--r-xl); padding: 32px 28px; position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.price-card:hover { border-color: rgba(201,168,76,0.25); transform: translateY(-2px); }
+.price-card.featured {
+  border-color: var(--gold-bdr);
+  background: linear-gradient(135deg, rgba(201,168,76,0.06), var(--navy-800));
+  box-shadow: 0 0 40px rgba(201,168,76,0.08);
+}
+.price-popular {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--navy-950); background: var(--gold);
+  border-radius: 100px; padding: 4px 14px;
+}
+.price-tier { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.price-name { font-size: 1.3rem; font-weight: 700; color: var(--text-100); margin-bottom: 6px; }
+.price-desc { font-size: 0.8rem; color: var(--text-400); line-height: 1.6; margin-bottom: 24px; }
+.price-amount { margin-bottom: 8px; }
+.price-amount span { font-family: var(--ff-mono); font-size: 2rem; font-weight: 600; color: var(--text-100); }
+.price-amount sub { font-size: 0.8rem; color: var(--text-400); }
+.price-billed { font-size: 0.72rem; color: var(--text-400); margin-bottom: 24px; }
+.price-cta { display: block; text-align: center; margin-bottom: 24px; }
+.price-sep { border: none; border-top: 1px solid var(--line); margin-bottom: 18px; }
+.price-features { display: flex; flex-direction: column; gap: 10px; }
+.pf-item { display: flex; gap: 9px; align-items: flex-start; }
+.pf-item svg { width: 14px; height: 14px; stroke: var(--teal); fill: none; stroke-width: 2.5; flex-shrink: 0; margin-top: 1px; }
+.pf-text { font-size: 0.78rem; color: var(--text-300); line-height: 1.45; }
+.pf-text strong { color: var(--text-100); font-weight: 600; }
+
+/* ═══════════════════════════════════════
+   USE CASES
+═══════════════════════════════════════ */
+.usecases-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-xl); overflow: hidden; margin-top: 48px; }
+.uc-card { background: var(--navy-900); padding: 28px 24px; transition: background 0.2s; }
+.uc-card:hover { background: var(--navy-800); }
+.uc-icon { width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.uc-icon svg { width: 17px; height: 17px; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.uc-title { font-size: 0.875rem; font-weight: 600; color: var(--text-100); margin-bottom: 8px; }
+.uc-desc { font-size: 0.78rem; line-height: 1.65; color: var(--text-400); }
+
+/* ═══════════════════════════════════════
+   ROI / STATS SECTION
+═══════════════════════════════════════ */
+.roi-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.roi-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-xl); overflow: hidden; }
+.roi-card { background: var(--navy-900); padding: 28px 22px; transition: background 0.2s; }
+.roi-card:hover { background: var(--navy-800); }
+.roi-num { font-family: var(--ff-mono); font-size: 1.9rem; font-weight: 600; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: -0.02em; }
+.roi-lbl { font-size: 0.76rem; color: var(--text-400); line-height: 1.5; }
+
+.case-study-cards { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+.cs-card {
+  padding: 18px 18px; border: 1px solid var(--line); border-radius: var(--r-lg);
+  background: rgba(255,255,255,0.01); transition: all 0.2s; cursor: pointer;
+}
+.cs-card:hover { border-color: var(--gold-bdr); background: var(--gold-dim); }
+.cs-tag { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.cs-title { font-size: 0.875rem; font-weight: 600; color: var(--text-100); margin-bottom: 5px; }
+.cs-desc { font-size: 0.76rem; color: var(--text-400); line-height: 1.55; }
+
+/* ═══════════════════════════════════════
+   CAPABILITIES
+═══════════════════════════════════════ */
+.cap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-xl); overflow: hidden; margin-top: 52px; }
+.cap-card { background: var(--navy-900); padding: 28px 24px; transition: background 0.2s; }
+.cap-card:hover { background: var(--navy-800); }
+.cap-ic { width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.cap-ic svg { width: 17px; height: 17px; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cap-title { font-size: 0.875rem; font-weight: 600; color: var(--text-100); margin-bottom: 6px; }
+.cap-desc { font-size: 0.78rem; line-height: 1.65; color: var(--text-400); }
+
+/* ═══════════════════════════════════════
+   INTERACTIVE DEMO
+═══════════════════════════════════════ */
+.demo-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
+.source-badge-box { margin-top: 28px; padding: 18px; background: var(--navy-800); border: 1px solid var(--line); border-radius: var(--r-lg); }
+.source-badge-lbl { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.demo-note { margin-top: 14px; padding: 12px 14px; background: var(--teal-lo); border: 1px solid var(--teal-bdr); border-radius: var(--r); font-size: 0.78rem; line-height: 1.6; color: var(--text-300); }
+.demo-note strong { color: var(--teal); font-weight: 600; }
+
+.qs { background: var(--navy-800); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--r-xl); overflow: hidden; box-shadow: 0 20px 52px rgba(0,0,0,0.45); }
+.qs-head { padding: 12px 18px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.02); }
+.qs-head-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-400); }
+.qs-head-badge { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); background: var(--teal-lo); border: 1px solid var(--teal-bdr); border-radius: 100px; padding: 3px 10px; }
+.qs-queries { padding: 12px; display: flex; flex-direction: column; gap: 4px; border-bottom: 1px solid var(--line); }
+.qs-q { padding: 10px 12px; border-radius: var(--r); cursor: pointer; border: 1px solid transparent; font-size: 0.8rem; color: var(--text-300); transition: all 0.18s; line-height: 1.5; }
+.qs-q:hover { background: rgba(255,255,255,0.03); border-color: var(--line); color: var(--text-100); }
+.qs-q.active { background: var(--gold-dim); border-color: var(--gold-bdr); color: var(--text-100); }
+.qs-q-num { font-family: var(--ff-mono); font-size: 0.56rem; color: var(--text-500); display: block; margin-bottom: 2px; }
+.qs-result { padding: 18px; min-height: 280px; }
+.res-block { display: none; animation: fadeUp 0.25s ease; }
+.res-block.active { display: block; }
+.res-answer { background: var(--navy-950); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; margin-bottom: 12px; }
+.res-lbl { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-400); margin-bottom: 7px; display: flex; align-items: center; gap: 5px; }
+.res-lbl::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+.res-text { font-size: 0.82rem; line-height: 1.75; color: var(--text-200); }
+.res-text strong { color: var(--gold); font-weight: 600; }
+.res-facts { margin-bottom: 12px; }
+.fact-r { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line-s); align-items: flex-start; }
+.fact-r:last-child { border-bottom: none; }
+.fact-k { font-family: var(--ff-mono); font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-400); width: 100px; flex-shrink: 0; padding-top: 1px; }
+.fact-v { font-size: 0.76rem; color: var(--text-200); line-height: 1.5; }
+.res-sources { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
+.rsrc { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-400); background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px; display: flex; align-items: center; gap: 4px; }
+.rsrc::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+.res-conf { display: flex; align-items: center; gap: 8px; margin-top: 10px; background: var(--teal-lo); border: 1px solid var(--teal-bdr); border-radius: var(--r); padding: 7px 12px; }
+.res-conf-lbl { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-400); flex-shrink: 0; }
+.res-conf-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; }
+.res-conf-fill { height: 100%; background: linear-gradient(90deg, var(--teal), #6FEEDE); border-radius: 100px; }
+.res-conf-score { font-family: var(--ff-mono); font-size: 0.66rem; font-weight: 600; color: var(--teal); flex-shrink: 0; }
+
+/* ═══════════════════════════════════════
+   FAQ
+═══════════════════════════════════════ */
+.faq-inner { max-width: 760px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-q { width: 100%; text-align: left; background: none; border: none; padding: 20px 0; font-family: var(--ff-sans); font-size: 0.9375rem; font-weight: 600; color: var(--text-100); display: flex; justify-content: space-between; align-items: center; gap: 20px; cursor: pointer; letter-spacing: -0.01em; }
+.faq-q:hover { color: var(--gold); }
+.faq-chevron { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; background: var(--gold-dim); border: 1px solid var(--gold-bdr); display: flex; align-items: center; justify-content: center; transition: transform 0.3s, background 0.2s; }
+.faq-chevron svg { width: 11px; height: 11px; stroke: var(--gold); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
+.faq-item.open .faq-chevron { transform: rotate(180deg); background: var(--gold); }
+.faq-item.open .faq-chevron svg { stroke: var(--navy-950); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.38s ease; }
+.faq-item.open .faq-a { max-height: 220px; }
+.faq-a-in { padding: 2px 0 20px; font-size: 0.88rem; line-height: 1.78; color: var(--text-400); max-width: 600px; }
+
+/* ═══════════════════════════════════════
+   CTA
+═══════════════════════════════════════ */
+.cta-wrap { padding: 96px 48px; position: relative; overflow: hidden; background: var(--navy-950); border-top: 1px solid var(--line); }
+.cta-grid { position: absolute; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, black 15%, transparent 70%); }
+.cta-glow { position: absolute; z-index: 0; pointer-events: none; width: 500px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.cta-in { position: relative; z-index: 1; text-align: center; max-width: 640px; margin: 0 auto; }
+.cta-title { font-family: var(--ff-sans); font-size: clamp(1.9rem, 3vw, 2.7rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.022em; color: var(--text-100); margin-bottom: 16px; }
+.cta-title .gold { color: var(--gold); }
+.cta-sub { font-size: 1rem; line-height: 1.72; color: var(--text-300); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+.cta-extras { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.cta-extra { font-size: 0.72rem; color: var(--text-400); display: flex; align-items: center; gap: 5px; }
+.cta-extra::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--teal); }
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+.footer { background: var(--navy-900); border-top: 1px solid var(--line); padding: 52px 48px 28px; }
+.footer-top { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+.ft-logo-block { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.ft-logo-badge { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--gold-bdr); background: var(--gold-dim); display: flex; align-items: center; justify-content: center; }
+.ft-logo-badge svg { width: 13px; height: 13px; stroke: var(--gold); fill: none; stroke-width: 2; }
+.ft-logo-name { font-size: 0.96rem; font-weight: 700; color: var(--text-100); }
+.ft-logo-name span { color: var(--gold); }
+.ft-tagline { font-size: 0.8rem; line-height: 1.7; color: var(--text-400); max-width: 260px; margin-bottom: 12px; }
+.ft-cert { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-500); }
+.ft-col-head { font-size: 0.64rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 16px; }
+.ft-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.ft-links a { font-size: 0.8rem; color: var(--text-400); text-decoration: none; transition: color 0.15s; }
+.ft-links a:hover { color: var(--text-200); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.72rem; color: var(--text-500); }
+.fb-links { display: flex; gap: 16px; }
+.fb-links a { color: var(--text-500); text-decoration: none; transition: color 0.15s; }
+.fb-links a:hover { color: var(--text-300); }
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+.rv { opacity: 0; transform: translateY(20px); transition: opacity .65s cubic-bezier(.25,.46,.45,.94), transform .65s cubic-bezier(.25,.46,.45,.94); }
+.rv.in { opacity: 1; transform: none; }
+.d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .roi-inner { grid-template-columns: 1fr; gap: 44px; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+}
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; padding-top: 110px; gap: 40px; }
+  .hero-visual { max-width: 520px; }
+  .products-layout { grid-template-columns: 1fr; }
+  .products-nav { display: none; }
+  .products-tabs-mobile { display: flex; }
+  .prod-panel { padding: 36px 24px; }
+  .panel-features { grid-template-columns: 1fr 1fr; }
+  .cap-grid { grid-template-columns: 1fr 1fr; }
+  .usecases-grid { grid-template-columns: 1fr 1fr; }
+  .demo-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+  .nav { padding: 0 20px; }
+  .nav-links, .nav-login { display: none; }
+  .ham { display: flex; }
+  .mobile-drawer { display: flex; }
+  .section { padding: 60px 20px; }
+  .hero { padding: 96px 20px 52px; }
+  .logos-strip { padding: 0 20px; }
+  .products-intro { padding: 48px 20px 36px; }
+  .prod-panel { padding: 26px 20px; }
+  .panel-features { grid-template-columns: 1fr; }
+  .cap-grid { grid-template-columns: 1fr; }
+  .usecases-grid { grid-template-columns: 1fr; }
+  .roi-stats-grid { grid-template-columns: 1fr 1fr; }
+  .footer { padding: 44px 20px 24px; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .cta-wrap { padding: 64px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-badge">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    </div>
+    <div>
+      <div class="nav-logo-name"><span>athu</span> Intelligence</div>
+      <div class="nav-logo-tagline">Regulatory & Legal AI</div>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#usecases">Use Cases</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a href="#" class="nav-login">Sign In</a>
+    <a href="#cta" class="nav-demo-btn">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9l6 3-6 3V9z"/></svg>
+      Book a Demo
+    </a>
+    <button class="ham" id="ham" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-drawer" id="drawer">
+  <a href="#solutions" onclick="closeMenu()">Solutions</a>
+  <a href="#demo" onclick="closeMenu()">Demo</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#usecases" onclick="closeMenu()">Use Cases</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="#cta" onclick="closeMenu()">Book a Demo</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-beam"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-text">
+    <div class="hero-kicker">
+      <span class="hero-kicker-dot"></span>
+      Regulatory Intelligence Platform — Mozambique
+    </div>
+    <h1>
+      Stay ahead of<br>
+      <span class="accent">every regulation</span><br>
+      <em>that affects your business.</em>
+    </h1>
+    <p class="hero-sub">
+      athu Intelligence monitors Mozambican legislation, procurement rules, and regulatory changes in real time — delivering structured alerts, compliance summaries, and legal briefings to your team before issues arise.
+    </p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9l6 3-6 3V9z"/></svg>
+        Book a Demo
+      </a>
+      <a href="#solutions" class="btn btn-secondary">Explore Solutions</a>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-label">Trusted by</span>
+      <div class="trust-badges">
+        <span class="trust-badge"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Law Firms</span>
+        <span class="trust-badge"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Multinationals</span>
+        <span class="trust-badge"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Government Relations</span>
+        <span class="trust-badge"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Development Finance</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="dash-card">
+      <div class="dash-topbar">
+        <div class="dash-dots"><div class="dash-dot d-r"></div><div class="dash-dot d-y"></div><div class="dash-dot d-g"></div></div>
+        <div class="dash-title-text">athu — Compliance Dashboard</div>
+        <div class="dash-live">Live</div>
+      </div>
+      <div class="dash-body">
+        <div class="dash-alert">
+          <div class="dash-alert-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="dash-alert-text"><strong>Regulatory Alert:</strong> New MIREME licensing requirements published in Boletim da República — impacts energy sector operators. Review deadline: 30 days.</div>
+        </div>
+        <div class="dash-stats">
+          <div class="dstat"><span class="dstat-n">14</span><div class="dstat-l">Active alerts this month</div></div>
+          <div class="dstat"><span class="dstat-n">3</span><div class="dstat-l">Bills in committee, your sectors</div></div>
+          <div class="dstat"><span class="dstat-n">98%</span><div class="dstat-l">Compliance coverage score</div></div>
+        </div>
+        <div class="dash-feed-lbl">Recent Activity</div>
+        <div class="feed-item"><div class="feed-dot fd-gold"></div><div class="feed-text"><strong>Tax authority circular</strong> on transfer pricing documentation requirements</div><div class="feed-time">2h ago</div></div>
+        <div class="feed-item"><div class="feed-dot fd-teal"></div><div class="feed-text"><strong>Labour Code amendment</strong> — fixed-term contracts, Nampula province pilots</div><div class="feed-time">6h ago</div></div>
+        <div class="feed-item"><div class="feed-dot fd-red"></div><div class="feed-text"><strong>Procurement alert:</strong> new tender thresholds for public works contracts</div><div class="feed-time">1d ago</div></div>
+        <div class="feed-item"><div class="feed-dot fd-grn"></div><div class="feed-text"><strong>Environmental permit</strong> renewal period opens — 90-day window starts Mar 1</div><div class="feed-time">2d ago</div></div>
+        <div class="dash-risk">
+          <div class="risk-label-col">
+            <span>Risk Score</span>
+            <div class="risk-badge">Medium</div>
+          </div>
+          <div class="risk-bars">
+            <div class="risk-bar-row"><span class="risk-bar-lbl">Regulatory</span><div class="risk-bar-track"><div class="risk-bar-fill rb-med" style="width:58%"></div></div><span class="risk-pct">58%</span></div>
+            <div class="risk-bar-row"><span class="risk-bar-lbl">Labour Law</span><div class="risk-bar-track"><div class="risk-bar-fill rb-high" style="width:76%"></div></div><span class="risk-pct">76%</span></div>
+            <div class="risk-bar-row"><span class="risk-bar-lbl">Tax & Fiscal</span><div class="risk-bar-track"><div class="risk-bar-fill rb-low" style="width:32%"></div></div><span class="risk-pct">32%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CLIENT LOGOS ═══ -->
+<div class="logos-strip">
+  <div class="logos-inner">
+    <span class="logos-label">Serving organisations across sectors</span>
+    <span class="logo-item">Mining & Resources</span>
+    <span class="logo-item">Financial Services</span>
+    <span class="logo-item">Infrastructure & Energy</span>
+    <span class="logo-item">Agriculture & Agri-business</span>
+    <span class="logo-item">Telecoms & Tech</span>
+    <span class="logo-item">Development Finance</span>
+    <span class="logo-item">Legal & Consulting</span>
+  </div>
+</div>
+
+<!-- ═══ PRODUCT MODULES ═══ -->
+<div class="products-section" id="solutions">
+  <div class="products-intro rv">
+    <div class="eyebrow eyebrow-c">Product Suite</div>
+    <div class="h2" style="text-align:center">Four intelligence modules.<br><em>One compliance infrastructure.</em></div>
+    <p class="lead" style="margin: 0 auto; text-align:center">From regulatory alerts to legal research and budget tracking — athu delivers structured intelligence your team can act on immediately.</p>
+  </div>
+
+  <div class="products-tabs-mobile" id="prod-tabs-mobile">
+    <button class="prod-tab-btn active" onclick="switchProduct(0)">Regulatory Monitor</button>
+    <button class="prod-tab-btn" onclick="switchProduct(1)">Legal Research</button>
+    <button class="prod-tab-btn" onclick="switchProduct(2)">Budget & Procurement</button>
+    <button class="prod-tab-btn" onclick="switchProduct(3)">Policy Tracker</button>
+  </div>
+
+  <div class="products-layout">
+    <nav class="products-nav" id="prod-nav">
+      <div class="prod-nav-label">Modules</div>
+      <a class="prod-nav-link active" onclick="switchProduct(0)">
+        <div><div class="pnl-num">01</div><div class="pnl-name">Regulatory Monitor</div><div class="pnl-sub">Real-time alerts & compliance</div></div>
+      </a>
+      <a class="prod-nav-link" onclick="switchProduct(1)">
+        <div><div class="pnl-num">02</div><div class="pnl-name">Legal Research</div><div class="pnl-sub">Legislation & case intelligence</div></div>
+      </a>
+      <a class="prod-nav-link" onclick="switchProduct(2)">
+        <div><div class="pnl-num">03</div><div class="pnl-name">Budget & Procurement</div><div class="pnl-sub">Public spending & tenders</div></div>
+      </a>
+      <a class="prod-nav-link" onclick="switchProduct(3)">
+        <div><div class="pnl-num">04</div><div class="pnl-name">Policy Tracker</div><div class="pnl-sub">Government commitments vs action</div></div>
+      </a>
+    </nav>
+
+    <div class="products-panels" id="prod-panels">
+
+      <!-- Panel 01 -->
+      <div class="prod-panel active" id="panel-0">
+        <div class="panel-header">
+          <div class="panel-number">Module 01: Regulatory Monitor</div>
+          <div class="panel-title">Never miss a regulatory change that affects your operations.</div>
+          <p class="panel-desc">athu continuously monitors the Boletim da República, ministry circulars, regulatory body publications, and sector-specific decrees — delivering structured, sector-filtered alerts to your compliance team in under 15 minutes of publication.</p>
+        </div>
+        <div class="panel-features">
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--gold)"><path d="M22 17H2a3 3 0 000 6h20a3 3 0 000-6z"/><path d="M5 17V5a2 2 0 012-2h10a2 2 0 012 2v12"/></svg></div>
+            <div class="feat-title">Sector-Filtered Alerts</div>
+            <div class="feat-desc">Configure by industry (mining, energy, finance, telecom), jurisdiction, or legal instrument type. Alerts arrive with structured summaries and compliance deadlines.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <div class="feat-title">Compliance Deadline Tracker</div>
+            <div class="feat-desc">Every regulatory change is parsed for deadlines, response windows, and transitional periods — surfaced in a unified compliance calendar for your team.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--gold)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <div class="feat-title">Conflict & Overlap Detection</div>
+            <div class="feat-desc">When new regulations intersect with existing obligations, athu flags potential conflicts and cites all relevant instruments simultaneously.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="feat-title">Risk Scoring Engine</div>
+            <div class="feat-desc">Each alert is scored by compliance urgency and business impact, helping legal and compliance teams prioritise their response queue effectively.</div>
+          </div>
+        </div>
+        <div class="panel-data-strip">
+          <div class="data-strip-head"><div class="data-strip-title">Sample alerts — last 7 days</div><div class="chips"><span class="chip chip-reg">Energy Sector</span></div></div>
+          <div class="data-strip-body">
+            <div class="data-row"><span class="dr-num">01</span><span class="dr-text">MIREME Decree 12/2025 — updated licensing requirements for renewable energy operators</span><span class="dr-badge" style="background:rgba(224,82,82,.1);color:#E05252;border:1px solid rgba(224,82,82,.25)">Urgent: 30d</span></div>
+            <div class="data-row"><span class="dr-num">02</span><span class="dr-text">AT Circular 08/2025 — transfer pricing documentation requirements, effective Q3 2025</span><span class="dr-badge chip-reg">Compliance</span></div>
+            <div class="data-row"><span class="dr-num">03</span><span class="dr-text">INSS Portaria 004/2025 — revised contribution rate schedule for mining companies</span><span class="dr-badge chip-leg">Review</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 02 -->
+      <div class="prod-panel" id="panel-1">
+        <div class="panel-header">
+          <div class="panel-number">Module 02: Legal Research</div>
+          <div class="panel-title">Ask any legal question about Mozambican law. Get verified, cited answers.</div>
+          <p class="panel-desc">The athu legal research engine understands complex legal queries in Portuguese and local languages, retrieving relevant legislation, regulatory instruments, and parliamentary records — with full source citation — in seconds.</p>
+        </div>
+        <div class="panel-features">
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--gold)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="feat-title">Full-Text Legislative Search</div>
+            <div class="feat-desc">Semantic search across all Boletim da República publications since 1975, ministerial decrees, and parliamentary transcripts — understanding meaning, not just keywords.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="feat-title">Consolidated Legal Texts</div>
+            <div class="feat-desc">View any law with all amendments incorporated, showing current, superseded, and pending text in parallel. No more manual consolidation.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--gold)"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 009 9"/></svg></div>
+            <div class="feat-title">Cross-Reference Mapping</div>
+            <div class="feat-desc">Automatically surfaces all instruments that reference, amend, or are referenced by a given law — showing the full legal ecosystem around any question.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div class="feat-title">Portuguese & Local Language Support</div>
+            <div class="feat-desc">Ask questions in Portuguese or Mozambican local languages. Receive answers in the language of the query with full document citations.</div>
+          </div>
+        </div>
+        <div class="panel-data-strip">
+          <div class="data-strip-head"><div class="data-strip-title">Sample queries handled</div><div class="chips"><span class="chip chip-leg">Legal Research</span></div></div>
+          <div class="data-strip-body">
+            <div class="data-row"><span class="dr-num">01</span><span class="dr-text">"What are the current requirements for mining concession renewal under Lei 20/2014 as amended?"</span><span class="dr-badge chip-reg">Full Brief</span></div>
+            <div class="data-row"><span class="dr-num">02</span><span class="dr-text">"What labour protections apply to fixed-term contracts in extractive industries?"</span><span class="dr-badge chip-leg">Cited Answer</span></div>
+            <div class="data-row"><span class="dr-num">03</span><span class="dr-text">"Has the Land Law been amended since 1997 and what changes are currently proposed?"</span><span class="dr-badge chip-reg">Timeline</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 03 -->
+      <div class="prod-panel" id="panel-2">
+        <div class="panel-header">
+          <div class="panel-number">Module 03: Budget & Procurement</div>
+          <div class="panel-title">Track public spending, procurement thresholds, and contract awards.</div>
+          <p class="panel-desc">For companies bidding on government contracts or operating under concession agreements, athu provides structured intelligence on budget allocations, procurement cycles, contract award announcements, and execution data by ministry and province.</p>
+        </div>
+        <div class="panel-features">
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--gold)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+            <div class="feat-title">Tender & RFP Monitoring</div>
+            <div class="feat-desc">Automated tracking of all public procurement publications from UFSA and ministry portals, with filtering by sector, value, and province.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+            <div class="feat-title">Budget Execution Tracking</div>
+            <div class="feat-desc">Compare approved OE allocations with quarterly execution reports across any ministry or province, identifying underspend and reallocation patterns.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--gold)"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div class="feat-title">Contract Award Database</div>
+            <div class="feat-desc">Searchable database of public contracts: value, supplier, ministry, modality. Cross-reference with regulatory compliance and bid requirements.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div class="feat-title">Sector Investment Forecasting</div>
+            <div class="feat-desc">Based on budget trends and Five-Year Plan commitments, surface projected investment flows by sector to inform business development strategy.</div>
+          </div>
+        </div>
+        <div class="panel-data-strip">
+          <div class="data-strip-head"><div class="data-strip-title">Procurement intelligence — current cycle</div><div class="chips"><span class="chip chip-reg">UFSA + MINFIN</span></div></div>
+          <div class="data-strip-body">
+            <div class="data-row"><span class="dr-num">T1</span><span class="dr-text">MIREME — Solar grid infrastructure tender, Northern provinces — value est. MZN 4.8B</span><span class="dr-badge chip-leg">Open: 45d</span></div>
+            <div class="data-row"><span class="dr-num">T2</span><span class="dr-text">MOPHRH — Road rehabilitation contracts, Gaza & Inhambane — MZN 1.2B total</span><span class="dr-badge chip-reg">Pre-qual</span></div>
+            <div class="data-row"><span class="dr-num">T3</span><span class="dr-text">MISAU — Medical supplies framework contract Q3 2025 — 3-year agreement</span><span class="dr-badge chip-src">Awarded</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 04 -->
+      <div class="prod-panel" id="panel-3">
+        <div class="panel-header">
+          <div class="panel-number">Module 04: Policy Tracker</div>
+          <div class="panel-title">Monitor government commitments, policy positions, and stakeholder statements.</div>
+          <p class="panel-desc">For government relations professionals, investors, and strategic advisors, athu tracks official policy commitments against legislative action, budget execution, and regulatory developments — providing a factual, neutral record of government position and intent over time.</p>
+        </div>
+        <div class="panel-features">
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--gold)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="feat-title">Five-Year Plan Progress Tracking</div>
+            <div class="feat-desc">Quantified monitoring of PQG commitments across sectors: measurable targets, current status, and documented evidence for each milestone.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <div class="feat-title">Ministerial Statement Index</div>
+            <div class="feat-desc">Searchable archive of public ministerial statements, investor briefings, and official positions — cross-referenced with legislative and regulatory action taken.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--gold)"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <div class="feat-title">Policy Evolution Timelines</div>
+            <div class="feat-desc">Visual timelines of any policy area from announcement through consultation, legislation, and implementation — including reversals and amendments.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+            <div class="feat-title">Investment Climate Signals</div>
+            <div class="feat-desc">Track policy signals relevant to foreign investment: licensing reforms, sector-specific incentives, bilateral agreement developments, and dispute resolution changes.</div>
+          </div>
+        </div>
+        <div class="panel-data-strip">
+          <div class="data-strip-head"><div class="data-strip-title">Policy tracker — PQG 2025–2029 priorities</div><div class="chips"><span class="chip chip-reg">PQG 2025–2029</span></div></div>
+          <div class="data-strip-body">
+            <div class="data-row"><span class="dr-num">P1</span><span class="dr-text">Energy sector private investment target: USD 2.1B by 2027 — current pipeline: USD 780M confirmed</span><span class="dr-badge chip-reg">37% progress</span></div>
+            <div class="data-row"><span class="dr-num">P2</span><span class="dr-text">Special Economic Zones expansion — 3 new zones legislated, enabling regulations pending</span><span class="dr-badge" style="background:rgba(224,82,82,.1);color:#E05252;border:1px solid rgba(224,82,82,.25)">Delayed</span></div>
+            <div class="data-row"><span class="dr-num">P3</span><span class="dr-text">One-Stop Shop for business registration — CEBEL operational in 4 provinces, 6 pending</span><span class="dr-badge chip-leg">On track</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ USE CASES ═══ -->
+<section class="section section-mid" id="usecases">
+  <div class="rv" style="text-align:center; margin-bottom: 0;">
+    <div class="eyebrow eyebrow-c">Who We Serve</div>
+    <div class="h2" style="text-align:center">Built for every team<br><em>that carries regulatory risk.</em></div>
+    <p class="lead" style="margin: 0 auto; text-align:center">Whether you manage compliance, lead government relations, or advise clients on investment decisions — athu gives you the intelligence to act with confidence.</p>
+  </div>
+  <div class="usecases-grid">
+    <div class="uc-card rv">
+      <div class="uc-icon"><svg viewBox="0 0 24 24" stroke="var(--gold)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="uc-title">Legal & Compliance Teams</div>
+      <div class="uc-desc">Replace manual regulatory monitoring. Receive structured alerts, consolidated legal texts, and compliance calendars that free your team for higher-value work.</div>
+    </div>
+    <div class="uc-card rv d1">
+      <div class="uc-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+      <div class="uc-title">Government Relations Professionals</div>
+      <div class="uc-desc">Track policy positions, parliamentary activity, and ministerial statements with full source documentation — supporting advocacy, engagement strategy, and stakeholder briefings.</div>
+    </div>
+    <div class="uc-card rv d2">
+      <div class="uc-icon"><svg viewBox="0 0 24 24" stroke="var(--gold)"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <div class="uc-title">Investment & Corporate Finance</div>
+      <div class="uc-desc">Due diligence on regulatory risk for M&A, project finance, and market entry. Understand the legal landscape before committing capital to Mozambique operations.</div>
+    </div>
+    <div class="uc-card rv">
+      <div class="uc-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+      <div class="uc-title">Law Firms & Advisory</div>
+      <div class="uc-desc">Power your research practice with instant access to the full Mozambican legal corpus. Serve clients faster with cited, consolidated answers to complex regulatory questions.</div>
+    </div>
+    <div class="uc-card rv d1">
+      <div class="uc-icon"><svg viewBox="0 0 24 24" stroke="var(--gold)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+      <div class="uc-title">Development Finance Institutions</div>
+      <div class="uc-desc">Monitor regulatory compliance of portfolio companies, track budget execution of programmes, and verify government commitments against actual policy delivery.</div>
+    </div>
+    <div class="uc-card rv d2">
+      <div class="uc-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <div class="uc-title">Business Development Teams</div>
+      <div class="uc-desc">Identify public sector opportunities through procurement monitoring, budget tracking, and investment pipeline intelligence — before your competitors see them.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INTERACTIVE DEMO ═══ -->
+<section class="section section-dark" id="demo">
+  <div class="demo-layout">
+    <div class="rv">
+      <div class="eyebrow">Live Intelligence Demo</div>
+      <div class="h2">See athu answer<br><em>your compliance questions.</em></div>
+      <p class="lead">Select a real-world regulatory query and see how athu retrieves structured, evidence-based answers with full source citations — no opinions, no guesswork.</p>
+      <div class="source-badge-box">
+        <div class="source-badge-lbl">Indexed Sources</div>
+        <div class="chips" style="flex-wrap:wrap">
+          <span class="chip chip-reg">Boletim da República</span>
+          <span class="chip chip-reg">Assembleia da República</span>
+          <span class="chip chip-leg">All National Legislation</span>
+          <span class="chip chip-leg">UFSA Procurement</span>
+          <span class="chip chip-reg">Ministry Circulars</span>
+          <span class="chip chip-src">MINFIN — State Budget</span>
+          <span class="chip chip-src">AT — Tax Authority</span>
+          <span class="chip chip-src">INSS — Social Security</span>
+        </div>
+        <div class="demo-note"><strong>Enterprise-grade reliability:</strong> All sources are official government and regulatory publications. athu never synthesises information without verified primary sources — every claim is traceable.</div>
+      </div>
+    </div>
+
+    <div class="rv d2">
+      <div class="qs">
+        <div class="qs-head">
+          <span class="qs-head-title">Sample Regulatory Queries</span>
+          <span class="qs-head-badge">Click to explore</span>
+        </div>
+        <div class="qs-queries">
+          <div class="qs-q active" onclick="selectDemo(0)" role="button" tabindex="0">
+            <span class="qs-q-num">Query 01 / Mining & Resources</span>
+            "What are the current environmental compliance requirements for open-cast mining operations in Mozambique?"
+          </div>
+          <div class="qs-q" onclick="selectDemo(1)" role="button" tabindex="0">
+            <span class="qs-q-num">Query 02 / Labour Law</span>
+            "What termination notice requirements apply to expatriate employees under the Mozambican Labour Code?"
+          </div>
+          <div class="qs-q" onclick="selectDemo(2)" role="button" tabindex="0">
+            <span class="qs-q-num">Query 03 / Tax & Fiscal</span>
+            "What are the current transfer pricing documentation requirements for multinational entities operating in Mozambique?"
+          </div>
+          <div class="qs-q" onclick="selectDemo(3)" role="button" tabindex="0">
+            <span class="qs-q-num">Query 04 / Procurement</span>
+            "What procurement thresholds require competitive tendering for public works contracts in Mozambique in 2025?"
+          </div>
+        </div>
+        <div class="qs-result">
+          <!-- Result 0 -->
+          <div class="res-block active" id="demo-0">
+            <div class="chips"><span class="chip chip-reg">Lei 20/97</span><span class="chip chip-reg">Dec. 54/2015</span><span class="chip chip-src">MITADER</span><span class="chip chip-src">+3 sources</span></div>
+            <div class="res-answer">
+              <div class="res-lbl">Evidence-based compliance summary</div>
+              <div class="res-text">Open-cast mining operations in Mozambique must comply with the <strong>Environmental Law (Lei 20/97)</strong> and its implementing Decree 54/2015. Requirements include a mandatory Environmental Impact Assessment (EIA), an Environmental Management Plan (PGA), and annual compliance reporting to MITADER. Operations in Tete, Niassa, and Cabo Delgado face additional provincial licensing requirements introduced in 2022.</div>
+            </div>
+            <div class="res-facts">
+              <div class="fact-r"><span class="fact-k">EIA Requirement</span><span class="fact-v">Mandatory — Decree 54/2015, Category A projects</span></div>
+              <div class="fact-r"><span class="fact-k">Annual Reporting</span><span class="fact-v">PGA compliance report to MITADER — due by 31 January</span></div>
+              <div class="fact-r"><span class="fact-k">Recent Change</span><span class="fact-v">Portaria 001/2022 — increased bond requirements for rehabilitation fund</span></div>
+              <div class="fact-r"><span class="fact-k">Penalty</span><span class="fact-v">Non-compliance: licence suspension + MZN 500k–5M fine (Decree 54/2015 Art. 42)</span></div>
+            </div>
+            <div class="res-sources"><span class="rsrc">Lei 20/97 — BR Series I</span><span class="rsrc">Decree 54/2015 Art. 12-18</span><span class="rsrc">Portaria 001/2022</span></div>
+            <div class="res-conf"><span class="res-conf-lbl">Confidence</span><div class="res-conf-bar"><div class="res-conf-fill" style="width:85%"></div></div><span class="res-conf-score">85% — High</span></div>
+          </div>
+          <!-- Result 1 -->
+          <div class="res-block" id="demo-1">
+            <div class="chips"><span class="chip chip-leg">Labour Code</span><span class="chip chip-reg">Lei 23/2007</span><span class="chip chip-src">+2 sources</span></div>
+            <div class="res-answer">
+              <div class="res-lbl">Evidence-based compliance summary</div>
+              <div class="res-text">Under the Mozambican Labour Code (Lei 23/2007, as amended by Lei 55/2009), expatriate employees on fixed-term contracts have the same termination notice rights as nationals. For contracts exceeding 2 years, <strong>30 days' written notice</strong> is required. Early termination without just cause triggers payment of <strong>remaining contract value</strong> plus accrued benefits.</div>
+            </div>
+            <div class="res-facts">
+              <div class="fact-r"><span class="fact-k">Notice period</span><span class="fact-v">30 days written notice (contracts &gt;2 years)</span></div>
+              <div class="fact-r"><span class="fact-k">Early termination</span><span class="fact-v">Remaining salary + 20-day severance per year of service</span></div>
+              <div class="fact-r"><span class="fact-k">Repatriation</span><span class="fact-v">Employer must cover repatriation costs (Art. 47, Lei 23/2007)</span></div>
+              <div class="fact-r"><span class="fact-k">Work Permit</span><span class="fact-v">MITESS must be notified of termination within 15 days</span></div>
+            </div>
+            <div class="res-sources"><span class="rsrc">Lei 23/2007 Arts. 40–52</span><span class="rsrc">Lei 55/2009 (Amendment)</span></div>
+            <div class="res-conf"><span class="res-conf-lbl">Confidence</span><div class="res-conf-bar"><div class="res-conf-fill" style="width:91%"></div></div><span class="res-conf-score">91% — Very High</span></div>
+          </div>
+          <!-- Result 2 -->
+          <div class="res-block" id="demo-2">
+            <div class="chips"><span class="chip chip-reg">AT Circular 08/2025</span><span class="chip chip-src">OCDE Guidelines</span><span class="chip chip-src">+2 sources</span></div>
+            <div class="res-answer">
+              <div class="res-lbl">Evidence-based compliance summary</div>
+              <div class="res-text">Transfer pricing rules in Mozambique are governed by the General Tax Code (CIRT) and AT Circular 08/2025. Multinationals with annual intercompany transactions exceeding <strong>MZN 50 million</strong> must prepare contemporaneous transfer pricing documentation using OECD-consistent methodologies. Filing deadline is <strong>90 days after fiscal year end</strong>.</div>
+            </div>
+            <div class="res-facts">
+              <div class="fact-r"><span class="fact-k">Threshold</span><span class="fact-v">MZN 50M in intercompany transactions (per annum)</span></div>
+              <div class="fact-r"><span class="fact-k">Filing deadline</span><span class="fact-v">90 days after fiscal year end</span></div>
+              <div class="fact-r"><span class="fact-k">Methods accepted</span><span class="fact-v">CUP, RPM, CPM, TNMM (OECD-aligned)</span></div>
+              <div class="fact-r"><span class="fact-k">Penalty</span><span class="fact-v">Non-filing: 2% of transaction value (min MZN 200k)</span></div>
+            </div>
+            <div class="res-sources"><span class="rsrc">CIRT Art. 74–81</span><span class="rsrc">AT Circular 08/2025</span></div>
+            <div class="res-conf"><span class="res-conf-lbl">Confidence</span><div class="res-conf-bar"><div class="res-conf-fill" style="width:78%"></div></div><span class="res-conf-score">78% — High</span></div>
+          </div>
+          <!-- Result 3 -->
+          <div class="res-block" id="demo-3">
+            <div class="chips"><span class="chip chip-reg">Lei 9/2025</span><span class="chip chip-src">UFSA Regulations</span><span class="chip chip-src">+2 sources</span></div>
+            <div class="res-answer">
+              <div class="res-lbl">Evidence-based compliance summary</div>
+              <div class="res-text">Under the revised Public Procurement Law (Lei 9/2025), effective January 2025, public works contracts above <strong>MZN 5 million</strong> require open competitive tender (concurso público). Contracts between MZN 1–5 million may use limited tender with minimum 5 bidders. Single-source procurement is restricted to emergency situations with prior UFSA approval.</div>
+            </div>
+            <div class="res-facts">
+              <div class="fact-r"><span class="fact-k">Open tender threshold</span><span class="fact-v">Above MZN 5 million (public works)</span></div>
+              <div class="fact-r"><span class="fact-k">Limited tender</span><span class="fact-v">MZN 1M–5M, minimum 5 qualified bidders</span></div>
+              <div class="fact-r"><span class="fact-k">Single source</span><span class="fact-v">Emergency only — UFSA prior approval required</span></div>
+              <div class="fact-r"><span class="fact-k">Changed from 2024</span><span class="fact-v">Thresholds raised 25% — Lei 9/2025 Art. 18</span></div>
+            </div>
+            <div class="res-sources"><span class="rsrc">Lei 9/2025 Arts. 18–24</span><span class="rsrc">UFSA Regulation 2025</span></div>
+            <div class="res-conf"><span class="res-conf-lbl">Confidence</span><div class="res-conf-bar"><div class="res-conf-fill" style="width:82%"></div></div><span class="res-conf-score">82% — High</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ROI & CASE STUDIES ═══ -->
+<section class="section section-mid" id="roi">
+  <div class="roi-inner">
+    <div class="rv">
+      <div class="eyebrow">Why athu</div>
+      <div class="h2">The cost of<br><em>regulatory blindspots</em><br>is measurable.</div>
+      <p class="lead">Missed compliance deadlines, failed tenders, and reactive legal exposure are avoidable. athu customers report significant reductions in research time and compliance incidents within the first quarter.</p>
+      <div class="case-study-cards" style="margin-top:28px">
+        <div class="cs-card">
+          <div class="cs-tag">Case Study · Mining Sector</div>
+          <div class="cs-title">International miner avoids MZN 2.4M penalty through early regulatory alert</div>
+          <div class="cs-desc">athu flagged a MITADER portaria 47 days before the compliance window closed — giving the legal team time to update their EIA documentation and avoid enforcement action.</div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-tag">Case Study · Legal Advisory</div>
+          <div class="cs-title">Maputo law firm reduces research time per matter from 8 hours to 45 minutes</div>
+          <div class="cs-desc">Consolidated legal search across the full Mozambican corpus, with all amendments incorporated, replaced manual research across 6 separate government portals.</div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-tag">Case Study · Development Finance</div>
+          <div class="cs-title">DFI monitors 12 portfolio companies for regulatory compliance from a single dashboard</div>
+          <div class="cs-desc">Replacing quarterly manual compliance reviews with real-time athu monitoring, reducing oversight burden while increasing coverage and response speed.</div>
+        </div>
+      </div>
+    </div>
+    <div class="rv d2">
+      <div class="eyebrow" style="justify-content:flex-end">Platform Metrics</div>
+      <div class="h2" style="text-align:right">Intelligence that<br><em>moves as fast</em><br>as regulation does.</div>
+      <div class="roi-stats-grid" style="margin-top:28px">
+        <div class="roi-card"><span class="roi-num">&lt;15m</span><div class="roi-lbl">Average time from BR publication to structured alert delivery</div></div>
+        <div class="roi-card"><span class="roi-num">10,000+</span><div class="roi-lbl">Government documents indexed and searchable</div></div>
+        <div class="roi-card"><span class="roi-num">100%</span><div class="roi-lbl">Source-cited — every answer traceable to primary document</div></div>
+        <div class="roi-card"><span class="roi-num">4 langs</span><div class="roi-lbl">Portuguese + 3 Mozambican languages supported in Phases 2–3</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CAPABILITIES ═══ -->
+<section class="section section-dark" id="capabilities">
+  <div class="rv">
+    <div class="eyebrow eyebrow-c">Under the Hood</div>
+    <div class="h2" style="text-align:center">Six layers of intelligence<br><em>behind every answer.</em></div>
+    <p class="lead" style="margin: 0 auto; text-align:center">From ingestion to delivery, athu's architecture is built for precision, speed, and auditability.</p>
+  </div>
+  <div class="cap-grid">
+    <div class="cap-card rv">
+      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--gold)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      <div class="cap-title">Semantic Document Retrieval</div>
+      <div class="cap-desc">Understands meaning and legal context in Portuguese and Mozambican languages — not keyword matching. Retrieves relevant legislative context from across the full corpus.</div>
+    </div>
+    <div class="cap-card rv d1">
+      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="cap-title">Structured Entity Extraction</div>
+      <div class="cap-desc">Automatically extracts dates, deadlines, thresholds, penalties, responsible parties, and compliance actions from every document ingested.</div>
+    </div>
+    <div class="cap-card rv d2">
+      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--gold)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="cap-title">Automated Amendment Consolidation</div>
+      <div class="cap-desc">Tracks all legislative amendments and produces consolidated legal texts showing current, previous, and pending versions side-by-side. Always current.</div>
+    </div>
+    <div class="cap-card rv">
+      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="cap-title">Multi-Source Synthesis</div>
+      <div class="cap-desc">Compares across ministry circulars, legislation, parliamentary debates, and regulatory guidance simultaneously — surfacing convergence and conflict between sources.</div>
+    </div>
+    <div class="cap-card rv d1">
+      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--gold)"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+      <div class="cap-title">Traceable Citations</div>
+      <div class="cap-desc">Every claim links to a specific article, section, and publication date in the original document. Confidence scores reflect source quality and convergence — auditable at any time.</div>
+    </div>
+    <div class="cap-card rv d2">
+      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--teal)"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 009 9"/></svg></div>
+      <div class="cap-title">Enterprise API & Integrations</div>
+      <div class="cap-desc">REST API for integration into compliance management systems, legal platforms, or internal dashboards. Webhook support for real-time alert delivery. SSO and role-based access control included.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="section section-mid" id="pricing">
+  <div class="rv" style="text-align:center">
+    <div class="eyebrow eyebrow-c">Pricing</div>
+    <div class="h2" style="text-align:center">Transparent, value-based<br><em>pricing for every team size.</em></div>
+    <p class="lead" style="margin: 0 auto; text-align:center">Annual contracts. Cancel with 30 days' notice after year one. All plans include onboarding support and Portuguese-language documentation.</p>
+  </div>
+  <div class="pricing-grid">
+    <!-- Starter -->
+    <div class="price-card rv">
+      <div class="price-tier">Starter</div>
+      <div class="price-name">Professional</div>
+      <div class="price-desc">For individual practitioners and small legal teams needing regulatory research and alerts.</div>
+      <div class="price-amount"><span>USD 290</span><sub>/mo</sub></div>
+      <div class="price-billed">Billed annually — USD 3,480/year</div>
+      <a href="#cta" class="btn btn-outline-gold btn-sm price-cta">Get Started</a>
+      <hr class="price-sep">
+      <div class="price-features">
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text"><strong>2 sector alert profiles</strong> — daily digest</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">Legal research — full legislative corpus</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">Consolidated legal texts</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">Up to 3 users</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">Email + dashboard delivery</span></div>
+      </div>
+    </div>
+    <!-- Business — Featured -->
+    <div class="price-card featured rv d1">
+      <div class="price-popular">Most Popular</div>
+      <div class="price-tier">Business</div>
+      <div class="price-name">Team</div>
+      <div class="price-desc">For compliance, legal, and government relations teams across a single organisation.</div>
+      <div class="price-amount"><span>USD 890</span><sub>/mo</sub></div>
+      <div class="price-billed">Billed annually — USD 10,680/year</div>
+      <a href="#cta" class="btn btn-primary btn-sm price-cta">Book a Demo</a>
+      <hr class="price-sep">
+      <div class="price-features">
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text"><strong>Unlimited sector alert profiles</strong> — real-time</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">All 4 product modules included</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">Compliance calendar & deadline tracker</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">Up to 15 users — role-based access</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">API access (10k calls/month)</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">Dedicated onboarding specialist</span></div>
+      </div>
+    </div>
+    <!-- Enterprise -->
+    <div class="price-card rv d2">
+      <div class="price-tier">Enterprise</div>
+      <div class="price-name">Enterprise</div>
+      <div class="price-desc">For law firms, multinationals, and DFIs requiring custom coverage, volume, and integrations.</div>
+      <div class="price-amount"><span>Custom</span></div>
+      <div class="price-billed">Volume pricing — contact sales</div>
+      <a href="#cta" class="btn btn-outline-gold btn-sm price-cta">Contact Sales</a>
+      <hr class="price-sep">
+      <div class="price-features">
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">Everything in Team, plus:</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text"><strong>Unlimited users</strong> with SSO</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">Custom data connectors & integrations</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">Dedicated Customer Success Manager</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">White-label option available</span></div>
+        <div class="pf-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="pf-text">SLA: 99.9% uptime guarantee</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="section section-dark" id="faq">
+  <div class="rv" style="text-align:center; margin-bottom:44px">
+    <div class="eyebrow eyebrow-c">FAQ</div>
+    <div class="h2">Frequently asked questions</div>
+  </div>
+  <div class="faq-inner">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How current is the regulatory data?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-in">athu monitors the Boletim da República and all major ministry publication channels continuously. For most sources, structured alerts are delivered within 15 minutes of official publication. Our data pipeline ingests new documents 24/7, with automated quality checks ensuring accuracy before alerts are triggered.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Can athu be used as a substitute for legal advice?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-in">No. athu is an intelligence and research platform — not a law firm. Our outputs provide structured, cited legal information to support your team's work, but should not replace qualified legal counsel for specific compliance decisions. athu is designed to make your lawyers and compliance officers faster and more effective, not to replace them.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Which sectors and regulatory areas are covered?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-in">Phase 1 covers the full Mozambican legal corpus — all national legislation, regulatory instruments, parliamentary records, and key ministry publications. Sector-specific depth is highest for mining & resources, energy, financial services, labour law, tax and fiscal, land and environment, and public procurement. Coverage expands continuously.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How does the API integration work?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-in">athu provides a REST API with comprehensive documentation. Business and Enterprise plan customers can push alerts via webhook to compliance management systems, legal platforms, or custom internal tools. We provide a sandbox environment, sample integrations for common platforms, and technical support during onboarding.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What data security standards does athu meet?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-in">athu is built with enterprise security requirements in mind. All data in transit is encrypted using TLS 1.3. User query data is not retained beyond the session unless explicitly saved by the user. We do not use customer queries to train models. Enterprise customers may request a Data Processing Agreement and security audit documentation.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Do you offer a free trial or proof-of-concept?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-in">Yes. All plans include a 14-day free trial with full feature access. Enterprise customers may request a structured proof-of-concept with a defined evaluation scope and dedicated support — typically a 30-day engagement. Contact our sales team to discuss your requirements and we will design an evaluation that demonstrates value for your specific use case.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<div class="cta-wrap" id="cta">
+  <div class="cta-grid"></div>
+  <div class="cta-glow"></div>
+  <div class="cta-in rv">
+    <div class="eyebrow eyebrow-c">Get Started</div>
+    <div class="cta-title">Regulatory intelligence<br>for <span class="gold">Mozambique's leading businesses.</span></div>
+    <p class="cta-sub">Book a 30-minute demo and see how athu can reduce your team's regulatory exposure within the first week. No commitment required.</p>
+    <div class="cta-btns">
+      <a href="mailto:sales@athu.io" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9l6 3-6 3V9z"/></svg>
+        Book a Demo
+      </a>
+      <a href="mailto:enterprise@athu.io" class="btn btn-secondary">Talk to Sales</a>
+    </div>
+    <div class="cta-extras">
+      <span class="cta-extra">14-day free trial</span>
+      <span class="cta-extra">No credit card required</span>
+      <span class="cta-extra">Onboarding in 48 hours</span>
+      <span class="cta-extra">Cancel any time after year one</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div>
+      <div class="ft-logo-block">
+        <div class="ft-logo-badge"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <div class="ft-logo-name"><span>athu</span> Intelligence</div>
+      </div>
+      <p class="ft-tagline">AI-powered regulatory and legal intelligence for organisations operating in Mozambique.</p>
+      <div class="ft-cert">Mozambique · Regulatory Intelligence Platform</div>
+    </div>
+    <div>
+      <div class="ft-col-head">Product</div>
+      <ul class="ft-links">
+        <li><a href="#solutions">Regulatory Monitor</a></li>
+        <li><a href="#solutions">Legal Research</a></li>
+        <li><a href="#solutions">Budget & Procurement</a></li>
+        <li><a href="#solutions">Policy Tracker</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-head">Company</div>
+      <ul class="ft-links">
+        <li><a href="#">About athu</a></li>
+        <li><a href="#">AI Methodology</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-head">Resources</div>
+      <ul class="ft-links">
+        <li><a href="#">API Documentation</a></li>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">Whitepapers</a></li>
+        <li><a href="#">Covered Sources</a></li>
+        <li><a href="#">Support Centre</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 athu Intelligence, Lda. All rights reserved.</span>
+    <div class="fb-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Data Processing</a>
+      <a href="#">Methodology</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Scroll reveal */
+const rObs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.06 });
+document.querySelectorAll('.rv').forEach(el => rObs.observe(el));
+
+/* Nav shadow */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 8);
+}, { passive: true });
+
+/* Hero entrance */
+const ht = document.querySelector('.hero-text');
+ht.style.cssText = 'opacity:0;transform:translateY(18px)';
+setTimeout(() => { ht.style.transition = 'opacity .85s ease, transform .85s ease'; ht.style.opacity = 1; ht.style.transform = 'none'; }, 80);
+
+/* Product switcher */
+function switchProduct(idx) {
+  document.querySelectorAll('.prod-nav-link').forEach((l, i) => l.classList.toggle('active', i === idx));
+  document.querySelectorAll('.prod-tab-btn').forEach((t, i) => t.classList.toggle('active', i === idx));
+  document.querySelectorAll('.prod-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+  if (window.innerWidth < 960) {
+    document.getElementById('prod-panels').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+/* FAQ */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!open) item.classList.add('open');
+}
+
+/* Mobile menu */
+function toggleMenu() {
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('ham').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+}
+
+/* Demo */
+function selectDemo(idx) {
+  document.querySelectorAll('.qs-q').forEach((q, i) => q.classList.toggle('active', i === idx));
+  document.querySelectorAll('.res-block').forEach((r, i) => r.classList.toggle('active', i === idx));
+}
+document.querySelectorAll('.qs-q').forEach((q, idx) => {
+  q.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') selectDemo(idx); });
+});
+
+/* Keyboard product nav */
+document.querySelectorAll('.prod-nav-link').forEach((link, idx) => {
+  link.setAttribute('tabindex', '0');
+  link.setAttribute('role', 'button');
+  link.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') switchProduct(idx); });
+});
+</script>
+</body>
+</html>
