@@ -1081,93 +1081,11 @@ body::after {
       </div>
     </div>
 
-    <!-- Right col: simulator + live query -->
-    <div class="rv d2">
-      <div class="qs">
-        <div class="qs-head">
-          <span class="qs-head-title">Perguntas de Exemplo</span>
-          <span class="qs-head-badge">Clique para explorar</span>
-        </div>
-
-        <div class="qs-queries">
-          <div class="qs-q active" onclick="selectDemo(0)" role="button" tabindex="0">
-            <span class="qs-q-num">Pergunta 01 / Orçamento</span>
-            "Quanto foi alocado à saúde no OE 2024 e quais as principais alterações face a 2023?"
-          </div>
-          <div class="qs-q" onclick="selectDemo(1)" role="button" tabindex="0">
-            <span class="qs-q-num">Pergunta 02 / Legislação</span>
-            "Qual é o estado actual da Lei de Terras e que alterações foram propostas nos últimos 3 anos?"
-          </div>
-          <div class="qs-q" onclick="selectDemo(2)" role="button" tabindex="0">
-            <span class="qs-q-num">Pergunta 03 / Promessa vs Acção</span>
-            "O governo cumpriu o compromisso de construir 100 escolas primárias até 2024?"
-          </div>
-          <div class="qs-q" onclick="selectDemo(3)" role="button" tabindex="0">
-            <span class="qs-q-num">Pergunta 04 / Procurement</span>
-            "Quais foram os maiores contratos públicos adjudicados no sector energético em 2023?"
-          </div>
-        </div>
-
-        <div class="qs-result">
-          <div class="res-block active" id="demo-0">
-            <div class="res-chips"><span class="chip chip-gov">OE 2024</span><span class="chip chip-gov">OE 2023</span><span class="chip chip-med">CIP Saúde</span><span class="chip chip-cnt">+4 fontes</span></div>
-            <div class="res-answer"><div class="res-lbl">Síntese com base em evidências</div><div class="res-text">O Orçamento do Estado 2024 alocou <strong>MZN 37.2 mil milhões</strong> ao Ministério da Saúde, um aumento de <strong>12.4%</strong> face aos MZN 33.1 mil milhões de 2023. As principais alterações incluem reforço de 18% para medicamentos essenciais e criação de uma linha de financiamento para centros de saúde rurais.</div></div>
-            <div class="res-facts">
-              <div class="fact-r"><span class="fact-k">Alocação 2024</span><span class="fact-v">MZN 37.2 mil milhões (14.1% do OE total)</span></div>
-              <div class="fact-r"><span class="fact-k">Variação YoY</span><span class="fact-v">+12.4% face a 2023 (MZN 33.1 mil milhões)</span></div>
-              <div class="fact-r"><span class="fact-k">Execução H1</span><span class="fact-v">64% — abaixo da meta semestral de 68%</span></div>
-              <div class="fact-r"><span class="fact-k">Destaque</span><span class="fact-v">+18% para medicamentos essenciais; nova linha para centros rurais</span></div>
-            </div>
-            <div class="res-sources"><span class="rsrc">OE 2024 — Art. 12</span><span class="rsrc">MISAU — Relatório Trimestral</span><span class="rsrc">CIP — Análise Orçamental 2024</span></div>
-            <div class="res-conf"><span class="res-conf-lbl">Confiança</span><div class="res-conf-bar"><div class="res-conf-fill" style="width:82%"></div></div><span class="res-conf-score">82% — Alta</span></div>
-          </div>
-
-          <div class="res-block" id="demo-1">
-            <div class="res-chips"><span class="chip chip-law">Lei 19/97</span><span class="chip chip-gov">AR 2021–2024</span><span class="chip chip-med">Carta de MZ</span></div>
-            <div class="res-answer"><div class="res-lbl">Síntese com base em evidências</div><div class="res-text">A Lei de Terras (Lei 19/97) permanece em vigor. Entre 2021 e 2024 foram apresentados <strong>3 projectos de revisão</strong> na Assembleia da República. O mais recente, de Março 2024, propõe alterações aos mecanismos de consulta comunitária e ao prazo de concessão de DUATs para investimento privado.</div></div>
-            <div class="res-facts">
-              <div class="fact-r"><span class="fact-k">Lei vigente</span><span class="fact-v">Lei 19/97 — Terra propriedade do Estado</span></div>
-              <div class="fact-r"><span class="fact-k">Projectos de revisão</span><span class="fact-v">3 entre 2021–2024; último em Mar 2024</span></div>
-              <div class="fact-r"><span class="fact-k">Estado actual</span><span class="fact-v">Projecto de Mar 2024 em comissão parlamentar</span></div>
-              <div class="fact-r"><span class="fact-k">Pontos críticos</span><span class="fact-v">Consulta comunitária, prazo DUAT, investimento privado</span></div>
-            </div>
-            <div class="res-sources"><span class="rsrc">Lei 19/97 — Boletim da República</span><span class="rsrc">AR — Diário de Sessões 2024</span><span class="rsrc">CTV — Debate Parlamentar Mar/24</span></div>
-            <div class="res-conf"><span class="res-conf-lbl">Confiança</span><div class="res-conf-bar"><div class="res-conf-fill" style="width:76%"></div></div><span class="res-conf-score">76% — Alta</span></div>
-          </div>
-
-          <div class="res-block" id="demo-2">
-            <div class="res-chips"><span class="chip chip-law">PQG 2020–2024</span><span class="chip chip-gov">MINED</span><span class="chip chip-med">CIP Educação</span></div>
-            <div class="res-answer"><div class="res-lbl">Síntese com base em evidências</div><div class="res-text">O Programa Quinquenal 2020–2024 comprometeu-se com a construção de <strong>100 escolas primárias</strong> em zonas rurais. Dados do MINED a Junho de 2024 indicam <strong>67 escolas concluídas (67%)</strong> e 18 em construção. O CIP identificou problemas de procurement em 9 contratos de construção.</div></div>
-            <div class="res-facts">
-              <div class="fact-r"><span class="fact-k">Meta prometida</span><span class="fact-v">100 escolas primárias rurais (2020–2024)</span></div>
-              <div class="fact-r"><span class="fact-k">Executado Jun/24</span><span class="fact-v">67 concluídas + 18 em construção = 85%</span></div>
-              <div class="fact-r"><span class="fact-k">Desvio</span><span class="fact-v">-15 escolas face à meta final</span></div>
-              <div class="fact-r"><span class="fact-k">Alerta CIP</span><span class="fact-v">Irregularidades de procurement em 9 contratos</span></div>
-            </div>
-            <div class="res-sources"><span class="rsrc">PQG 2020–2024 — Pág. 48</span><span class="rsrc">MINED — Relatório Semestral Jun/24</span><span class="rsrc">CIP — Monitor Educação 2024</span></div>
-            <div class="res-conf"><span class="res-conf-lbl">Confiança</span><div class="res-conf-bar"><div class="res-conf-fill" style="width:88%"></div></div><span class="res-conf-score">88% — Muito Alta</span></div>
-          </div>
-
-          <div class="res-block" id="demo-3">
-            <div class="res-chips"><span class="chip chip-gov">UFSA 2023</span><span class="chip chip-gov">MIREME</span><span class="chip chip-med">Carta de MZ</span></div>
-            <div class="res-answer"><div class="res-lbl">Síntese com base em evidências</div><div class="res-text">Em 2023 o sector energético registou <strong>MZN 12.4 mil milhões</strong> em contratos públicos adjudicados. Os três maiores foram: expansão da rede rural EDM (MZN 4.2 mil milhões), reabilitação de Cahora Bassa (MZN 3.1 mil milhões) e fornecimento de geradores para centros de saúde (MZN 1.8 mil milhões).</div></div>
-            <div class="res-facts">
-              <div class="fact-r"><span class="fact-k">Total contratos</span><span class="fact-v">MZN 12.4 mil milhões — sector energético 2023</span></div>
-              <div class="fact-r"><span class="fact-k">Maior contrato</span><span class="fact-v">EDM — Expansão rede rural — MZN 4.2 mil milhões</span></div>
-              <div class="fact-r"><span class="fact-k">2.º maior</span><span class="fact-v">HCB — Reabilitação Cahora Bassa — MZN 3.1 mil milhões</span></div>
-              <div class="fact-r"><span class="fact-k">Modalidade</span><span class="fact-v">68% via concurso público; 32% ajuste directo</span></div>
-            </div>
-            <div class="res-sources"><span class="rsrc">UFSA — Portal Compras Públicas</span><span class="rsrc">MIREME — Relatório Anual 2023</span><span class="rsrc">EDM — Relatório de Actividades</span></div>
-            <div class="res-conf"><span class="res-conf-lbl">Confiança</span><div class="res-conf-bar"><div class="res-conf-fill" style="width:71%"></div></div><span class="res-conf-score">71% — Moderada</span></div>
-          </div>
-        </div>
-      </div>
-
       <!-- ── LIVE AI QUERY BLOCK ── -->
       <div class="gemini-live-block rv d3">
         <div class="gemini-live-head">
           <span class="gemini-live-head-title">Faça a sua própria pergunta cívica</span>
-          <span class="gemini-live-head-badge">Claude AI · Ao Vivo</span>
+          <span class="gemini-live-head-badge">athu AI · Ao Vivo</span>
         </div>
         <div class="gemini-input-row">
           <input
