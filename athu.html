@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>athu — Inteligência Cívica para Moçambique</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════
    RESET & TOKENS
@@ -33,9 +33,9 @@
   --text-muted: #586878;
   --text-dim:   #38485A;
 
-  --ff-disp:  'Syne', sans-serif;
-  --ff-serif: 'Source Serif 4', Georgia, serif;
-  --ff-mono:  'SFMono-Regular', Consolas, monospace;
+  --ff-disp:  'DM Sans', system-ui, sans-serif;
+  --ff-serif: 'Playfair Display', Georgia, serif;
+  --ff-mono:  'JetBrains Mono', 'SFMono-Regular', monospace;
   --r:        8px;
 }
 
@@ -160,6 +160,19 @@ body::after {
 }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(1.3)} }
 
+/* minawu enterprise link */
+.nav-minawu-link {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--text-dim); text-decoration: none;
+  border: 1px solid var(--line); border-radius: 6px; padding: 5px 11px;
+  transition: all 0.18s;
+}
+.nav-minawu-link:hover {
+  color: var(--amber); border-color: var(--amber-bdr); background: var(--amber-lo);
+}
+.nav-minawu-link svg { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2; }
+
 /* Hamburger */
 .ham {
   display: none; flex-direction: column; gap: 5px;
@@ -230,12 +243,12 @@ body::after {
 .hero h1 .accent { color: var(--amber); }
 .hero h1 em {
   font-family: var(--ff-serif); font-style: italic;
-  font-weight: 300; color: var(--text-mid);
+  font-weight: 400; color: var(--text-mid);
 }
 
 .hero-sub {
   font-family: var(--ff-serif); font-size: 1.05rem; line-height: 1.78;
-  color: var(--text-mid); font-weight: 300;
+  color: var(--text-mid); font-weight: 400;
   max-width: 490px; margin-bottom: 36px;
 }
 
@@ -303,7 +316,7 @@ body::after {
 .ans-lbl::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--amber); }
 .ans-text {
   font-family: var(--ff-serif); font-size: 0.82rem; line-height: 1.7;
-  color: var(--text); font-weight: 300;
+  color: var(--text); font-weight: 400;
 }
 .ans-text strong { color: var(--amber); font-weight: 600; }
 
@@ -369,12 +382,12 @@ body::after {
   line-height: 1.12; letter-spacing: -0.025em;
   color: var(--text); margin-bottom: 18px;
 }
-.h2 em { font-family: var(--ff-serif); font-style: italic; font-weight: 300; color: var(--text-mid); }
+.h2 em { font-family: var(--ff-serif); font-style: italic; font-weight: 400; color: var(--text-mid); }
 .h2 .accent { color: var(--amber); }
 
 .lead {
   font-family: var(--ff-serif); font-size: 1rem; line-height: 1.78;
-  color: var(--text-mid); font-weight: 300; max-width: 560px;
+  color: var(--text-mid); font-weight: 400; max-width: 560px;
 }
 
 /* ═══════════════════════════════════════
@@ -455,7 +468,7 @@ body::after {
 .prod-panel {
   padding: 56px 52px;
   border-bottom: 1px solid var(--line);
-  display: none; /* shown by JS / default first */
+  display: none;
   animation: fadeIn 0.3s ease;
 }
 .prod-panel.active { display: block; }
@@ -475,7 +488,7 @@ body::after {
 }
 .panel-desc {
   font-family: var(--ff-serif); font-size: 1rem; line-height: 1.78;
-  color: var(--text-mid); font-weight: 300; max-width: 640px;
+  color: var(--text-mid); font-weight: 400; max-width: 640px;
 }
 
 /* Feature grid inside panel */
@@ -491,7 +504,7 @@ body::after {
 .feat-icon { margin-bottom: 12px; }
 .feat-icon svg { width: 20px; height: 20px; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .feat-title { font-size: 0.875rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-.feat-desc { font-family: var(--ff-serif); font-size: 0.8rem; line-height: 1.65; color: var(--text-muted); font-weight: 300; }
+.feat-desc { font-family: var(--ff-serif); font-size: 0.8rem; line-height: 1.65; color: var(--text-muted); font-weight: 400; }
 
 /* Data preview strip inside panel */
 .panel-data-strip {
@@ -511,7 +524,7 @@ body::after {
   border: 1px solid var(--line-s);
 }
 .dr-num { font-family: var(--ff-mono); font-size: 0.6rem; color: var(--text-dim); width: 20px; flex-shrink: 0; }
-.dr-text { font-family: var(--ff-serif); font-size: 0.78rem; color: var(--text-mid); flex: 1; font-weight: 300; font-style: italic; }
+.dr-text { font-family: var(--ff-serif); font-size: 0.78rem; color: var(--text-mid); flex: 1; font-weight: 400; font-style: italic; }
 .dr-badge { font-family: var(--ff-mono); font-size: 0.58rem; font-weight: 700; border-radius: 3px; padding: 2px 7px; flex-shrink: 0; }
 
 /* ═══════════════════════════════════════
@@ -535,7 +548,7 @@ body::after {
 }
 .cap-ic svg { width: 18px; height: 18px; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .cap-title { font-size: 0.875rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-.cap-desc { font-family: var(--ff-serif); font-size: 0.8rem; line-height: 1.68; color: var(--text-mid); font-weight: 300; }
+.cap-desc { font-family: var(--ff-serif); font-size: 0.8rem; line-height: 1.68; color: var(--text-mid); font-weight: 400; }
 
 /* ═══════════════════════════════════════
    IMPACT
@@ -563,7 +576,7 @@ body::after {
 .aud-ic { width: 34px; height: 34px; border-radius: 7px; background: rgba(255,255,255,0.04); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .aud-ic svg { width: 16px; height: 16px; stroke: var(--amber); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .aud-title { font-size: 0.84rem; font-weight: 700; color: var(--text); margin-bottom: 1px; }
-.aud-desc { font-family: var(--ff-serif); font-size: 0.75rem; color: var(--text-muted); font-weight: 300; }
+.aud-desc { font-family: var(--ff-serif); font-size: 0.75rem; color: var(--text-muted); font-weight: 400; }
 
 /* ═══════════════════════════════════════
    PHASES
@@ -617,7 +630,7 @@ body::after {
 .faq-item.open .faq-chevron svg { stroke: var(--ink); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.38s ease; }
 .faq-item.open .faq-a { max-height: 200px; }
-.faq-a-in { padding: 2px 0 20px; font-family: var(--ff-serif); font-size: 0.9rem; line-height: 1.78; color: var(--text-muted); font-weight: 300; max-width: 640px; }
+.faq-a-in { padding: 2px 0 20px; font-family: var(--ff-serif); font-size: 0.9rem; line-height: 1.78; color: var(--text-muted); font-weight: 400; max-width: 640px; }
 
 /* ═══════════════════════════════════════
    CTA
@@ -631,11 +644,33 @@ body::after {
 .cta-in { position: relative; z-index: 1; text-align: center; max-width: 680px; margin: 0 auto; }
 .cta-title { font-family: var(--ff-disp); font-size: clamp(2rem, 3.2vw, 2.9rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: var(--text); margin-bottom: 18px; }
 .cta-title .accent { color: var(--amber); }
-.cta-sub { font-family: var(--ff-serif); font-size: 1rem; line-height: 1.75; color: var(--text-mid); font-weight: 300; margin-bottom: 36px; max-width: 520px; margin-left: auto; margin-right: auto; }
+.cta-sub { font-family: var(--ff-serif); font-size: 1rem; line-height: 1.75; color: var(--text-mid); font-weight: 400; margin-bottom: 36px; max-width: 520px; margin-left: auto; margin-right: auto; }
 .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
 .cta-extras { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 .cta-extra { font-size: 0.74rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
 .cta-extra::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--teal); }
+
+/* minawu enterprise banner */
+.enterprise-banner {
+  margin-top: 48px; padding: 20px 28px;
+  background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  gap: 16px; flex-wrap: wrap;
+}
+.enterprise-banner-text {
+  font-size: 0.84rem; color: var(--text-mid);
+  font-family: var(--ff-serif); font-weight: 400;
+}
+.enterprise-banner-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em;
+  color: var(--amber); text-decoration: none;
+  border: 1px solid var(--amber-bdr); border-radius: 6px;
+  padding: 6px 14px; background: var(--amber-lo);
+  transition: all 0.18s; white-space: nowrap;
+}
+.enterprise-banner-link:hover { background: var(--amber); color: var(--ink); }
+.enterprise-banner-link svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2.5; }
 
 /* ═══════════════════════════════════════
    FOOTER
@@ -647,7 +682,7 @@ body::after {
 .ft-logo-mark::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--amber); }
 .ft-logo-name { font-family: var(--ff-disp); font-size: 1rem; font-weight: 800; color: var(--text); }
 .ft-logo-name span { color: var(--amber); }
-.ft-tagline { font-family: var(--ff-serif); font-size: 0.82rem; line-height: 1.7; color: var(--text-muted); font-weight: 300; max-width: 270px; margin-bottom: 14px; }
+.ft-tagline { font-family: var(--ff-serif); font-size: 0.82rem; line-height: 1.7; color: var(--text-muted); font-weight: 400; max-width: 270px; margin-bottom: 14px; }
 .ft-note { font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
 .ft-col-head { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 18px; }
 .ft-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
@@ -658,13 +693,25 @@ body::after {
 .fb-links a { color: var(--text-dim); text-decoration: none; transition: color 0.15s; }
 .fb-links a:hover { color: var(--text-muted); }
 
+/* Footer minawu enterprise note */
+.ft-enterprise-row {
+  margin-top: 12px; display: flex; align-items: center; gap: 6px;
+  font-size: 0.72rem; color: var(--text-dim);
+}
+.ft-enterprise-row a {
+  color: var(--amber) !important; font-weight: 600; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.ft-enterprise-row a:hover { color: #F5C040 !important; }
+.ft-enterprise-row svg { width: 9px; height: 9px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
 .ft-logo-row {
   display: flex;
   align-items: center;
 }
 
 .ft-logo-img {
-  height: 128px; /* adjust if needed */
+  height: 128px;
   width: auto;
   display: block;
 }
@@ -678,7 +725,6 @@ body::after {
   gap: 64px; align-items: start;
 }
 
-/* Left: intro + source badges + principles */
 .demo-intro {}
 .demo-source-box {
   margin-top: 32px; padding: 18px 20px;
@@ -692,11 +738,10 @@ body::after {
   margin-top: 14px; padding: 14px 16px;
   background: var(--teal-lo); border: 1px solid rgba(42,191,168,0.18); border-radius: 8px;
   font-family: var(--ff-serif); font-size: 0.8rem; line-height: 1.65;
-  color: var(--text-muted); font-weight: 300;
+  color: var(--text-muted); font-weight: 400;
 }
 .demo-principle strong { color: var(--teal); font-weight: 600; font-family: var(--ff-disp); }
 
-/* Right: query simulator */
 .qs {
   background: var(--panel); border: 1px solid var(--line);
   border-radius: 14px; overflow: hidden;
@@ -714,7 +759,6 @@ body::after {
   border-radius: 100px; padding: 3px 10px;
 }
 
-/* Query list */
 .qs-queries { padding: 14px; display: flex; flex-direction: column; gap: 5px; border-bottom: 1px solid var(--line); }
 .qs-q {
   padding: 11px 13px; border-radius: 7px; cursor: pointer;
@@ -726,7 +770,6 @@ body::after {
 .qs-q.active { background: var(--amber-lo); border-color: var(--amber-bdr); color: var(--text); }
 .qs-q-num { font-family: var(--ff-mono); font-size: 0.58rem; color: var(--text-dim); display: block; margin-bottom: 2px; font-style: normal; }
 
-/* Result area */
 .qs-result { padding: 20px; min-height: 300px; }
 
 .res-block { display: none; animation: fadeIn 0.28s ease; }
@@ -745,11 +788,10 @@ body::after {
 .res-lbl::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--amber); }
 .res-text {
   font-family: var(--ff-serif); font-size: 0.84rem; line-height: 1.75;
-  color: var(--text); font-weight: 300;
+  color: var(--text); font-weight: 400;
 }
 .res-text strong { color: var(--amber); font-weight: 600; }
 
-/* Structured facts */
 .res-facts { margin-bottom: 14px; }
 .fact-r {
   display: flex; gap: 10px; padding: 7px 0;
@@ -761,9 +803,8 @@ body::after {
   text-transform: uppercase; letter-spacing: 0.07em;
   color: var(--text-muted); width: 106px; flex-shrink: 0; padding-top: 1px;
 }
-.fact-v { font-size: 0.78rem; color: var(--text); line-height: 1.5; font-family: var(--ff-serif); font-weight: 300; }
+.fact-v { font-size: 0.78rem; color: var(--text); line-height: 1.5; font-family: var(--ff-serif); font-weight: 400; }
 
-/* Sources */
 .res-sources { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 12px; }
 .rsrc {
   font-size: 0.62rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
@@ -773,7 +814,6 @@ body::after {
 }
 .rsrc::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
 
-/* Confidence row */
 .res-conf {
   display: flex; align-items: center; gap: 8px; margin-top: 12px;
   background: var(--teal-lo); border: 1px solid rgba(42,191,168,0.15); border-radius: 6px; padding: 7px 12px;
@@ -783,7 +823,6 @@ body::after {
 .res-conf-fill { height: 100%; background: linear-gradient(90deg, var(--teal), #4AF0D8); border-radius: 100px; }
 .res-conf-score { font-family: var(--ff-mono); font-size: 0.68rem; font-weight: 700; color: var(--teal); flex-shrink: 0; }
 
-/* Responsive demo */
 @media (max-width: 960px) {
   .demo-section-inner { grid-template-columns: 1fr; }
 }
@@ -817,7 +856,7 @@ body::after {
 
 @media (max-width: 680px) {
   .nav { padding: 0 20px; }
-  .nav-links, .live-pill, .lang-switcher { display: none; }
+  .nav-links, .live-pill, .lang-switcher, .nav-minawu-link { display: none; }
   .ham { display: flex; }
   .mobile-drawer { display: flex; }
 
@@ -853,6 +892,10 @@ body::after {
   </ul>
 
   <div class="nav-right">
+    <a href="athu-enterprise.html" target="_blank" rel="noopener" class="nav-minawu-link" title="minawu — Enterprise Regulatory Intelligence">
+      minawu Enterprise
+      <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
     <div class="lang-switcher">
       <button class="lang-btn active" onclick="setLang('pt')">PT</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
@@ -873,6 +916,7 @@ body::after {
   <a href="#capacidades" onclick="closeMenu()">Capacidades</a>
   <a href="#impacto" onclick="closeMenu()">Impacto</a>
   <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="athu-enterprise.html" target="_blank" rel="noopener" onclick="closeMenu()">minawu Enterprise ↗</a>
   <a href="#cta" onclick="closeMenu()">Pedir Acesso</a>
   <div class="lang-row">
     <button class="lang-btn active" onclick="setLang('pt');closeMenu()">Português</button>
@@ -1457,7 +1501,7 @@ body::after {
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Como posso tornar-me parceiro ou colaborador?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
-      <div class="faq-a"><div class="faq-a-in">Estamos abertos a parcerias com organizações de media, sociedade civil, universidades, doadores e governos. Contacte-nos em <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f888998a9b9d8a91998bb8998c908dd69b97d69582">[email&#160;protected]</a> — respondemos em 48 horas.</div></div>
+      <div class="faq-a"><div class="faq-a-in">Estamos abertos a parcerias com organizações de media, sociedade civil, universidades, doadores e governos. Contacte-nos em parceiros@athu.io — respondemos em 48 horas.</div></div>
     </div>
   </div>
 </section>
@@ -1472,17 +1516,26 @@ body::after {
     <div class="cta-title">A democracia precisa de<br><span class="accent">cidadãos informados.</span></div>
     <p class="cta-sub">Seja jornalista, investigador, cidadão ou organização. Peça acesso antecipado ou torne-se parceiro.</p>
     <div class="cta-btns">
-      <a href="/cdn-cgi/l/email-protection#264745435555496647524e53084549084b5c" class="btn btn-amber">
+      <a href="mailto:acesso@athu.io" class="btn btn-amber">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Pedir Acesso Antecipado
       </a>
-      <a href="/cdn-cgi/l/email-protection#324253405157405b53417253465a471c515d1c5f48" class="btn btn-ghost">Tornar-se Parceiro</a>
+      <a href="mailto:parceiros@athu.io" class="btn btn-ghost">Tornar-se Parceiro</a>
     </div>
     <div class="cta-extras">
       <span class="cta-extra">Acesso gratuito para estudantes</span>
       <span class="cta-extra">API para organizações cívicas</span>
       <span class="cta-extra">Código aberto em preparação</span>
       <span class="cta-extra">Suporte a 8 línguas moçambicanas</span>
+    </div>
+
+    <!-- minawu enterprise banner -->
+    <div class="enterprise-banner">
+      <span class="enterprise-banner-text">Precisa de inteligência regulatória para empresas e organizações?</span>
+      <a href="athu-enterprise.html" target="_blank" rel="noopener" class="enterprise-banner-link">
+        Conheça o minawu — versão Enterprise
+        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
     </div>
   </div>
 </div>
@@ -1496,6 +1549,13 @@ body::after {
         <img src="athu-nobg.png" alt="Athu Logo" class="ft-logo-img">
       </div>
       <p class="ft-tagline">Transformamos documentos públicos em conhecimento verificável para cidadãos.</p>
+      <div class="ft-enterprise-row">
+        Versão empresarial:
+        <a href="athu-enterprise.html" target="_blank" rel="noopener">
+          minawu.io
+          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
     </div>
     <div>
       <div class="ft-col-head">Produto</div>
@@ -1538,7 +1598,7 @@ body::after {
 </footer>
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ── Scroll reveal ── */
 const rObs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.07 });
 document.querySelectorAll('.rv').forEach(el => rObs.observe(el));
@@ -1555,13 +1615,9 @@ setTimeout(() => { ht.style.transition = 'opacity .9s ease, transform .9s ease';
 
 /* ── Product switcher (Gnowit-style) ── */
 function switchProduct(idx) {
-  // Sidebar links
   document.querySelectorAll('.prod-nav-link').forEach((l, i) => l.classList.toggle('active', i === idx));
-  // Mobile tabs
   document.querySelectorAll('.prod-tab-btn').forEach((t, i) => t.classList.toggle('active', i === idx));
-  // Panels
   document.querySelectorAll('.prod-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
-  // Scroll into view on mobile
   if (window.innerWidth < 960) {
     document.getElementById('prod-panels').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
@@ -1593,7 +1649,6 @@ function setLang(code) {
   document.querySelectorAll('.lang-btn').forEach(b => {
     if (b.textContent.toLowerCase().includes(code.toLowerCase().slice(0,2))) b.classList.add('active');
   });
-  // In a real app, this would trigger i18n
 }
 
 /* ── Keyboard support for product nav ── */
