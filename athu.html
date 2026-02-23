@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════
-   RESET & TOKENS
+   RESET & DESIGN TOKENS
 ═══════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -53,6 +53,7 @@ img { display: block; max-width: 100%; }
 ::-webkit-scrollbar-track { background: var(--ink); }
 ::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 10px; }
 
+/* Film grain overlay */
 body::after {
   content: '';
   position: fixed; inset: 0; z-index: 9999; pointer-events: none;
@@ -84,8 +85,7 @@ body::after {
 }
 .btn-ghost:hover { background: rgba(255,255,255,0.09); color: var(--text); border-color: var(--text-dim); }
 
-.btn-sm { padding: 8px 18px; font-size: 0.8rem; }
-.btn-nav-cta { background: var(--amber); color: var(--ink); padding: 7px 16px; font-size: 0.78rem; border-radius: 6px; }
+.btn-nav-cta { background: var(--amber); color: var(--ink); padding: 7px 16px; font-size: 0.78rem; border-radius: 6px; font-family: var(--ff-disp); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; transition: background 0.18s; }
 .btn-nav-cta:hover { background: #F5C040; }
 
 /* ═══════════════════════════════════════
@@ -104,13 +104,7 @@ body::after {
 .nav.scrolled { box-shadow: 0 1px 0 rgba(255,255,255,0.05), 0 4px 24px rgba(0,0,0,0.4); }
 
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-.nav-logo-mark {
-  width: 32px; height: 32px; border-radius: 7px;
-  border: 1.5px solid var(--amber);
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-.nav-logo-img { height: 128px; width: auto; display: block; }
+.nav-logo-img { height: 36px; width: auto; display: block; }
 .nav-logo-name { font-family: var(--ff-disp); font-size: 1.15rem; font-weight: 800; color: var(--text); letter-spacing: 0.04em; }
 .nav-logo-name span { color: var(--amber); }
 
@@ -146,6 +140,7 @@ body::after {
   content: ''; width: 5px; height: 5px; border-radius: 50%;
   background: var(--amber); animation: pulse 2s infinite;
 }
+
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(1.3)} }
 
 .ham {
@@ -237,6 +232,7 @@ body::after {
 }
 .meta-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--teal); }
 
+/* Terminal */
 .hero-terminal { position: relative; z-index: 1; }
 .terminal {
   background: var(--panel); border: 1px solid var(--line);
@@ -270,7 +266,7 @@ body::after {
   font-family: var(--ff-mono); font-size: 0.6rem; font-weight: 700;
   letter-spacing: 0.04em; text-transform: uppercase;
   border-radius: 4px; padding: 3px 8px;
-  display: flex; align-items: center; gap: 4px;
+  display: inline-flex; align-items: center; gap: 4px;
 }
 .chip-gov  { background: var(--blue-lo); color: var(--blue); border: 1px solid rgba(74,158,224,0.2); }
 .chip-law  { background: var(--amber-lo); color: var(--amber); border: 1px solid var(--amber-bdr); }
@@ -313,8 +309,7 @@ body::after {
 ═══════════════════════════════════════ */
 .lang-bar {
   background: var(--ink-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  padding: 0 44px;
-  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  padding: 0 44px; overflow-x: auto; -webkit-overflow-scrolling: touch;
 }
 .lang-bar-inner { display: flex; gap: 0; min-width: max-content; }
 .lang-item {
@@ -363,7 +358,6 @@ body::after {
    PRODUCT SECTION
 ═══════════════════════════════════════ */
 .products-section { padding: 0; background: var(--ink-soft); border-top: 1px solid var(--line); }
-
 .products-intro { padding: 72px 44px 56px; border-bottom: 1px solid var(--line); text-align: center; }
 .products-intro .lead { margin: 0 auto; }
 
@@ -372,10 +366,8 @@ body::after {
 .products-nav {
   border-right: 1px solid var(--line);
   position: sticky; top: 62px;
-  height: calc(100vh - 62px);
-  overflow-y: auto; padding: 32px 0;
-  background: var(--panel);
-  align-self: start;
+  height: calc(100vh - 62px); overflow-y: auto; padding: 32px 0;
+  background: var(--panel); align-self: start;
 }
 
 .products-tabs-mobile {
@@ -413,13 +405,12 @@ body::after {
 .prod-tab-btn:hover { color: var(--text); }
 .prod-tab-btn.active { color: var(--amber); border-bottom-color: var(--amber); }
 
-.products-panels { padding: 0; }
-
 .prod-panel {
   padding: 56px 52px; border-bottom: 1px solid var(--line);
   display: none; animation: fadeIn 0.3s ease;
 }
 .prod-panel.active { display: block; }
+
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
 .panel-header { margin-bottom: 40px; }
@@ -429,7 +420,6 @@ body::after {
   margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
 }
 .panel-number::before { content: ''; width: 14px; height: 1px; background: var(--amber); }
-
 .panel-title {
   font-family: var(--ff-disp); font-size: clamp(1.5rem, 2.2vw, 2rem);
   font-weight: 800; letter-spacing: -0.02em; color: var(--text); margin-bottom: 14px;
@@ -451,8 +441,7 @@ body::after {
 .feat-desc { font-family: var(--ff-serif); font-size: 0.8rem; line-height: 1.65; color: var(--text-muted); font-weight: 300; }
 
 .panel-data-strip {
-  background: var(--ink); border: 1px solid var(--line); border-radius: 10px;
-  overflow: hidden; margin-top: 8px;
+  background: var(--ink); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-top: 8px;
 }
 .data-strip-head {
   padding: 12px 18px; border-bottom: 1px solid var(--line);
@@ -508,7 +497,10 @@ body::after {
   background: rgba(255,255,255,0.01); transition: all 0.2s;
 }
 .aud-row:hover { border-color: var(--amber-bdr); background: var(--amber-lo); }
-.aud-ic { width: 34px; height: 34px; border-radius: 7px; background: rgba(255,255,255,0.04); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.aud-ic {
+  width: 34px; height: 34px; border-radius: 7px; background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
 .aud-ic svg { width: 16px; height: 16px; stroke: var(--amber); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .aud-title { font-size: 0.84rem; font-weight: 700; color: var(--text); margin-bottom: 1px; }
 .aud-desc { font-family: var(--ff-serif); font-size: 0.75rem; color: var(--text-muted); font-weight: 300; }
@@ -541,6 +533,131 @@ body::after {
 .pb-fut  { background: rgba(255,255,255,0.04); color: var(--text-muted); border: 1px solid var(--line); }
 
 /* ═══════════════════════════════════════
+   DEMO SECTION
+═══════════════════════════════════════ */
+.demo-section { background: var(--ink-soft); border-top: 1px solid var(--line); }
+.demo-section-inner { display: grid; grid-template-columns: 1fr 1.15fr; gap: 64px; align-items: start; }
+
+.demo-source-box { margin-top: 32px; padding: 18px 20px; background: var(--ink); border: 1px solid var(--line); border-radius: 10px; }
+.demo-source-box-lbl { font-size: 0.63rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+.demo-principle {
+  margin-top: 14px; padding: 14px 16px; background: var(--teal-lo);
+  border: 1px solid rgba(42,191,168,0.18); border-radius: 8px;
+  font-family: var(--ff-serif); font-size: 0.8rem; line-height: 1.65; color: var(--text-muted); font-weight: 300;
+}
+.demo-principle strong { color: var(--teal); font-weight: 600; font-family: var(--ff-disp); }
+
+/* ═══════════════════════════════════════
+   LIVE QUERY BLOCK
+═══════════════════════════════════════ */
+.live-block {
+  background: var(--ink); border: 1px solid var(--amber-bdr);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 0 0 1px var(--amber-lo), 0 24px 60px rgba(0,0,0,0.4);
+}
+.live-head {
+  padding: 13px 20px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--amber-lo);
+}
+.live-head-title {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--amber); display: flex; align-items: center; gap: 7px;
+}
+.live-head-title::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--amber); animation: pulse 2s infinite;
+}
+.live-head-badge {
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink); background: var(--amber); border-radius: 100px; padding: 3px 10px;
+}
+.live-input-row { display: flex; gap: 0; border-bottom: 1px solid var(--line); }
+.live-input {
+  flex: 1; background: transparent; border: none; outline: none;
+  font-family: var(--ff-serif); font-size: 0.88rem; font-style: italic;
+  color: var(--text); padding: 16px 18px; line-height: 1.5; caret-color: var(--amber);
+}
+.live-input::placeholder { color: var(--text-dim); font-style: italic; }
+.live-send-btn {
+  padding: 0 20px; background: none; border: none; border-left: 1px solid var(--line);
+  cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.18s;
+}
+.live-send-btn:hover { background: var(--amber-lo); }
+.live-send-btn svg { width: 16px; height: 16px; stroke: var(--amber); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.live-send-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.live-result { padding: 20px; min-height: 90px; }
+
+.live-placeholder {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 90px; gap: 10px;
+  font-family: var(--ff-serif); font-size: 0.82rem; font-style: italic;
+  color: var(--text-dim); text-align: center; line-height: 1.6;
+}
+.live-placeholder svg { width: 16px; height: 16px; stroke: var(--text-dim); fill: none; stroke-width: 1.5; opacity: 0.5; flex-shrink: 0; }
+
+.live-loading { display: none; flex-direction: column; gap: 10px; padding: 14px 0; }
+.live-loading-dots { display: flex; gap: 5px; align-items: center; }
+.live-loading-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--amber);
+  animation: ldot 1.2s infinite ease-in-out;
+}
+.live-loading-dot:nth-child(2) { animation-delay: 0.18s; }
+.live-loading-dot:nth-child(3) { animation-delay: 0.36s; }
+@keyframes ldot { 0%,80%,100%{opacity:.2;transform:scale(0.7)} 40%{opacity:1;transform:scale(1)} }
+.live-loading-lbl { font-size: 0.68rem; color: var(--text-muted); letter-spacing: 0.06em; }
+
+.live-output { display: none; animation: fadeIn 0.3s ease; }
+.live-chips-row { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+.live-model-badge {
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--ink); background: var(--amber); border-radius: 4px; padding: 2px 9px;
+  margin-left: auto; display: flex; align-items: center; gap: 4px;
+}
+.live-model-badge::before { content: '✶'; font-size: 0.6rem; }
+.live-answer-box {
+  background: var(--ink-soft); border: 1px solid var(--line);
+  border-radius: 8px; padding: 14px 16px; margin-bottom: 12px;
+}
+.live-ans-lbl {
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
+}
+.live-ans-lbl::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--amber); }
+.live-ans-text { font-family: var(--ff-serif); font-size: 0.84rem; line-height: 1.75; color: var(--text); font-weight: 300; }
+.live-ans-text strong { color: var(--amber); font-weight: 600; }
+
+.live-facts { margin-bottom: 12px; }
+.live-fact-r { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line-s); align-items: flex-start; }
+.live-fact-r:last-child { border-bottom: none; }
+.live-fact-k { font-family: var(--ff-mono); font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); width: 106px; flex-shrink: 0; padding-top: 1px; }
+.live-fact-v { font-size: 0.78rem; color: var(--text); line-height: 1.5; font-family: var(--ff-serif); font-weight: 300; }
+
+.live-sources { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
+.rsrc {
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--text-muted); background: rgba(255,255,255,0.04); border: 1px solid var(--line);
+  border-radius: 4px; padding: 3px 8px; display: inline-flex; align-items: center; gap: 4px;
+}
+.rsrc::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+
+.live-conf-row {
+  display: flex; align-items: center; gap: 8px; margin-top: 10px;
+  background: var(--amber-lo); border: 1px solid var(--amber-bdr); border-radius: 6px; padding: 7px 12px;
+}
+.live-conf-lbl { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); flex-shrink: 0; }
+.live-conf-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.07); border-radius: 100px; overflow: hidden; }
+.live-conf-fill { height: 100%; background: linear-gradient(90deg, var(--amber), #F5C040); border-radius: 100px; transition: width 0.6s ease; width: 0%; }
+.live-conf-score { font-family: var(--ff-mono); font-size: 0.68rem; font-weight: 700; color: var(--amber); flex-shrink: 0; }
+
+.live-error {
+  display: none; background: rgba(224,82,82,0.08); border: 1px solid rgba(224,82,82,0.25);
+  border-radius: 8px; padding: 12px 14px;
+  font-family: var(--ff-serif); font-size: 0.82rem; color: var(--red); font-weight: 300;
+}
+
+/* ═══════════════════════════════════════
    FAQ
 ═══════════════════════════════════════ */
 .faq-inner { max-width: 780px; margin: 0 auto; }
@@ -557,11 +674,11 @@ body::after {
   background: var(--amber-lo); border: 1px solid var(--amber-bdr);
   display: flex; align-items: center; justify-content: center; transition: transform 0.3s, background 0.2s;
 }
-.faq-chevron svg { width: 11px; height: 11px; stroke: var(--amber); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
+.faq-chevron svg { width: 11px; height: 11px; stroke: var(--amber); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .faq-item.open .faq-chevron { transform: rotate(180deg); background: var(--amber); }
 .faq-item.open .faq-chevron svg { stroke: var(--ink); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.38s ease; }
-.faq-item.open .faq-a { max-height: 200px; }
+.faq-item.open .faq-a { max-height: 300px; }
 .faq-a-in { padding: 2px 0 20px; font-family: var(--ff-serif); font-size: 0.9rem; line-height: 1.78; color: var(--text-muted); font-weight: 300; max-width: 640px; }
 
 /* ═══════════════════════════════════════
@@ -571,12 +688,27 @@ body::after {
   padding: 96px 44px; position: relative; overflow: hidden;
   background: var(--ink); border-top: 1px solid var(--line);
 }
-.cta-grid { position: absolute; inset: 0; z-index: 0; pointer-events: none; background-image: linear-gradient(var(--line-s) 1px, transparent 1px), linear-gradient(90deg, var(--line-s) 1px, transparent 1px); background-size: 52px 52px; mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, black 15%, transparent 70%); }
-.cta-glow { position: absolute; z-index: 0; pointer-events: none; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(232,168,32,0.07) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.cta-grid {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: linear-gradient(var(--line-s) 1px, transparent 1px), linear-gradient(90deg, var(--line-s) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, black 15%, transparent 70%);
+}
+.cta-glow {
+  position: absolute; z-index: 0; pointer-events: none; width: 500px; height: 500px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(232,168,32,0.07) 0%, transparent 65%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+}
 .cta-in { position: relative; z-index: 1; text-align: center; max-width: 680px; margin: 0 auto; }
-.cta-title { font-family: var(--ff-disp); font-size: clamp(2rem, 3.2vw, 2.9rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: var(--text); margin-bottom: 18px; }
+.cta-title {
+  font-family: var(--ff-disp); font-size: clamp(2rem, 3.2vw, 2.9rem);
+  font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: var(--text); margin-bottom: 18px;
+}
 .cta-title .accent { color: var(--amber); }
-.cta-sub { font-family: var(--ff-serif); font-size: 1rem; line-height: 1.75; color: var(--text-mid); font-weight: 300; margin-bottom: 36px; max-width: 520px; margin-left: auto; margin-right: auto; }
+.cta-sub {
+  font-family: var(--ff-serif); font-size: 1rem; line-height: 1.75; color: var(--text-mid);
+  font-weight: 300; margin-bottom: 36px; max-width: 520px; margin-left: auto; margin-right: auto;
+}
 .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
 .cta-extras { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 .cta-extra { font-size: 0.74rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
@@ -587,8 +719,8 @@ body::after {
 ═══════════════════════════════════════ */
 .footer { background: var(--ink-soft); border-top: 1px solid var(--line); padding: 56px 44px 32px; }
 .footer-top { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 44px; padding-bottom: 44px; border-bottom: 1px solid var(--line); margin-bottom: 28px; }
-.ft-logo-row { display: flex; align-items: center; }
-.ft-logo-img { height: 128px; width: auto; display: block; }
+.ft-logo-row { display: flex; align-items: center; margin-bottom: 16px; }
+.ft-logo-img { height: 36px; width: auto; display: block; }
 .ft-logo-name { font-family: var(--ff-disp); font-size: 1rem; font-weight: 800; color: var(--text); }
 .ft-logo-name span { color: var(--amber); }
 .ft-tagline { font-family: var(--ff-serif); font-size: 0.82rem; line-height: 1.7; color: var(--text-muted); font-weight: 300; max-width: 270px; margin-bottom: 14px; }
@@ -601,165 +733,6 @@ body::after {
 .fb-links { display: flex; gap: 18px; }
 .fb-links a { color: var(--text-dim); text-decoration: none; transition: color 0.15s; }
 .fb-links a:hover { color: var(--text-muted); }
-
-/* ═══════════════════════════════════════
-   INTERACTIVE DEMO SECTION
-═══════════════════════════════════════ */
-.demo-section { background: var(--ink-soft); border-top: 1px solid var(--line); }
-.demo-section-inner { display: grid; grid-template-columns: 1fr 1.15fr; gap: 64px; align-items: start; }
-
-.demo-source-box { margin-top: 32px; padding: 18px 20px; background: var(--ink); border: 1px solid var(--line); border-radius: 10px; }
-.demo-source-box-lbl { font-size: 0.63rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
-.demo-principle { margin-top: 14px; padding: 14px 16px; background: var(--teal-lo); border: 1px solid rgba(42,191,168,0.18); border-radius: 8px; font-family: var(--ff-serif); font-size: 0.8rem; line-height: 1.65; color: var(--text-muted); font-weight: 300; }
-.demo-principle strong { color: var(--teal); font-weight: 600; font-family: var(--ff-disp); }
-
-.qs { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
-.qs-head { padding: 13px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.02); }
-.qs-head-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
-.qs-head-badge { font-size: 0.63rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); background: var(--teal-lo); border: 1px solid rgba(42,191,168,0.22); border-radius: 100px; padding: 3px 10px; }
-
-.qs-queries { padding: 14px; display: flex; flex-direction: column; gap: 5px; border-bottom: 1px solid var(--line); }
-.qs-q { padding: 11px 13px; border-radius: 7px; cursor: pointer; border: 1px solid transparent; font-family: var(--ff-serif); font-size: 0.82rem; font-style: italic; color: var(--text-mid); transition: all 0.18s; line-height: 1.5; }
-.qs-q:hover { background: rgba(255,255,255,0.03); border-color: var(--line); color: var(--text); }
-.qs-q.active { background: var(--amber-lo); border-color: var(--amber-bdr); color: var(--text); }
-.qs-q-num { font-family: var(--ff-mono); font-size: 0.58rem; color: var(--text-dim); display: block; margin-bottom: 2px; font-style: normal; }
-
-.qs-result { padding: 20px; min-height: 300px; }
-
-.res-block { display: none; animation: fadeIn 0.28s ease; }
-.res-block.active { display: block; }
-
-.res-chips { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 14px; }
-
-.res-answer { background: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; }
-.res-lbl { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
-.res-lbl::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--amber); }
-.res-text { font-family: var(--ff-serif); font-size: 0.84rem; line-height: 1.75; color: var(--text); font-weight: 300; }
-.res-text strong { color: var(--amber); font-weight: 600; }
-
-.res-facts { margin-bottom: 14px; }
-.fact-r { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line-s); align-items: flex-start; }
-.fact-r:last-child { border-bottom: none; }
-.fact-k { font-family: var(--ff-mono); font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); width: 106px; flex-shrink: 0; padding-top: 1px; }
-.fact-v { font-size: 0.78rem; color: var(--text); line-height: 1.5; font-family: var(--ff-serif); font-weight: 300; }
-
-.res-sources { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 12px; }
-.rsrc { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px; display: flex; align-items: center; gap: 4px; }
-.rsrc::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
-
-.res-conf { display: flex; align-items: center; gap: 8px; margin-top: 12px; background: var(--teal-lo); border: 1px solid rgba(42,191,168,0.15); border-radius: 6px; padding: 7px 12px; }
-.res-conf-lbl { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); flex-shrink: 0; }
-.res-conf-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.07); border-radius: 100px; overflow: hidden; }
-.res-conf-fill { height: 100%; background: linear-gradient(90deg, var(--teal), #4AF0D8); border-radius: 100px; }
-.res-conf-score { font-family: var(--ff-mono); font-size: 0.68rem; font-weight: 700; color: var(--teal); flex-shrink: 0; }
-
-/* ═══════════════════════════════════════
-   GEMINI / CLAUDE LIVE QUERY BLOCK
-═══════════════════════════════════════ */
-.gemini-live-block {
-  margin-top: 40px;
-  background: var(--ink);
-  border: 1px solid var(--amber-bdr);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 0 0 1px var(--amber-lo), 0 24px 60px rgba(0,0,0,0.4);
-}
-.gemini-live-head {
-  padding: 13px 20px;
-  border-bottom: 1px solid var(--line);
-  display: flex; align-items: center; justify-content: space-between;
-  background: var(--amber-lo);
-}
-.gemini-live-head-title {
-  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--amber); display: flex; align-items: center; gap: 7px;
-}
-.gemini-live-head-title::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--amber); animation: pulse 2s infinite;
-}
-.gemini-live-head-badge {
-  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink); background: var(--amber); border-radius: 100px; padding: 3px 10px;
-}
-.gemini-input-row {
-  display: flex; gap: 0; border-bottom: 1px solid var(--line);
-}
-.gemini-input {
-  flex: 1; background: transparent; border: none; outline: none;
-  font-family: var(--ff-serif); font-size: 0.88rem; font-style: italic;
-  color: var(--text); padding: 16px 18px; line-height: 1.5;
-  caret-color: var(--amber);
-}
-.gemini-input::placeholder { color: var(--text-dim); font-style: italic; }
-.gemini-send-btn {
-  padding: 0 20px; background: none; border: none; border-left: 1px solid var(--line);
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: background 0.18s;
-}
-.gemini-send-btn:hover { background: var(--amber-lo); }
-.gemini-send-btn svg { width: 16px; height: 16px; stroke: var(--amber); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.gemini-send-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-.gemini-result-area {
-  padding: 20px; min-height: 90px;
-}
-.gemini-placeholder {
-  display: flex; align-items: center; justify-content: center;
-  min-height: 90px; gap: 10px;
-  font-family: var(--ff-serif); font-size: 0.82rem; font-style: italic;
-  color: var(--text-dim); text-align: center; line-height: 1.6;
-}
-.gemini-placeholder svg { width: 16px; height: 16px; stroke: var(--text-dim); fill: none; stroke-width: 1.5; opacity: 0.5; flex-shrink: 0; }
-.gemini-loading {
-  display: none; flex-direction: column; gap: 10px; padding: 14px 0;
-}
-.gemini-loading-dots { display: flex; gap: 5px; align-items: center; }
-.gemini-loading-dot {
-  width: 5px; height: 5px; border-radius: 50%; background: var(--amber);
-  animation: gload 1.2s infinite ease-in-out;
-}
-.gemini-loading-dot:nth-child(2) { animation-delay: 0.18s; }
-.gemini-loading-dot:nth-child(3) { animation-delay: 0.36s; }
-@keyframes gload { 0%,80%,100%{opacity:.2;transform:scale(0.7)} 40%{opacity:1;transform:scale(1)} }
-.gemini-loading-lbl { font-size: 0.68rem; color: var(--text-muted); letter-spacing: 0.06em; }
-.gemini-output { display: none; animation: fadeIn 0.3s ease; }
-.gemini-chips-row { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
-.gemini-model-badge {
-  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
-  color: var(--ink); background: var(--amber); border-radius: 4px; padding: 2px 9px;
-  margin-left: auto; display: flex; align-items: center; gap: 4px;
-}
-.gemini-model-badge::before { content: '\2736'; font-size: 0.6rem; }
-.gemini-answer-box {
-  background: var(--ink-soft); border: 1px solid var(--line);
-  border-radius: 8px; padding: 14px 16px; margin-bottom: 12px;
-}
-.gemini-ans-lbl {
-  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
-}
-.gemini-ans-lbl::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--amber); }
-.gemini-ans-text { font-family: var(--ff-serif); font-size: 0.84rem; line-height: 1.75; color: var(--text); font-weight: 300; }
-.gemini-ans-text strong { color: var(--amber); font-weight: 600; }
-.gemini-facts-block { margin-bottom: 12px; }
-.gemini-fact-r { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line-s); align-items: flex-start; }
-.gemini-fact-r:last-child { border-bottom: none; }
-.gemini-fact-k { font-family: var(--ff-mono); font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); width: 106px; flex-shrink: 0; padding-top: 1px; }
-.gemini-fact-v { font-size: 0.78rem; color: var(--text); line-height: 1.5; font-family: var(--ff-serif); font-weight: 300; }
-.gemini-sources-row { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
-.gemini-conf-row {
-  display: flex; align-items: center; gap: 8px; margin-top: 10px;
-  background: var(--amber-lo); border: 1px solid var(--amber-bdr); border-radius: 6px; padding: 7px 12px;
-}
-.gemini-conf-lbl { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); flex-shrink: 0; }
-.gemini-conf-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.07); border-radius: 100px; overflow: hidden; }
-.gemini-conf-fill { height: 100%; background: linear-gradient(90deg, var(--amber), #F5C040); border-radius: 100px; transition: width 0.6s ease; }
-.gemini-conf-score { font-family: var(--ff-mono); font-size: 0.68rem; font-weight: 700; color: var(--amber); flex-shrink: 0; }
-.gemini-error {
-  display: none; background: rgba(224,82,82,0.08); border: 1px solid rgba(224,82,82,0.25);
-  border-radius: 8px; padding: 12px 14px;
-  font-family: var(--ff-serif); font-size: 0.82rem; color: var(--red); font-weight: 300;
-}
 
 /* ═══════════════════════════════════════
    SCROLL REVEAL
@@ -775,7 +748,6 @@ body::after {
   .footer-top { grid-template-columns: 1fr 1fr; }
   .impact-inner { grid-template-columns: 1fr; gap: 44px; }
 }
-
 @media (max-width: 960px) {
   .hero { grid-template-columns: 1fr; padding-top: 110px; gap: 40px; }
   .hero-terminal { max-width: 540px; }
@@ -788,7 +760,6 @@ body::after {
   .phases-grid { grid-template-columns: 1fr; }
   .demo-section-inner { grid-template-columns: 1fr; }
 }
-
 @media (max-width: 680px) {
   .nav { padding: 0 20px; }
   .nav-links, .live-pill, .lang-switcher { display: none; }
@@ -814,7 +785,8 @@ body::after {
 <!-- NAV -->
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">
-    <img src="athu-nobg.png" alt="athu — Inteligência Cívica" class="nav-logo-img">
+    <img src="athu-nobg.png" alt="athu" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span class="nav-logo-name" style="display:none"><span>athu</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="#produto">Produto</a></li>
@@ -825,12 +797,12 @@ body::after {
   </ul>
   <div class="nav-right">
     <div class="lang-switcher">
-      <button class="lang-btn active" onclick="setLang('pt')">PT</button>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('emk')">EMK</button>
+      <button class="lang-btn active" onclick="setLang('PT')">PT</button>
+      <button class="lang-btn" onclick="setLang('EN')">EN</button>
+      <button class="lang-btn" onclick="setLang('EMK')">EMK</button>
     </div>
     <div class="live-pill">Beta</div>
-    <a href="#cta" class="btn btn-nav-cta">Acesso</a>
+    <a href="#cta" class="btn-nav-cta">Acesso</a>
     <button class="ham" id="ham" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -846,9 +818,9 @@ body::after {
   <a href="#faq" onclick="closeMenu()">FAQ</a>
   <a href="#cta" onclick="closeMenu()">Pedir Acesso</a>
   <div class="lang-row">
-    <button class="lang-btn active" onclick="setLang('pt');closeMenu()">Português</button>
-    <button class="lang-btn" onclick="setLang('en');closeMenu()">English</button>
-    <button class="lang-btn" onclick="setLang('emk');closeMenu()">Macua</button>
+    <button class="lang-btn active" onclick="setLang('PT');closeMenu()">Português</button>
+    <button class="lang-btn" onclick="setLang('EN');closeMenu()">English</button>
+    <button class="lang-btn" onclick="setLang('EMK');closeMenu()">Macua</button>
   </div>
 </div>
 
@@ -882,7 +854,7 @@ body::after {
       </div>
       <div class="term-body">
         <div class="term-q">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <span class="term-q-text">"Qual é o orçamento aprovado para o sector da educação em 2026?"</span>
         </div>
         <div class="chips">
@@ -898,9 +870,18 @@ body::after {
         </div>
         <div class="tl">
           <div class="tl-lbl">Linha do Tempo</div>
-          <div class="tl-row"><div class="tl-dot-col"><div class="tl-dot c-bl"></div><div class="tl-seg"></div></div><div class="tl-content"><div class="tl-date">13 de Dezembro 2025</div>OE 2026 aprovado na Assembleia da República</div></div>
-          <div class="tl-row"><div class="tl-dot-col"><div class="tl-dot c-am"></div><div class="tl-seg"></div></div><div class="tl-content"><div class="tl-date">30 Dezembro 2025</div>Promulgação pelo Presidente da República</div></div>
-          <div class="tl-row"><div class="tl-dot-col"><div class="tl-dot c-rd"></div></div><div class="tl-content"><div class="tl-date">20 de Janeiro 2026</div>CIP reporta atrasos em transferências provinciais</div></div>
+          <div class="tl-row">
+            <div class="tl-dot-col"><div class="tl-dot c-bl"></div><div class="tl-seg"></div></div>
+            <div class="tl-content"><div class="tl-date">13 de Dezembro 2025</div>OE 2026 aprovado na Assembleia da República</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-dot-col"><div class="tl-dot c-am"></div><div class="tl-seg"></div></div>
+            <div class="tl-content"><div class="tl-date">30 Dezembro 2025</div>Promulgação pelo Presidente da República</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-dot-col"><div class="tl-dot c-rd"></div></div>
+            <div class="tl-content"><div class="tl-date">20 de Janeiro 2026</div>CIP reporta atrasos em transferências provinciais</div>
+          </div>
         </div>
         <div class="conf-row">
           <span class="conf-lbl">Confiança</span>
@@ -930,21 +911,22 @@ body::after {
   <div class="products-layout">
     <nav class="products-nav" id="prod-nav">
       <div class="prod-nav-label">Módulos</div>
-      <a class="prod-nav-link active" onclick="switchProduct(0)">
+      <a class="prod-nav-link active" onclick="switchProduct(0)" tabindex="0" role="button">
         <div><div class="pnl-num">01</div><div class="pnl-name">Pesquisa Cívica</div><div class="pnl-sub">Consulta em linguagem natural</div></div>
       </a>
-      <a class="prod-nav-link" onclick="switchProduct(1)">
+      <a class="prod-nav-link" onclick="switchProduct(1)" tabindex="0" role="button">
         <div><div class="pnl-num">02</div><div class="pnl-name">Monitor Legislativo</div><div class="pnl-sub">Legislação e parlamento</div></div>
       </a>
-      <a class="prod-nav-link" onclick="switchProduct(2)">
+      <a class="prod-nav-link" onclick="switchProduct(2)" tabindex="0" role="button">
         <div><div class="pnl-num">03</div><div class="pnl-name">Rastreio Orçamental</div><div class="pnl-sub">Orçamentos e execução</div></div>
       </a>
-      <a class="prod-nav-link" onclick="switchProduct(3)">
+      <a class="prod-nav-link" onclick="switchProduct(3)" tabindex="0" role="button">
         <div><div class="pnl-num">04</div><div class="pnl-name">Promessa vs Acção</div><div class="pnl-sub">Compromissos políticos</div></div>
       </a>
     </nav>
 
-    <div class="products-panels" id="prod-panels">
+    <div id="prod-panels">
+      <!-- Panel 0 -->
       <div class="prod-panel active" id="panel-0">
         <div class="panel-header">
           <div class="panel-number">Módulo 01: Pesquisa Cívica</div>
@@ -952,21 +934,38 @@ body::after {
           <p class="panel-desc">O motor de pesquisa semântica do athu compreende perguntas em português e nas principais línguas locais moçambicanas, recuperando informação relevante de milhares de documentos públicos indexados, em menos de 8 segundos.</p>
         </div>
         <div class="panel-features">
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="feat-title">Pesquisa Semântica em Português</div><div class="feat-desc">Compreende o significado da pergunta, não apenas palavras-chave. Recupera contexto legislativo, orçamental e mediático em simultâneo.</div></div>
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="feat-title">Suporte Multilingue</div><div class="feat-desc">Aceita perguntas em Macua, Xichangana, Cisena e outras línguas moçambicanas. Responde em português ou na língua da consulta.</div></div>
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="feat-title">Citação de Fontes Primárias</div><div class="feat-desc">Cada resposta inclui ligações directas aos documentos originais, Boletim da República, relatórios ministeriais, transcrições parlamentares.</div></div>
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="feat-title">Indicador de Confiança</div><div class="feat-desc">Cada resposta inclui uma percentagem de confiança calculada com base na qualidade e convergência das fontes disponíveis.</div></div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <div class="feat-title">Pesquisa Semântica em Português</div>
+            <div class="feat-desc">Compreende o significado da pergunta, não apenas palavras-chave. Recupera contexto legislativo, orçamental e mediático em simultâneo.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div class="feat-title">Suporte Multilingue</div>
+            <div class="feat-desc">Aceita perguntas em Macua, Xichangana, Cisena e outras línguas moçambicanas. Responde em português ou na língua da consulta.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="feat-title">Citação de Fontes Primárias</div>
+            <div class="feat-desc">Cada resposta inclui ligações directas aos documentos originais, Boletim da República, relatórios ministeriais, transcrições parlamentares.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="feat-title">Indicador de Confiança</div>
+            <div class="feat-desc">Cada resposta inclui uma percentagem de confiança calculada com base na qualidade e convergência das fontes disponíveis.</div>
+          </div>
         </div>
         <div class="panel-data-strip">
           <div class="data-strip-head"><div class="data-strip-title">Consultas de exemplo</div><div class="chips"><span class="chip chip-med">Pesquisa Cívica</span></div></div>
           <div class="data-strip-body">
-            <div class="data-row"><span class="dr-num">01</span><span class="dr-text">"Qual é o salário mínimo em Moçambique em 2024 e quando foi alterado pela última vez?"</span><span class="dr-badge chip-gov" style="background:var(--blue-lo);color:var(--blue)">MTE + Decreto</span></div>
-            <div class="data-row"><span class="dr-num">02</span><span class="dr-text">"Niphe ndi mitawoni ya Nampula enayipanga makhwinyo 2023?" (Macua)</span><span class="dr-badge chip-med" style="background:var(--amber-lo);color:var(--amber)">Macua</span></div>
-            <div class="data-row"><span class="dr-num">03</span><span class="dr-text">"Kujeni a vadiwa va Xikaya xa Gaza ku kuma mpfawulo wa INSS?"</span><span class="dr-badge chip-med" style="background:var(--teal-lo);color:var(--teal)">Changana</span></div>
+            <div class="data-row"><span class="dr-num">01</span><span class="dr-text">"Qual é o salário mínimo em Moçambique em 2024 e quando foi alterado pela última vez?"</span><span class="dr-badge chip-gov">MTE + Decreto</span></div>
+            <div class="data-row"><span class="dr-num">02</span><span class="dr-text">"Niphe ndi mitawoni ya Nampula enayipanga makhwinyo 2023?" (Macua)</span><span class="dr-badge chip-law">Macua</span></div>
+            <div class="data-row"><span class="dr-num">03</span><span class="dr-text">"Kujeni a vadiwa va Xikaya xa Gaza ku kuma mpfawulo wa INSS?"</span><span class="dr-badge chip-med">Changana</span></div>
           </div>
         </div>
       </div>
 
+      <!-- Panel 1 -->
       <div class="prod-panel" id="panel-1">
         <div class="panel-header">
           <div class="panel-number">Módulo 02: Monitor Legislativo</div>
@@ -974,21 +973,38 @@ body::after {
           <p class="panel-desc">O Monitor Legislativo do athu indexa automaticamente o Boletim da República, actas parlamentares, projectos de lei e relatórios de comissão, gerando resumos, alertas e linhas do tempo de cada documento.</p>
         </div>
         <div class="panel-features">
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><div class="feat-title">Rastreio do Boletim da República</div><div class="feat-desc">Monitorização automática de todas as publicações oficiais. Alertas imediatos quando legislação relevante é publicada.</div></div>
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="feat-title">Progressão Legislativa</div><div class="feat-desc">Visualize o estado actual de cada projecto de lei, da proposta à aprovação, com todas as emendas documentadas.</div></div>
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div class="feat-title">Identificação de Intervenientes</div><div class="feat-desc">Extracção automática de deputados, ministérios e partidos envolvidos em cada processo legislativo.</div></div>
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M22 17H2a3 3 0 000 6h20a3 3 0 000-6z"/><path d="M5 17V5a2 2 0 012-2h10a2 2 0 012 2v12"/></svg></div><div class="feat-title">Alertas por Área Temática</div><div class="feat-desc">Configure alertas para temas específicos: saúde, terra, energia, educação, receba notificações quando legislação relevante avança.</div></div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+            <div class="feat-title">Rastreio do Boletim da República</div>
+            <div class="feat-desc">Monitorização automática de todas as publicações oficiais. Alertas imediatos quando legislação relevante é publicada.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <div class="feat-title">Progressão Legislativa</div>
+            <div class="feat-desc">Visualize o estado actual de cada projecto de lei, da proposta à aprovação, com todas as emendas documentadas.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <div class="feat-title">Identificação de Intervenientes</div>
+            <div class="feat-desc">Extracção automática de deputados, ministérios e partidos envolvidos em cada processo legislativo.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17H2a3 3 0 000 6h20a3 3 0 000-6z"/><path d="M5 17V5a2 2 0 012-2h10a2 2 0 012 2v12"/></svg></div>
+            <div class="feat-title">Alertas por Área Temática</div>
+            <div class="feat-desc">Configure alertas para temas específicos: saúde, terra, energia, educação, receba notificações quando legislação relevante avança.</div>
+          </div>
         </div>
         <div class="panel-data-strip">
           <div class="data-strip-head"><div class="data-strip-title">Actividade legislativa recente</div><div class="chips"><span class="chip chip-gov">Boletim da República</span></div></div>
           <div class="data-strip-body">
-            <div class="data-row"><span class="dr-num">01</span><span class="dr-text">Projecto de revisão da Lei de Terras (Lei 19/97) — em comissão parlamentar desde Mar 2024</span><span class="dr-badge" style="background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-bdr)">Em Curso</span></div>
-            <div class="data-row"><span class="dr-num">02</span><span class="dr-text">Regulamento do sector mineiro — aprovado em Conselho de Ministros, Abr 2024</span><span class="dr-badge" style="background:var(--teal-lo);color:var(--teal);border:1px solid rgba(42,191,168,.2)">Aprovado</span></div>
-            <div class="data-row"><span class="dr-num">03</span><span class="dr-text">Lei da Protecção de Dados Pessoais — proposta apresentada à AR, Jan 2024</span><span class="dr-badge" style="background:var(--blue-lo);color:var(--blue);border:1px solid rgba(74,158,224,.2)">Proposta</span></div>
+            <div class="data-row"><span class="dr-num">01</span><span class="dr-text">Projecto de revisão da Lei de Terras (Lei 19/97) — em comissão parlamentar desde Mar 2024</span><span class="dr-badge chip-law">Em Curso</span></div>
+            <div class="data-row"><span class="dr-num">02</span><span class="dr-text">Regulamento do sector mineiro — aprovado em Conselho de Ministros, Abr 2024</span><span class="dr-badge chip-med">Aprovado</span></div>
+            <div class="data-row"><span class="dr-num">03</span><span class="dr-text">Lei da Protecção de Dados Pessoais — proposta apresentada à AR, Jan 2024</span><span class="dr-badge chip-gov">Proposta</span></div>
           </div>
         </div>
       </div>
 
+      <!-- Panel 2 -->
       <div class="prod-panel" id="panel-2">
         <div class="panel-header">
           <div class="panel-number">Módulo 03: Rastreio Orçamental</div>
@@ -996,21 +1012,38 @@ body::after {
           <p class="panel-desc">O módulo orçamental do athu indexa o Orçamento do Estado, relatórios de execução trimestrais e dados de procurement público, permitindo comparar alocações com execução real por sector, ministério e província.</p>
         </div>
         <div class="panel-features">
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><div class="feat-title">OE vs Execução Real</div><div class="feat-desc">Confronte automaticamente o orçamento aprovado com os relatórios trimestrais de execução do MINFIN para qualquer sector ou ministério.</div></div>
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="feat-title">Análise de Procurement</div><div class="feat-desc">Acesso estruturado a contratos públicos adjudicados, valores, adjudicatários e modalidade de concurso.</div></div>
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18"/></svg></div><div class="feat-title">Desagregação Provincial</div><div class="feat-desc">Compare execução orçamental entre províncias para identificar assimetrias na distribuição de recursos públicos.</div></div>
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div><div class="feat-title">Evolução Histórica</div><div class="feat-desc">Visualize tendências plurianuais de alocação e execução por sector, revelando padrões e desvios ao longo do tempo.</div></div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+            <div class="feat-title">OE vs Execução Real</div>
+            <div class="feat-desc">Confronte automaticamente o orçamento aprovado com os relatórios trimestrais de execução do MINFIN para qualquer sector ou ministério.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div class="feat-title">Análise de Procurement</div>
+            <div class="feat-desc">Acesso estruturado a contratos públicos adjudicados, valores, adjudicatários e modalidade de concurso.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18"/></svg></div>
+            <div class="feat-title">Desagregação Provincial</div>
+            <div class="feat-desc">Compare execução orçamental entre províncias para identificar assimetrias na distribuição de recursos públicos.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+            <div class="feat-title">Evolução Histórica</div>
+            <div class="feat-desc">Visualize tendências plurianuais de alocação e execução por sector, revelando padrões e desvios ao longo do tempo.</div>
+          </div>
         </div>
         <div class="panel-data-strip">
           <div class="data-strip-head"><div class="data-strip-title">Execução orçamental — 2024 H1</div><div class="chips"><span class="chip chip-gov">MINFIN — OE 2024</span></div></div>
           <div class="data-strip-body">
-            <div class="data-row"><span class="dr-num">ED</span><span class="dr-text">Educação: 95 mil milhões de meticais alocados / 61% executados no H1</span><span class="dr-badge" style="background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-bdr)">Abaixo da meta</span></div>
-            <div class="data-row"><span class="dr-num">SA</span><span class="dr-text">Saúde: 60 mil milhões de meticais alocados / 64% executados no H1</span><span class="dr-badge" style="background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-bdr)">Abaixo da meta</span></div>
-            <div class="data-row"><span class="dr-num">IN</span><span class="dr-text">Infraestruturas: 22 mil milhões de meticais alocados / 71% executados no H1</span><span class="dr-badge" style="background:var(--teal-lo);color:var(--teal);border:1px solid rgba(42,191,168,.2)">Na meta</span></div>
+            <div class="data-row"><span class="dr-num">ED</span><span class="dr-text">Educação: 95 mil milhões de meticais alocados / 61% executados no H1</span><span class="dr-badge chip-law">Abaixo da meta</span></div>
+            <div class="data-row"><span class="dr-num">SA</span><span class="dr-text">Saúde: 60 mil milhões de meticais alocados / 64% executados no H1</span><span class="dr-badge chip-law">Abaixo da meta</span></div>
+            <div class="data-row"><span class="dr-num">IN</span><span class="dr-text">Infraestruturas: 22 mil milhões de meticais alocados / 71% executados no H1</span><span class="dr-badge chip-med">Na meta</span></div>
           </div>
         </div>
       </div>
 
+      <!-- Panel 3 -->
       <div class="prod-panel" id="panel-3">
         <div class="panel-header">
           <div class="panel-number">Módulo 04: Promessa vs Acção</div>
@@ -1018,17 +1051,33 @@ body::after {
           <p class="panel-desc">O módulo de análise política do athu confronta programas eleitorais, discursos de posse e compromissos públicos com acções legislativas, orçamentais e executivas reais, sem interpretação política, apenas factos e fontes.</p>
         </div>
         <div class="panel-features">
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><div class="feat-title">Indexação de Programas Eleitorais</div><div class="feat-desc">Extracção estruturada de compromissos quantificáveis de manifestos e programas quinquenais do governo, organizados por sector.</div></div>
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><div class="feat-title">Confronto com Acção Real</div><div class="feat-desc">Cada promessa é confrontada com legislação aprovada, orçamento executado e relatórios de progresso de ministérios relevantes.</div></div>
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="feat-title">Linha do Tempo de Evolução</div><div class="feat-desc">Visualize a progressão de cada compromisso, do anúncio à implementação, com marcadores de eventos relevantes.</div></div>
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="feat-title">Neutralidade Garantida</div><div class="feat-desc">O athu nunca emite julgamentos políticos. Apenas apresenta factos documentados, com ligação às fontes primárias de cada afirmação.</div></div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+            <div class="feat-title">Indexação de Programas Eleitorais</div>
+            <div class="feat-desc">Extracção estruturada de compromissos quantificáveis de manifestos e programas quinquenais do governo, organizados por sector.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--teal)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+            <div class="feat-title">Confronto com Acção Real</div>
+            <div class="feat-desc">Cada promessa é confrontada com legislação aprovada, orçamento executado e relatórios de progresso de ministérios relevantes.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--blue)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="feat-title">Linha do Tempo de Evolução</div>
+            <div class="feat-desc">Visualize a progressão de cada compromisso, do anúncio à implementação, com marcadores de eventos relevantes.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon"><svg viewBox="0 0 24 24" stroke="var(--amber)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="feat-title">Neutralidade Garantida</div>
+            <div class="feat-desc">O athu nunca emite julgamentos políticos. Apenas apresenta factos documentados, com ligação às fontes primárias de cada afirmação.</div>
+          </div>
         </div>
         <div class="panel-data-strip">
           <div class="data-strip-head"><div class="data-strip-title">Rastreio de compromissos — PQG 2020–2024</div><div class="chips"><span class="chip chip-law">Programa Quinquenal</span></div></div>
           <div class="data-strip-body">
-            <div class="data-row"><span class="dr-num">E1</span><span class="dr-text">100 escolas primárias em zonas rurais — 67 concluídas (67%), 18 em construção</span><span class="dr-badge" style="background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-bdr)">Parcial</span></div>
+            <div class="data-row"><span class="dr-num">E1</span><span class="dr-text">100 escolas primárias em zonas rurais — 67 concluídas (67%), 18 em construção</span><span class="dr-badge chip-law">Parcial</span></div>
             <div class="data-row"><span class="dr-num">S1</span><span class="dr-text">Extensão da cobertura de saúde a 95% da população — actualmente 81%</span><span class="dr-badge" style="background:rgba(224,82,82,.1);color:var(--red);border:1px solid rgba(224,82,82,.25)">Abaixo</span></div>
-            <div class="data-row"><span class="dr-num">E1</span><span class="dr-text">Electrificação de 200 aldeias rurais via energia solar — 183 concluídas</span><span class="dr-badge" style="background:var(--teal-lo);color:var(--teal);border:1px solid rgba(42,191,168,.2)">Quase</span></div>
+            <div class="data-row"><span class="dr-num">E1</span><span class="dr-text">Electrificação de 200 aldeias rurais via energia solar — 183 concluídas</span><span class="dr-badge chip-med">Quase</span></div>
           </div>
         </div>
       </div>
@@ -1044,16 +1093,40 @@ body::after {
     <p class="lead" style="margin:0 auto;text-align:center">Seis camadas de processamento transformam a sua pergunta em resposta verificável.</p>
   </div>
   <div class="cap-grid">
-    <div class="cap-card rv"><div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--amber)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="cap-title">Compreensão Semântica</div><div class="cap-desc">Interpreta o significado da pergunta em português e línguas bantu moçambicanas, não apenas palavras-chave.</div></div>
-    <div class="cap-card rv d1"><div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--teal)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="cap-title">Extracção Estruturada</div><div class="cap-desc">Extrai datas, valores, instituições, responsáveis e compromissos de cada documento indexado automaticamente.</div></div>
-    <div class="cap-card rv d2"><div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--blue)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="cap-title">Linha do Tempo Automática</div><div class="cap-desc">Gera cronologias de eventos políticos e legislativos mostrando como as decisões evoluíram ao longo do tempo.</div></div>
-    <div class="cap-card rv"><div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--amber)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="cap-title">Síntese Multi-fonte</div><div class="cap-desc">Compara múltiplas fontes, identifica concordâncias e divergências, e detecta mudanças de posição governamental.</div></div>
-    <div class="cap-card rv d1"><div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--teal)"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div><div class="cap-title">Citação Rastreável</div><div class="cap-desc">Cada afirmação liga ao documento original. Nunca gera informação sem evidência primária. Score de confiança calculado.</div></div>
-    <div class="cap-card rv d2"><div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--blue)"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 009 9"/></svg></div><div class="cap-title">API Pública</div><div class="cap-desc">Acesso programático para organizações cívicas, jornalistas e investigadores. Documentação e autenticação gratuitas.</div></div>
+    <div class="cap-card rv">
+      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--amber)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      <div class="cap-title">Compreensão Semântica</div>
+      <div class="cap-desc">Interpreta o significado da pergunta em português e línguas bantu moçambicanas, não apenas palavras-chave.</div>
+    </div>
+    <div class="cap-card rv d1">
+      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--teal)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="cap-title">Extracção Estruturada</div>
+      <div class="cap-desc">Extrai datas, valores, instituições, responsáveis e compromissos de cada documento indexado automaticamente.</div>
+    </div>
+    <div class="cap-card rv d2">
+      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--blue)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="cap-title">Linha do Tempo Automática</div>
+      <div class="cap-desc">Gera cronologias de eventos políticos e legislativos mostrando como as decisões evoluíram ao longo do tempo.</div>
+    </div>
+    <div class="cap-card rv">
+      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--amber)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="cap-title">Síntese Multi-fonte</div>
+      <div class="cap-desc">Compara múltiplas fontes, identifica concordâncias e divergências, e detecta mudanças de posição governamental.</div>
+    </div>
+    <div class="cap-card rv d1">
+      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--teal)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+      <div class="cap-title">Citação Rastreável</div>
+      <div class="cap-desc">Cada afirmação liga ao documento original. Nunca gera informação sem evidência primária. Score de confiança calculado.</div>
+    </div>
+    <div class="cap-card rv d2">
+      <div class="cap-ic"><svg viewBox="0 0 24 24" stroke="var(--blue)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 009 9"/></svg></div>
+      <div class="cap-title">API Pública</div>
+      <div class="cap-desc">Acesso programático para organizações cívicas, jornalistas e investigadores. Documentação e autenticação gratuitas.</div>
+    </div>
   </div>
 </section>
 
-<!-- INTERACTIVE DEMO -->
+<!-- DEMO SECTION -->
 <section class="section demo-section" id="demonstracao">
   <div class="demo-section-inner">
 
@@ -1061,7 +1134,7 @@ body::after {
     <div class="rv">
       <div class="eyebrow">Demo Interactiva</div>
       <div class="h2">Experimente o<br><em>athu em acção</em></div>
-      <p class="lead">Seleccione uma pergunta cívica real e veja como o athu recupera evidências, constrói a resposta e cita as fontes, sem opinião, apenas factos verificáveis.</p>
+      <p class="lead">Escreva qualquer pergunta cívica e veja como o athu recupera evidências, constrói a resposta e cita as fontes — sem opinião, apenas factos verificáveis.</p>
 
       <div class="demo-source-box">
         <div class="demo-source-box-lbl">Fontes Indexadas</div>
@@ -1081,60 +1154,57 @@ body::after {
       </div>
     </div>
 
-      <!-- ── LIVE AI QUERY BLOCK ── -->
-      <div class="gemini-live-block rv d3">
-        <div class="gemini-live-head">
-          <span class="gemini-live-head-title">Faça a sua própria pergunta cívica</span>
-          <span class="gemini-live-head-badge">athu AI · Ao Vivo</span>
-        </div>
-        <div class="gemini-input-row">
-          <input
-            type="text"
-            id="gemini-query-input"
-            class="gemini-input"
-            placeholder="Ex: Qual é o orçamento da saúde em 2025? Ou pergunte em Macua, Changana…"
-            maxlength="400"
-            onkeydown="if(event.key==='Enter') sendGeminiQuery()"
-          >
-          <button class="gemini-send-btn" id="gemini-send-btn" onclick="sendGeminiQuery()" title="Enviar pergunta">
-            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          </button>
-        </div>
-        <div class="gemini-result-area" id="gemini-result-area">
-          <div class="gemini-placeholder" id="gemini-placeholder">
-            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            Escreva uma pergunta e prima Enter para obter uma resposta fundamentada
-          </div>
-          <div class="gemini-loading" id="gemini-loading">
-            <div class="gemini-loading-dots">
-              <div class="gemini-loading-dot"></div>
-              <div class="gemini-loading-dot"></div>
-              <div class="gemini-loading-dot"></div>
-            </div>
-            <div class="gemini-loading-lbl">A analisar fontes governamentais e a sintetizar resposta…</div>
-          </div>
-          <div class="gemini-output" id="gemini-output">
-            <div class="gemini-chips-row" id="gemini-chips-row">
-              <span class="gemini-model-badge">Claude AI</span>
-            </div>
-            <div class="gemini-answer-box">
-              <div class="gemini-ans-lbl">Síntese com base em evidências</div>
-              <div class="gemini-ans-text" id="gemini-ans-text"></div>
-            </div>
-            <div class="gemini-facts-block" id="gemini-facts-block"></div>
-            <div class="gemini-sources-row" id="gemini-sources-row"></div>
-            <div class="gemini-conf-row">
-              <span class="gemini-conf-lbl">Confiança</span>
-              <div class="gemini-conf-bar"><div class="gemini-conf-fill" id="gemini-conf-fill" style="width:0%"></div></div>
-              <span class="gemini-conf-score" id="gemini-conf-score">—</span>
-            </div>
-          </div>
-          <div class="gemini-error" id="gemini-error"></div>
-        </div>
+    <!-- Right col: Live Query -->
+    <div class="live-block rv d3">
+      <div class="live-head">
+        <span class="live-head-title">Faça a sua própria pergunta cívica</span>
+        <span class="live-head-badge">athu AI · Ao Vivo</span>
       </div>
-      <!-- ── END LIVE AI QUERY BLOCK ── -->
-
+      <div class="live-input-row">
+        <input
+          type="text"
+          id="live-input"
+          class="live-input"
+          placeholder="Ex: Qual é o orçamento da saúde em 2025? Ou pergunte em Macua, Changana…"
+          maxlength="400"
+        >
+        <button class="live-send-btn" id="live-send-btn" title="Enviar pergunta">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+      <div class="live-result" id="live-result">
+        <div class="live-placeholder" id="live-placeholder">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Escreva uma pergunta e prima Enter para obter uma resposta fundamentada
+        </div>
+        <div class="live-loading" id="live-loading">
+          <div class="live-loading-dots">
+            <div class="live-loading-dot"></div>
+            <div class="live-loading-dot"></div>
+            <div class="live-loading-dot"></div>
+          </div>
+          <div class="live-loading-lbl">A analisar fontes governamentais e a sintetizar resposta…</div>
+        </div>
+        <div class="live-output" id="live-output">
+          <div class="live-chips-row" id="live-chips-row">
+            <span class="live-model-badge">Claude AI</span>
+          </div>
+          <div class="live-answer-box">
+            <div class="live-ans-lbl">Síntese com base em evidências</div>
+            <div class="live-ans-text" id="live-ans-text"></div>
+          </div>
+          <div class="live-facts" id="live-facts"></div>
+          <div class="live-sources" id="live-sources"></div>
+          <div class="live-conf-row">
+            <span class="live-conf-lbl">Confiança</span>
+            <div class="live-conf-bar"><div class="live-conf-fill" id="live-conf-fill"></div></div>
+            <span class="live-conf-score" id="live-conf-score">—</span>
+          </div>
+        </div>
+        <div class="live-error" id="live-error"></div>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -1146,10 +1216,22 @@ body::after {
       <div class="h2">Construído para<br><em>toda a gente</em></div>
       <p class="lead">O athu serve todos os que precisam de informação governamental verificada, sem intermediários e sem barreiras técnicas.</p>
       <div class="audience-list">
-        <div class="aud-row"><div class="aud-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="aud-title">Jornalistas e Sociedade Civil</div><div class="aud-desc">Verificação de factos, rastreio de promessas, análise orçamental para reportagem investigativa.</div></div></div>
-        <div class="aud-row"><div class="aud-ic"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 003-3h7z"/></svg></div><div><div class="aud-title">Investigadores e Académicos</div><div class="aud-desc">Acesso estruturado a dados de governação, análise longitudinal de políticas públicas.</div></div></div>
-        <div class="aud-row"><div class="aud-ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div><div class="aud-title">Cidadãos</div><div class="aud-desc">Acesso compreensível a leis, orçamentos e decisões — em português ou nas línguas locais.</div></div></div>
-        <div class="aud-row"><div class="aud-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><div><div class="aud-title">Doadores e Parceiros</div><div class="aud-desc">Monitorização independente de programas financiados e verificação de execução orçamental.</div></div></div>
+        <div class="aud-row">
+          <div class="aud-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <div><div class="aud-title">Jornalistas e Sociedade Civil</div><div class="aud-desc">Verificação de factos, rastreio de promessas, análise orçamental para reportagem investigativa.</div></div>
+        </div>
+        <div class="aud-row">
+          <div class="aud-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+          <div><div class="aud-title">Investigadores e Académicos</div><div class="aud-desc">Acesso estruturado a dados de governação, análise longitudinal de políticas públicas.</div></div>
+        </div>
+        <div class="aud-row">
+          <div class="aud-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div><div class="aud-title">Cidadãos</div><div class="aud-desc">Acesso compreensível a leis, orçamentos e decisões — em português ou nas línguas locais.</div></div>
+        </div>
+        <div class="aud-row">
+          <div class="aud-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+          <div><div class="aud-title">Doadores e Parceiros</div><div class="aud-desc">Monitorização independente de programas financiados e verificação de execução orçamental.</div></div>
+        </div>
       </div>
     </div>
     <div class="rv d2">
@@ -1195,7 +1277,7 @@ body::after {
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Como posso tornar-me parceiro ou colaborador?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
-      <div class="faq-a"><div class="faq-a-in">Estamos abertos a parcerias com organizações de media, sociedade civil, universidades, doadores e governos. Contacte-nos em athu@athu.mz — respondemos em 48 horas.</div></div>
+      <div class="faq-a"><div class="faq-a-in">Estamos abertos a parcerias com organizações de media, sociedade civil, universidades, doadores e governos. Contacte-nos em <strong style="color:var(--amber)">athu@athu.mz</strong> — respondemos em 48 horas.</div></div>
     </div>
   </div>
 </section>
@@ -1229,7 +1311,8 @@ body::after {
   <div class="footer-top">
     <div>
       <div class="ft-logo-row">
-        <img src="athu-nobg.png" alt="Athu Logo" class="ft-logo-img">
+        <img src="athu-nobg.png" alt="Athu Logo" class="ft-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="ft-logo-name" style="display:none"><span>athu</span></span>
       </div>
       <p class="ft-tagline">Transformamos documentos públicos em conhecimento verificável para cidadãos.</p>
     </div>
@@ -1274,179 +1357,91 @@ body::after {
 </footer>
 
 <script>
-/* ── Scroll reveal ── */
-const rObs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.07 });
-document.querySelectorAll('.rv').forEach(el => rObs.observe(el));
+/* ════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════ */
+var revealObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.rv').forEach(function(el) { revealObs.observe(el); });
 
-/* ── Nav shadow on scroll ── */
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', scrollY > 8);
+/* ════════════════════════════════════════
+   NAV SCROLL SHADOW
+════════════════════════════════════════ */
+window.addEventListener('scroll', function() {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8);
 }, { passive: true });
 
-/* ── Hero entrance ── */
-const ht = document.querySelector('.hero-text');
-ht.style.cssText = 'opacity:0;transform:translateY(16px)';
-setTimeout(() => { ht.style.transition = 'opacity .9s ease, transform .9s ease'; ht.style.opacity = 1; ht.style.transform = 'none'; }, 100);
+/* ════════════════════════════════════════
+   HERO ENTRANCE
+════════════════════════════════════════ */
+(function() {
+  var ht = document.querySelector('.hero-text');
+  ht.style.cssText = 'opacity:0;transform:translateY(16px)';
+  setTimeout(function() {
+    ht.style.transition = 'opacity .9s ease, transform .9s ease';
+    ht.style.opacity = 1;
+    ht.style.transform = 'none';
+  }, 100);
+})();
 
-/* ── Product switcher ── */
+/* ════════════════════════════════════════
+   PRODUCT SWITCHER
+════════════════════════════════════════ */
 function switchProduct(idx) {
-  document.querySelectorAll('.prod-nav-link').forEach((l, i) => l.classList.toggle('active', i === idx));
-  document.querySelectorAll('.prod-tab-btn').forEach((t, i) => t.classList.toggle('active', i === idx));
-  document.querySelectorAll('.prod-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+  document.querySelectorAll('.prod-nav-link').forEach(function(l, i) { l.classList.toggle('active', i === idx); });
+  document.querySelectorAll('.prod-tab-btn').forEach(function(t, i) { t.classList.toggle('active', i === idx); });
+  document.querySelectorAll('.prod-panel').forEach(function(p, i) { p.classList.toggle('active', i === idx); });
   if (window.innerWidth < 960) {
-    document.getElementById('prod-panels').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(function() {
+      document.getElementById('prod-panels').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
   }
 }
 
-/* ── FAQ ── */
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  const open = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-  if (!open) item.classList.add('open');
-}
-
-/* ── Mobile menu ── */
-function toggleMenu() {
-  document.getElementById('drawer').classList.toggle('open');
-  document.getElementById('ham').classList.toggle('open');
-}
-function closeMenu() {
-  document.getElementById('drawer').classList.remove('open');
-  document.getElementById('ham').classList.remove('open');
-}
-
-/* ── Lang switcher ── */
-function setLang(code) {
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.lang-btn').forEach(b => {
-    if (b.textContent.toLowerCase().includes(code.toLowerCase().slice(0,2))) b.classList.add('active');
+/* Keyboard support */
+document.querySelectorAll('.prod-nav-link').forEach(function(link, idx) {
+  link.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); switchProduct(idx); }
   });
-}
-
-/* ── Keyboard support for product nav ── */
-document.querySelectorAll('.prod-nav-link').forEach((link, idx) => {
-  link.setAttribute('tabindex', '0');
-  link.setAttribute('role', 'button');
-  link.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') switchProduct(idx); });
-});
-
-/* ── Demo query selector ── */
-function selectDemo(idx) {
-  document.querySelectorAll('.qs-q').forEach((q, i) => q.classList.toggle('active', i === idx));
-  document.querySelectorAll('.res-block').forEach((r, i) => r.classList.toggle('active', i === idx));
-}
-document.querySelectorAll('.qs-q').forEach((q, idx) => {
-  q.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') selectDemo(idx); });
 });
 
 /* ════════════════════════════════════════
-   CLAUDE AI LIVE QUERY
+   FAQ ACCORDION
 ════════════════════════════════════════ */
-async function sendGeminiQuery() {
-  const input = document.getElementById('gemini-query-input');
-  const query = input.value.trim();
-  if (!query) return;
-
-  const btn = document.getElementById('gemini-send-btn');
-  const placeholder = document.getElementById('gemini-placeholder');
-  const loading = document.getElementById('gemini-loading');
-  const output = document.getElementById('gemini-output');
-  const errorEl = document.getElementById('gemini-error');
-
-  placeholder.style.display = 'none';
-  output.style.display = 'none';
-  errorEl.style.display = 'none';
-  loading.style.display = 'flex';
-  btn.disabled = true;
-
-  const systemPrompt = `Você é athu, um assistente de inteligência cívica especializado em governação de Moçambique.
-
-Responda APENAS em JSON válido, sem texto fora do JSON, sem blocos de código markdown. A estrutura deve ser exactamente:
-{
-  "chips": ["etiqueta1", "etiqueta2", "etiqueta3"],
-  "summary": "Síntese clara e factual com <strong>valores importantes</strong> em negrito HTML",
-  "facts": [
-    {"key": "CATEGORIA", "value": "Facto específico"},
-    {"key": "CATEGORIA", "value": "Facto específico"},
-    {"key": "CATEGORIA", "value": "Facto específico"}
-  ],
-  "sources": ["Fonte 1", "Fonte 2", "Fonte 3"],
-  "confidence": 75,
-  "confidence_label": "Alta"
+function toggleFaq(btn) {
+  var item = btn.closest('.faq-item');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
 }
 
-Regras:
-- chips: 3-4 etiquetas curtas de fontes ou categorias relevantes (ex: "OE 2026", "MINED", "Boletim da República")
-- summary: 2-4 frases factuais com dados concretos quando disponíveis; use <strong> para destacar números ou termos-chave
-- facts: 3-4 pares chave-valor com factos estruturados e concisos
-- sources: 2-4 fontes primárias relevantes (documentos, ministérios, portais oficiais moçambicanos)
-- confidence: número inteiro entre 40-95
-- confidence_label: "Moderada", "Alta" ou "Muito Alta" conforme o valor
-- Se a pergunta estiver numa língua local moçambicana (Macua, Changana, Sena, etc.), responda em português mas reconheça a língua nos chips
-- Neutralidade política absoluta — apenas factos e fontes, sem opiniões`;
-
-  try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: [{ role: "user", content: query }]
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error('Erro de ligação ao serviço (' + response.status + ')');
-    }
-
-    const data = await response.json();
-    const rawText = (data.content || []).map(function(b) { return b.text || ''; }).join('').trim();
-
-    var parsed;
-    try {
-      var clean = rawText.replace(/```json|```/g, '').trim();
-      parsed = JSON.parse(clean);
-    } catch(e) {
-      throw new Error('Não foi possível interpretar a resposta. Por favor tente novamente.');
-    }
-
-    var chipColors = ['chip-gov', 'chip-law', 'chip-med', 'chip-cnt'];
-    var chipsHtml = (parsed.chips || []).map(function(c, i) {
-      return '<span class="chip ' + chipColors[i % chipColors.length] + '">' + escH(c) + '</span>';
-    }).join('');
-    document.getElementById('gemini-chips-row').innerHTML = chipsHtml + '<span class="gemini-model-badge">Claude AI</span>';
-
-    document.getElementById('gemini-ans-text').innerHTML = parsed.summary || '';
-
-    var factsEl = document.getElementById('gemini-facts-block');
-    factsEl.innerHTML = (parsed.facts || []).map(function(f) {
-      return '<div class="gemini-fact-r"><span class="gemini-fact-k">' + escH(f.key) + '</span><span class="gemini-fact-v">' + escH(f.value) + '</span></div>';
-    }).join('');
-
-    var sourcesEl = document.getElementById('gemini-sources-row');
-    sourcesEl.innerHTML = (parsed.sources || []).map(function(s) {
-      return '<span class="rsrc">' + escH(s) + '</span>';
-    }).join('');
-
-    var conf = Math.min(95, Math.max(40, parseInt(parsed.confidence) || 70));
-    document.getElementById('gemini-conf-fill').style.width = conf + '%';
-    document.getElementById('gemini-conf-score').textContent = conf + '% \u2014 ' + (parsed.confidence_label || 'Moderada');
-
-    loading.style.display = 'none';
-    output.style.display = 'block';
-
-  } catch (err) {
-    loading.style.display = 'none';
-    errorEl.style.display = 'block';
-    errorEl.textContent = err.message || 'Erro ao processar a pergunta. Verifique a sua ligação e tente novamente.';
-  } finally {
-    btn.disabled = false;
-  }
+/* ════════════════════════════════════════
+   MOBILE MENU
+════════════════════════════════════════ */
+function toggleMenu() {
+  document.getElementById('drawer').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('drawer').classList.remove('open');
 }
 
+/* ════════════════════════════════════════
+   LANGUAGE SWITCHER
+════════════════════════════════════════ */
+function setLang(code) {
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    var txt = b.textContent.trim().toUpperCase();
+    if (txt === code.toUpperCase() || txt.startsWith(code.substring(0,2).toUpperCase())) {
+      b.classList.add('active');
+    }
+  });
+}
+
+/* ════════════════════════════════════════
+   HTML ESCAPE
+════════════════════════════════════════ */
 function escH(str) {
   if (!str) return '';
   return String(str)
@@ -1455,82 +1450,134 @@ function escH(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 }
-<script type="importmap">
-  {
-    "imports": {
-      "@google/generative-ai": "https://esm.run/@google/generative-ai"
-    }
-  }
-</script>
 
-<script type="module">
-  import { GoogleGenerativeAI } from "@google/generative-ai";
+/* ════════════════════════════════════════
+   CLAUDE AI LIVE QUERY
+════════════════════════════════════════ */
+var CHIP_CLASSES = ['chip-gov', 'chip-law', 'chip-med', 'chip-cnt'];
 
-  // 1. Configuration - REPLACE WITH YOUR API KEY
-  const API_KEY = "AIzaSyBZPaWxrUWo9CA-2hg383gbMAPs6kGedOA";
-  const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ 
-    model: "gemini-1.5-flash",
-    // This system instruction keeps the AI in "Civic Mozambique" mode
-    systemInstruction: "Tu és Athu, uma Inteligência Cívica para Moçambique. Teu objetivo é ajudar cidadãos a entender leis, processos governamentais e direitos. Responde de forma clara, estruturada e baseada na realidade moçambicana."
-  });
+var liveInput   = document.getElementById('live-input');
+var liveSendBtn = document.getElementById('live-send-btn');
+var livePlaceholder = document.getElementById('live-placeholder');
+var liveLoading = document.getElementById('live-loading');
+var liveOutput  = document.getElementById('live-output');
+var liveError   = document.getElementById('live-error');
+var liveChipsRow= document.getElementById('live-chips-row');
+var liveAnsText = document.getElementById('live-ans-text');
+var liveFacts   = document.getElementById('live-facts');
+var liveSources = document.getElementById('live-sources');
+var liveConfFill= document.getElementById('live-conf-fill');
+var liveConfScore = document.getElementById('live-conf-score');
 
-  // 2. DOM Elements
-  const termAnsText = document.querySelector('.ans-text');
-  const termQLabel = document.querySelector('.term-q-text');
-  const confidenceFill = document.querySelector('.conf-fill');
-  const confidenceScore = document.querySelector('.conf-score');
+function showLiveState(state) {
+  livePlaceholder.style.display = state === 'placeholder' ? 'flex' : 'none';
+  liveLoading.style.display     = state === 'loading'     ? 'flex' : 'none';
+  liveOutput.style.display      = state === 'output'      ? 'block': 'none';
+  liveError.style.display       = state === 'error'       ? 'block': 'none';
+}
 
-  // 3. Function to Ask Gemini
-  async function askAthu(prompt) {
-    try {
-      // UI Feedback: Loading state
-      termAnsText.innerHTML = "<em>A processar consulta cívica...</em>";
-      termQLabel.innerText = prompt;
-      
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const text = response.text();
+async function sendLiveQuery() {
+  var query = liveInput.value.trim();
+  if (!query) return;
 
-      // Format the text (Simple Markdown bolding to HTML)
-      const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      
-      // Update the UI
-      termAnsText.innerHTML = formattedText;
-      
-      // Simulate confidence (Gemini doesn't provide a raw % score in the basic call, 
-      // so we set a high "credible" range for the aesthetic)
-      const randomConf = Math.floor(Math.random() * (98 - 85 + 1) + 85);
-      confidenceFill.style.width = `${randomConf}%`;
-      confidenceScore.innerText = `${randomConf}%`;
+  showLiveState('loading');
+  liveSendBtn.disabled = true;
 
-    } catch (error) {
-      console.error(error);
-      termAnsText.innerHTML = "<span style='color: var(--red)'>Erro ao contactar o servidor. Verifique a sua chave API.</span>";
-    }
-  }
+  var systemPrompt = [
+    'Você é athu, um assistente de inteligência cívica especializado em governação de Moçambique.',
+    '',
+    'Responda APENAS em JSON válido, sem texto fora do JSON, sem blocos de código markdown. A estrutura deve ser exactamente:',
+    '{',
+    '  "chips": ["etiqueta1", "etiqueta2", "etiqueta3"],',
+    '  "summary": "Síntese clara e factual com <strong>valores importantes</strong> em negrito HTML",',
+    '  "facts": [',
+    '    {"key": "CATEGORIA", "value": "Facto específico"},',
+    '    {"key": "CATEGORIA", "value": "Facto específico"},',
+    '    {"key": "CATEGORIA", "value": "Facto específico"}',
+    '  ],',
+    '  "sources": ["Fonte 1", "Fonte 2", "Fonte 3"],',
+    '  "confidence": 75,',
+    '  "confidence_label": "Alta"',
+    '}',
+    '',
+    'Regras:',
+    '- chips: 3-4 etiquetas curtas de fontes ou categorias relevantes (ex: "OE 2026", "MINED", "Boletim da República")',
+    '- summary: 2-4 frases factuais com dados concretos quando disponíveis; use <strong> para destacar números ou termos-chave',
+    '- facts: 3-4 pares chave-valor com factos estruturados e concisos',
+    '- sources: 2-4 fontes primárias relevantes (documentos, ministérios, portais oficiais moçambicanos)',
+    '- confidence: número inteiro entre 40-95',
+    '- confidence_label: "Moderada", "Alta" ou "Muito Alta" conforme o valor',
+    '- Se a pergunta estiver numa língua local moçambicana (Macua, Changana, Sena, etc.), responda em português mas reconheça a língua nos chips',
+    '- Neutralidade política absoluta — apenas factos e fontes, sem opiniões'
+  ].join('\n');
 
-  // 4. Hook into your existing Demo Questions
-  document.querySelectorAll('.qs-q').forEach(button => {
-    button.addEventListener('click', () => {
-      // Remove active class from others
-      document.querySelectorAll('.qs-q').forEach(b => b.classList.remove('active'));
-      button.classList.add('active');
-      
-      const question = button.innerText.replace(/^\d+\s+/, ''); // Removes the leading number
-      askAthu(question);
+  try {
+    var response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: query }]
+      })
     });
-  });
 
-  // 5. Scroll animation for Nav
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('.nav');
-    if (window.scrollY > 50) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  });
-</script>
+    if (!response.ok) {
+      throw new Error('Erro de ligação ao serviço (HTTP ' + response.status + ')');
+    }
 
-   
+    var data = await response.json();
+    var rawText = (data.content || []).map(function(b) { return b.text || ''; }).join('').trim();
+
+    var parsed;
+    try {
+      var clean = rawText.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '').trim();
+      parsed = JSON.parse(clean);
+    } catch(parseErr) {
+      throw new Error('Não foi possível interpretar a resposta. Por favor tente novamente.');
+    }
+
+    /* Chips */
+    liveChipsRow.innerHTML = (parsed.chips || []).map(function(c, i) {
+      return '<span class="chip ' + CHIP_CLASSES[i % CHIP_CLASSES.length] + '">' + escH(c) + '</span>';
+    }).join('') + '<span class="live-model-badge">Claude AI</span>';
+
+    /* Summary — allow inner <strong> HTML from the model */
+    liveAnsText.innerHTML = parsed.summary || '';
+
+    /* Facts */
+    liveFacts.innerHTML = (parsed.facts || []).map(function(f) {
+      return '<div class="live-fact-r">' +
+        '<span class="live-fact-k">' + escH(f.key) + '</span>' +
+        '<span class="live-fact-v">' + escH(f.value) + '</span>' +
+        '</div>';
+    }).join('');
+
+    /* Sources */
+    liveSources.innerHTML = (parsed.sources || []).map(function(s) {
+      return '<span class="rsrc">' + escH(s) + '</span>';
+    }).join('');
+
+    /* Confidence */
+    var conf = Math.min(95, Math.max(40, parseInt(parsed.confidence, 10) || 70));
+    liveConfFill.style.width = conf + '%';
+    liveConfScore.textContent = conf + '% \u2014 ' + (parsed.confidence_label || 'Moderada');
+
+    showLiveState('output');
+
+  } catch(err) {
+    liveError.textContent = err.message || 'Erro ao processar a pergunta. Verifique a sua ligação e tente novamente.';
+    showLiveState('error');
+  } finally {
+    liveSendBtn.disabled = false;
+  }
+}
+
+liveSendBtn.addEventListener('click', sendLiveQuery);
+liveInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') sendLiveQuery();
+});
 </script>
 </body>
 </html>
