@@ -169,6 +169,11 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.12em; text-transform: uppercase;
   margin-top: -2px;
 }
+.nav-logo-img {
+  height: 128px;   /* adjust to taste */
+  width: auto;
+  display: block;
+}
 
 .nav-links { display: flex; gap: 30px; list-style: none; }
 .nav-links a {
@@ -774,16 +779,9 @@ img { display: block; max-width: 100%; }
 <body>
 
 <!-- ═══ NAV ═══ -->
-<nav class="nav" id="nav">
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-badge">
-      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-    </div>
-    <div>
-      <div class="nav-logo-name"><span>athu</span> Intelligence</div>
-      <div class="nav-logo-tagline">Regulatory & Legal AI</div>
-    </div>
-  </a>
+<a href="#" class="nav-logo">
+  <img src="minawu.png" alt="athu logo" class="nav-logo-img">
+</a>
 
   <ul class="nav-links">
     <li><a href="#solutions">Solutions</a></li>
